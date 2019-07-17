@@ -23,8 +23,8 @@ class CreateMedicalBoardsTable extends Migration
             $table->unsignedInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 
-            $table->unsignedInteger('emp_id');
-            $table->foreign('emp_id')->references('id')->on('employs')->onDelete('cascade');
+            $table->unsignedInteger('employ_id');
+            $table->foreign('employ_id')->references('id')->on('employs')->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -13,11 +13,11 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $field
  * @property string $registration_date
  * @property int $user_id
- * @property int $emp_id
+ * @property int $employ_id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\Employ $employ
- * @property-read \App\Models\User $user
+ * @property-read \App\User $user
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\MedicalBoard newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\MedicalBoard newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\MedicalBoard query()
@@ -35,7 +35,7 @@ use Illuminate\Database\Eloquent\Model;
 class MedicalBoard extends Model
 {
     protected $fillable = [
-        'registration_number', 'name', 'field', 'registration_date', 'user_id', 'emp_id'
+        'registration_number', 'name', 'field', 'registration_date', 'user_id', 'employ_id'
     ];
 
     public function user()

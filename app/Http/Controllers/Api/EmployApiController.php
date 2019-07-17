@@ -13,11 +13,16 @@ class EmployApiController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Employ[]|\Illuminate\Database\Eloquent\Collection|\Illuminate\Http\Response
      */
     public function index()
     {
-        return "Hi";
+        $employ = Employ::with('medical_board', 'user')->get();
+        if (isset($employ)) {
+            return $employ;
+        } else {
+            return response()->json(["error" => "no data found"]);
+        }
     }
 
     /**
@@ -35,8 +40,11 @@ class EmployApiController extends Controller
         $employ->user_id = $user;
         $employ->save();
 
-        return $employ;
-
+        if (isset($employ)) {
+            return $employ;
+        } else {
+            return response()->json(["error" => "no data found", $employ]);
+        }
     }
 
     /**
@@ -47,7 +55,7 @@ class EmployApiController extends Controller
      */
     public function show($id)
     {
-        $employ = Employ::find($id);
+        $employ = Employ::whereId($id)->with('medical_board', 'user')->get();
         if (isset($employ)) {
             return $employ;
         } else {
@@ -71,11 +79,16 @@ class EmployApiController extends Controller
      * Remove the specified resource from storage.
      *
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response|int
      */
     public function destroy($id)
     {
-        //
+        $employ = Employ::destroy($id);
+        if (isset($employ)) {
+            return $employ;
+        } else {
+            return response()->json(["error" => "no data found"]);
+        }
     }
 
     /**

@@ -18,7 +18,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\MedicalBoard $medical_board
- * @property-read \App\Models\User $user
+ * @property-read \App\User $user
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Employ newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Employ newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Employ query()
