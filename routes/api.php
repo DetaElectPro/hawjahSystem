@@ -13,7 +13,9 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::post('/register', 'AuthController@register');
+Route::post('/register', 'Api\AuthControllerApi@register');
 
-Route::post('/login', 'AuthController@login');
-Route::post('/logout', 'AuthController@logout');
+Route::post('/login', 'Api\AuthControllerApi@login');
+Route::post('/logout', 'Api\AuthControllerApi@logout');
+
+Route::resource('employ', 'Api\EmployApiController');

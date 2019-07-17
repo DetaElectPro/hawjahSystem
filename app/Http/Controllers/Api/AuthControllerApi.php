@@ -11,7 +11,8 @@ class AuthControllerApi extends Controller
     public function register(Request $request)
     {
         $user = User::create([
-            'email' => $request->email,
+            'phone' => $request->phone,
+            'name' => $request->name,
             'password' => $request->password,
         ]);
 
@@ -22,7 +23,7 @@ class AuthControllerApi extends Controller
 
     public function login()
     {
-        $credentials = request(['email', 'password']);
+        $credentials = request(['phone', 'password']);
 
         if (!$token = auth()->attempt($credentials)) {
             return response()->json(['error' => 'Unauthorized'], 401);
@@ -43,7 +44,7 @@ class AuthControllerApi extends Controller
         return response()->json([
             'access_token' => $token,
             'token_type' => 'bearer',
-            'expires_in' => auth()->factory()->getTTL() * 60
+            'expires_in' => auth()->factory()->getTTL() * 9000
         ]);
     }
 }

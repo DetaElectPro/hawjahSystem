@@ -14,7 +14,7 @@ class MedicalBoardApiController extends Controller
      */
     public function index()
     {
-        //
+        return "test";
     }
 
     /**
