@@ -14,8 +14,10 @@ use Illuminate\Http\Request;
 */
 
 Route::post('/register', 'Api\AuthControllerApi@register');
-
 Route::post('/login', 'Api\AuthControllerApi@login');
+Route::post('/check', 'Api\AuthControllerApi@checkAuth');
 Route::post('/logout', 'Api\AuthControllerApi@logout');
 
 Route::resource('employ', 'Api\EmployApiController');
+Route::resource('medical_board', 'Api\MedicalBoardApiController');
+

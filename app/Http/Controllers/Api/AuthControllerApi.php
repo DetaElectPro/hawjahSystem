@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use JWTAuth;
 
 class AuthControllerApi extends Controller
 {
@@ -44,7 +45,25 @@ class AuthControllerApi extends Controller
         return response()->json([
             'access_token' => $token,
             'token_type' => 'bearer',
-            'expires_in' => auth()->factory()->getTTL() * 9000
+            'expires_in' => auth()->factory()->getTTL() * 10000
         ]);
+    }
+
+    public function checkAuth()
+    {
+        try {
+            JWTAuth::parseToken()->authenticate();
+        } catch (\Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
+
+            return response()->json(["message" => "token is expired"]);
+
+        } catch (\Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
+            return response()->json(["message" => "token is invalid"]);
+            // do whatever you want to do if a token is invalid
+
+        } catch (\Tymon\JWTAuth\Exceptions\JWTException $e) {
+            return response()->json(["message" => "token is not present"]);
+            // do whatever you want to do if a token is not present
+        }
     }
 }
