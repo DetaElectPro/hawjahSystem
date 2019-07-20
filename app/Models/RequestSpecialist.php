@@ -3,8 +3,40 @@
 namespace App\Models;
 
 use App\User;
+use Eloquent;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * App\Models\RequestSpecialist
+ *
+ * @property-read MedicalSpecialty $specialties
+ * @property-read User $user
+ * @method static Builder|RequestSpecialist newModelQuery()
+ * @method static Builder|RequestSpecialist newQuery()
+ * @method static Builder|RequestSpecialist query()
+ * @mixin Eloquent
+ * @property int $id
+ * @property string $name
+ * @property string $address
+ * @property string $price
+ * @property string $start_time
+ * @property string $end_time
+ * @property int $medical_id
+ * @property int $user_id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\RequestSpecialist whereAddress($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\RequestSpecialist whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\RequestSpecialist whereEndTime($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\RequestSpecialist whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\RequestSpecialist whereMedicalId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\RequestSpecialist whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\RequestSpecialist wherePrice($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\RequestSpecialist whereStartTime($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\RequestSpecialist whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\RequestSpecialist whereUserId($value)
+ */
 class RequestSpecialist extends Model
 {
     protected $fillable = ['name', 'address', 'start_time', 'end_time', 'price', 'medical_id'];
