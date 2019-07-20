@@ -15,6 +15,10 @@ class CreateMedicalSpecialtiesTable extends Migration
     {
         Schema::create('medical_specialties', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('name');
+
+            $table->bigInteger('medical_id')->unsigned();
+            $table->foreign('medical_id')->references('id')->on('medical_fields')->onDelete('cascade');
             $table->timestamps();
         });
     }

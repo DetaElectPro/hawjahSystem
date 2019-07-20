@@ -15,6 +15,7 @@ class CreateMedicalFieldsTable extends Migration
     {
         Schema::create('medical_fields', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('name');
             $table->timestamps();
         });
     }
