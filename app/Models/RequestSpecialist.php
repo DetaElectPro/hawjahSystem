@@ -26,16 +26,16 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $user_id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\RequestSpecialist whereAddress($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\RequestSpecialist whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\RequestSpecialist whereEndTime($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\RequestSpecialist whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\RequestSpecialist whereMedicalId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\RequestSpecialist whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\RequestSpecialist wherePrice($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\RequestSpecialist whereStartTime($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\RequestSpecialist whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\RequestSpecialist whereUserId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|RequestSpecialist whereAddress($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|RequestSpecialist whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|RequestSpecialist whereEndTime($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|RequestSpecialist whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|RequestSpecialist whereMedicalId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|RequestSpecialist whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|RequestSpecialist wherePrice($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|RequestSpecialist whereStartTime($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|RequestSpecialist whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|RequestSpecialist whereUserId($value)
  */
 class RequestSpecialist extends Model
 {

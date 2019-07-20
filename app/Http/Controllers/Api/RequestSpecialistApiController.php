@@ -11,28 +11,32 @@ class RequestSpecialistApiController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return RequestSpecialist[]|\Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection
      */
     public function index()
     {
-        return RequestSpecialist::all();
+        return RequestSpecialist::with('specialties', 'user')->get();
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param \Illuminate\Http\Request $request
+     * @return RequestSpecialist
      */
     public function store(Request $request)
     {
-        //
+        $user = auth('api')->user()->id;
+        $request_specialist = new RequestSpecialist($request->all());
+        $request_specialist->user_id = $user;
+        $request_specialist->save();
+        return $request_specialist;
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -43,8 +47,8 @@ class RequestSpecialistApiController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -55,7 +59,7 @@ class RequestSpecialistApiController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
