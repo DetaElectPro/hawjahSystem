@@ -53,17 +53,17 @@ class AuthControllerApi extends Controller
     {
         try {
             $token = JWTAuth::parseToken()->authenticate();
-            return $token;
+            return response()->json(["message" => "status", true]);
         } catch (\Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
 
-            return response()->json(["message" => "token is expired"]);
+            return response()->json(["message" => "token is expired", 'status' => false]);
 
         } catch (\Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
-            return response()->json(["message" => "token is invalid"]);
+            return response()->json(["message" => "token is invalid", 'status' => false]);
             // do whatever you want to do if a token is invalid
 
         } catch (\Tymon\JWTAuth\Exceptions\JWTException $e) {
-            return response()->json(["message" => "token is not present"]);
+            return response()->json(["message" => "token is not present", 'status' => false]);
             // do whatever you want to do if a token is not present
         }
     }
