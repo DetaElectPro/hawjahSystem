@@ -20,4 +20,5 @@ Route::post('/logout', 'Api\AuthControllerApi@logout');
 
 Route::resource('employ', 'Api\EmployApiController');
 Route::resource('medical_board', 'Api\MedicalBoardApiController');
+Route::resource('request_specialist', 'Api\RequestSpecialistApiController');
 

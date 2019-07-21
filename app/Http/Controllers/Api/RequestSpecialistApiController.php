@@ -18,7 +18,7 @@ class RequestSpecialistApiController extends Controller
      */
     public function index()
     {
-        return RequestSpecialist::with('specialties', 'user')->get();
+        return RequestSpecialist::with('specialties.medical', 'user')->get();
     }
 
     /**
@@ -38,14 +38,14 @@ class RequestSpecialistApiController extends Controller
 
     /**
      * Display the specified resource.
-     *
+     * accept
      * @param int $id
      * @return RequestSpecialist[]|Builder[]|Collection
      */
     public function show($id)
     {
         return $request_specialist = RequestSpecialist::whereId($id)
-            ->with('specialties', 'user')
+            ->with('specialties.medical', 'user')
             ->get();
     }
 
