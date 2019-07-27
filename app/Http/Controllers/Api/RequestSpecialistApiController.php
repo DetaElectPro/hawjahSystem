@@ -75,4 +75,5 @@ class RequestSpecialistApiController extends Controller
     {
         return $request_specialist = RequestSpecialist::destroy($id);
     }
+
 }

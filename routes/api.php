@@ -24,4 +24,5 @@ Route::resource('medical_field', 'Api\MedicalFieldApiController');
 Route::resource('medical_specialty', 'Api\MedicalSpecialtyApiController');
 
 Route::resource('request_specialist', 'Api\RequestSpecialistApiController');
+Route::resource('accept_request_specialist', 'Api\AcceptRequestApiController');
 

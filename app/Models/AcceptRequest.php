@@ -22,6 +22,6 @@ class AcceptRequest extends Model
 
     public function requestSpecialist()
     {
-        return '';
+        return $this->belongsTo(RequestSpecialist::class, 'request_id');
     }
 }

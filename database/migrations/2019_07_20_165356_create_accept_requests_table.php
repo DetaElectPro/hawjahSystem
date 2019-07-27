@@ -15,6 +15,11 @@ class CreateAcceptRequestsTable extends Migration
     {
         Schema::create('accept_requests', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('notes');
+            $table->string('recommendation')->nullable();
+            $table->integer('rating')->nullable();
+            $table->bigInteger('request_id')->unsigned();
+            $table->foreign('request_id')->references('id')->on('request_specialists')->onDelete('cascade');
             $table->timestamps();
         });
     }

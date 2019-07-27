@@ -20,11 +20,12 @@ class CreateRequestSpecialistsTable extends Migration
             $table->string('price');
             $table->string('start_time');
             $table->string('end_time');
+            $table->string('status');
 
             $table->bigInteger('medical_id')->unsigned();
             $table->foreign('medical_id')->references('id')->on('medical_fields')->onDelete('cascade');
 
-            $table->unsignedInteger('user_id');
+            $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });

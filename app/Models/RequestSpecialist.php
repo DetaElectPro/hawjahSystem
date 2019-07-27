@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Http\Controllers\Api\AcceptRequestApiController;
 use App\User;
 use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
@@ -39,7 +40,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class RequestSpecialist extends Model
 {
-    protected $fillable = ['name', 'address', 'start_time', 'end_time', 'price', 'medical_id'];
+    protected $fillable = ['name', 'address', 'start_time', 'end_time', 'price', 'medical_id', 'status'];
 
     public function user()
     {
@@ -49,5 +50,10 @@ class RequestSpecialist extends Model
     public function specialties()
     {
         return $this->belongsTo(MedicalSpecialty::class, 'medical_id');
+    }
+
+    public function acceptRequest()
+    {
+        return $this->hasOne(AcceptRequest::class, 'request_id');
     }
 }

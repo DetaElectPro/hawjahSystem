@@ -14,7 +14,7 @@ class CreateEmploysTable extends Migration
     public function up()
     {
         Schema::create('employs', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->string('job_title');
             $table->date('graduation_date');
             $table->date('birth_of_date');
@@ -22,7 +22,7 @@ class CreateEmploysTable extends Migration
             $table->integer('years_of_experience');
             $table->text('cv');
 
-            $table->unsignedInteger('user_id');
+            $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });

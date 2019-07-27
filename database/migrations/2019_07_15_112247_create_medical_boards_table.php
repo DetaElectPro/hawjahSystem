@@ -14,16 +14,16 @@ class CreateMedicalBoardsTable extends Migration
     public function up()
     {
         Schema::create('medical_boards', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->string('registration_number');
             $table->string('name');
             $table->string('field');
             $table->date('registration_date');
 
-            $table->unsignedInteger('user_id');
+            $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 
-            $table->unsignedInteger('employ_id');
+            $table->unsignedBigInteger('employ_id');
             $table->foreign('employ_id')->references('id')->on('employs')->onDelete('cascade');
             $table->timestamps();
         });
