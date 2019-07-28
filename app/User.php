@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Models\AcceptRequest;
 use App\Models\MedicalBoard;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -109,5 +110,10 @@ class User extends Authenticatable implements JWTSubject
     public function medical_board()
     {
         return $this->hasOne(MedicalBoard::class);
+    }
+
+    public function acceptRequest()
+    {
+        return $this->hasOne(AcceptRequest::class);
     }
 }
