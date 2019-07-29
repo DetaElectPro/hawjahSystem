@@ -11,6 +11,7 @@ class medicaBoradsTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        factory(App\Models\MedicalBoard::class, 5)->create();
+
     }
 }

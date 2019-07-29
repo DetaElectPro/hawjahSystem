@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Models\AcceptRequest;
+use App\Models\RequestSpecialist;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -19,7 +20,7 @@ class AcceptRequestApiController extends Controller
     public function index()
     {
         $user = auth('api')->user()->id;
-        return AcceptRequest::where('user_id', $user)->with('user', 'requestSpecialist')->get();
+        return AcceptRequest::whereUserId($user)->with('user', 'requestSpecialist')->get();
     }
 
     /**
@@ -30,25 +31,28 @@ class AcceptRequestApiController extends Controller
      */
     public function store(Request $request)
     {
-
+        $user = auth('api')->user()->id;
+        $acceptRequest = new AcceptRequest();
+        $acceptRequest = $acceptRequest->acceptRequest($request, $user);
+        return $acceptRequest;
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
-     * @return Response
+     * @param int $id
+     * @return AcceptRequest[]|Builder[]|\Illuminate\Database\Eloquent\Collection
      */
     public function show($id)
     {
-        //
+        return AcceptRequest::whereId($id)->with('requestSpecialist', 'user')->get();
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param Request $request
-     * @param  int  $id
+     * @param int $id
      * @return Response
      */
     public function update(Request $request, $id)
@@ -59,11 +63,20 @@ class AcceptRequestApiController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return Response
+     * @param int $id
+     * @return int
      */
     public function destroy($id)
     {
-        //
+        return AcceptRequest::destroy($id);
+    }
+
+    public function userAccept(Request $request)
+    {
+        $user = auth('api')->user()->id;
+        $acceptRequest = new AcceptRequest();
+
+
+
     }
 }

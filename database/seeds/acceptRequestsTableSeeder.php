@@ -11,6 +11,7 @@ class acceptRequestsTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        factory(App\Models\AcceptRequest::class, 5)->create();
+
     }
 }

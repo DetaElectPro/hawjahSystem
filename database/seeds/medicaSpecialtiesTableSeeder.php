@@ -11,6 +11,6 @@ class medicaSpecialtiesTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        factory(App\Models\MedicalSpecialty::class, 5)->create();
     }
 }

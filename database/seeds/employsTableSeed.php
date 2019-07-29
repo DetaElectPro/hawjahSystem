@@ -11,6 +11,7 @@ class employsTableSeed extends Seeder
      */
     public function run()
     {
-        //
+        factory(App\Models\Employ::class, 5)->create();
+
     }
 }

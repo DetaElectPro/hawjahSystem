@@ -11,6 +11,6 @@ class requestSpecialistsTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        factory(App\Models\RequestSpecialist::class, 5)->create();
     }
 }

@@ -11,6 +11,6 @@ class medicaFieldsTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        factory(App\Models\MedicalField::class, 5)->create();
     }
 }

@@ -15,8 +15,8 @@ class CreateAcceptRequestsTable extends Migration
     {
         Schema::create('accept_requests', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('notes');
-            $table->string('recommendation')->nullable();
+            $table->text('notes');
+            $table->longText('recommendation')->nullable();
             $table->integer('rating')->nullable();
 
             $table->bigInteger('user_id')->unsigned();
