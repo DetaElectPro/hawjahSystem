@@ -28,17 +28,17 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $status
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @method static \Illuminate\Database\Eloquent\Builder|RequestSpecialist whereAddress($value)
- * @method static \Illuminate\Database\Eloquent\Builder|RequestSpecialist whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|RequestSpecialist whereEndTime($value)
- * @method static \Illuminate\Database\Eloquent\Builder|RequestSpecialist whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|RequestSpecialist whereMedicalId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|RequestSpecialist whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|RequestSpecialist wherePrice($value)
- * @method static \Illuminate\Database\Eloquent\Builder|RequestSpecialist whereStartTime($value)
- * @method static \Illuminate\Database\Eloquent\Builder|RequestSpecialist whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|RequestSpecialist whereUserId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|RequestSpecialist whereStatus($value)
+ * @method static Builder|RequestSpecialist whereAddress($value)
+ * @method static Builder|RequestSpecialist whereCreatedAt($value)
+ * @method static Builder|RequestSpecialist whereEndTime($value)
+ * @method static Builder|RequestSpecialist whereId($value)
+ * @method static Builder|RequestSpecialist whereMedicalId($value)
+ * @method static Builder|RequestSpecialist whereName($value)
+ * @method static Builder|RequestSpecialist wherePrice($value)
+ * @method static Builder|RequestSpecialist whereStartTime($value)
+ * @method static Builder|RequestSpecialist whereUpdatedAt($value)
+ * @method static Builder|RequestSpecialist whereUserId($value)
+ * @method static Builder|RequestSpecialist whereStatus($value)
  * @property-read \App\Models\AcceptRequest $acceptRequest
  */
 class RequestSpecialist extends Model
@@ -72,9 +72,18 @@ class RequestSpecialist extends Model
      * */
 
 
-    public function acceptRequestByUser($requestId)
+    public function acceptRequestByUser($requestId, $userID)
     {
-        return RequestSpecialist::whereId($requestId)->whereStatus(1)->update(['status' => 2]);
+        $requestSpecialist = RequestSpecialist::whereId($requestId)->whereStatus(1)->update(['status' => 2]);
+        if ($requestSpecialist) {
+            $acceptRequest = new AcceptRequest();
+            $acceptRequest->user_id = $userID;
+            $acceptRequest->request_id = $requestId;
+            $acceptRequest->save();
+            return ['accept' => true, 'request' => true];
+        } else {
+            return ['accept' => false, 'request' => false];
+        }
     }
 
     public function acceptRequestByAdmin($requestId)
@@ -82,14 +91,61 @@ class RequestSpecialist extends Model
         return RequestSpecialist::whereId($requestId)->whereStatus(2)->update(['status' => 3]);
     }
 
+
+    /**
+     * @param $requestId
+     * @return AcceptRequest|array|bool|Builder|mixed|null
+     * @throws \Exception
+     */
     public function cancelRequestByAdmin($requestId)
     {
-        return RequestSpecialist::whereId($requestId)->update(['status' => 4]);
+        $acceptRequest = AcceptRequest::whereRequestId($requestId);
+        $acceptRequest = $acceptRequest->delete();
+        if ($acceptRequest) {
+            $requestSpecialist = RequestSpecialist::whereId($requestId)->update(['status' => 4]);
+            return ['accept' => true, 'request' => true];
+
+        } else {
+            return ['accept' => false, 'request' => false];
+        }
+
     }
 
+    /**
+     * @param $requestId
+     * @return array
+     * @throws \Exception
+     */
     public function cancelRequestByUser($requestId)
     {
-        return RequestSpecialist::whereId($requestId)->whereStatus(2)->update(['status' => 5]);
+        $acceptRequest = AcceptRequest::whereRequestId($requestId);
+        $acceptRequest = $acceptRequest->delete();
+        if ($acceptRequest) {
+            RequestSpecialist::whereId($requestId)->whereStatus(2)->update(['status' => 1]);
+            return ['accept' => true, 'request' => true];
+
+        } else {
+            return ['accept' => false, 'request' => false];
+        }
+
+    }
+
+    public function acceptRequestAndDone($requestId, $request)
+    {
+        $acceptRequest = AcceptRequest::whereRequestId($requestId)
+            ->update([
+                'notes' => $request->notes,
+                'recommendation' => $request->recommendation,
+                'rating' => $request->rating
+            ]);
+        if ($acceptRequest) {
+            $requestSpecialist = RequestSpecialist::whereId($requestId)->whereStatus(3)->update(['status' => 6]);
+            return ['accept' => true, 'request' => true];
+
+        } else {
+            return ['accept' => false, 'request' => false];
+        }
+
     }
 
 

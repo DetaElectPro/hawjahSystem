@@ -71,12 +71,34 @@ class AcceptRequestApiController extends Controller
         return AcceptRequest::destroy($id);
     }
 
+    /**
+     * @param Request $request
+     * @return array|string
+     * @throws \Exception
+     */
     public function userAccept(Request $request)
     {
+
         $user = auth('api')->user()->id;
-        $acceptRequest = new AcceptRequest();
-
-
-
+        $acceptRequest = new RequestSpecialist();
+        switch ($request->status) {
+            case (1):
+                return $acceptRequest->acceptRequestByUser($request->id, $user);
+                break;
+            case (3):
+                return $acceptRequest->acceptRequestByAdmin($request->id);
+                break;
+            case (4):
+                return $acceptRequest->cancelRequestByAdmin($request->id);
+                break;
+            case (5):
+                return $acceptRequest->cancelRequestByUser($request->id);
+                break;
+            case (6):
+               return $acceptRequest->acceptRequestAndDone($request->id, $request);
+                break;
+            default:
+                return 'error';
+        }
     }
 }
