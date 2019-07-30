@@ -26,5 +26,5 @@ Route::resource('medical_specialty', 'Api\MedicalSpecialtyApiController');
 Route::resource('request_specialist', 'Api\RequestSpecialistApiController');
 Route::resource('accept_request_specialist', 'Api\AcceptRequestApiController');
 Route::post('user_accept_request_specialist', 'Api\AcceptRequestApiController@userAccept');
-Route::post('user_accept_request_specialist', 'Api\AcceptRequestApiController@userAccept');
+Route::resource('emergency_serviced', 'Api\EmergencyServicedApiController');
 
