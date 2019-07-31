@@ -100,7 +100,7 @@ class EmployApiController extends Controller
         $random = Str::random(10);
         if ($request->hasfile('cv')) {
             $image = $request->file('cv');
-            $name = $random . 'cv_' . $userId . ".jpg";
+            $name = $random . 'cv_' . $userId . ".pdf";
             $image->move(public_path() . '/cv/', $name);
             return $name;
         }

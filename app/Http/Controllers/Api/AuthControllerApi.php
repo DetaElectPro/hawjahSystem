@@ -11,9 +11,11 @@ class AuthControllerApi extends Controller
 {
     public function register(Request $request)
     {
+        $status = 1;
         $user = User::create([
             'phone' => $request->phone,
             'name' => $request->name,
+            'status' => $status,
             'password' => $request->password,
         ]);
 
