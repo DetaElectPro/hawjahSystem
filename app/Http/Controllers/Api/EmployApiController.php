@@ -29,19 +29,21 @@ class EmployApiController extends Controller
      * Store a newly created resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @return Employ
+     * @return Employ|array
      */
     public function store(Request $request)
     {
         $user = auth('api')->user()->id;
         $cvFile = $this->saveFile($request, $user);
+
         $employ = new Employ($request->all());
         $employ->cv = $cvFile;
         $employ->user_id = $user;
         $employ->save();
+        $userStatus = $employ->user()->update(['status'=> 2]);
 
         if (isset($employ)) {
-            return $employ;
+            return [$employ, 'statusUpdate'=>$userStatus, 'status'=>2];
         } else {
             return response()->json(["error" => "no data found", $employ]);
         }

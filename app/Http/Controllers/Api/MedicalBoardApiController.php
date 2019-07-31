@@ -27,7 +27,7 @@ class MedicalBoardApiController extends Controller
      * Store a newly created resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @return MedicalBoard
+     * @return array
      */
     public function store(Request $request)
     {
@@ -35,9 +35,10 @@ class MedicalBoardApiController extends Controller
         $medical = new MedicalBoard($request->all());
         $medical->user_id = $user;
         $medical->save();
+        $userStatus = $medical->user()->update(['status' => 3]);
 
         if (isset($medical)) {
-            return $medical;
+            return [$medical, 'statusUpdate' => $userStatus, 'status' => 3];
         } else {
             return response()->json(["error" => "no data found", $medical]);
         }
