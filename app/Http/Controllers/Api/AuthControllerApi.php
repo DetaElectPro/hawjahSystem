@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Http\Requests\UserRequest;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -9,7 +10,7 @@ use JWTAuth;
 
 class AuthControllerApi extends Controller
 {
-    public function register(Request $request)
+    public function register(UserRequest $request)
     {
         $status = 1;
         $user = User::create([
@@ -24,6 +25,7 @@ class AuthControllerApi extends Controller
         return $this->respondWithToken($token);
     }
 
+
     public function login()
     {
         $credentials = request(['phone', 'password']);
@@ -31,7 +33,6 @@ class AuthControllerApi extends Controller
         if (!$token = auth()->attempt($credentials)) {
             return response()->json(['error' => 'Unauthorized'], 401);
         }
-
         return $this->respondWithToken($token);
     }
 
@@ -45,9 +46,11 @@ class AuthControllerApi extends Controller
     protected function respondWithToken($token)
     {
         return response()->json([
+
             'access_token' => $token,
             'token_type' => 'bearer',
-            'expires_in' => auth()->factory()->getTTL() * 10000
+            'expires_in' => auth()->factory()->getTTL() * 31556926,
+            'user' => auth()->user()
         ]);
     }
 
@@ -55,7 +58,7 @@ class AuthControllerApi extends Controller
     {
         try {
             $token = JWTAuth::parseToken()->authenticate();
-            return response()->json(["message" => "status", true]);
+            return response()->json(["message" => "valid token", "status", true]);
         } catch (\Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
 
             return response()->json(["message" => "token is expired", 'status' => false]);
