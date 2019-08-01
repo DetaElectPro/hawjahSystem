@@ -58,7 +58,7 @@ class AuthControllerApi extends Controller
     {
         try {
             $token = JWTAuth::parseToken()->authenticate();
-            return response()->json(["message" => "valid token", "status", true]);
+            return response()->json(["message" => "valid token", "status"=> true]);
         } catch (\Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
 
             return response()->json(["message" => "token is expired", 'status' => false]);
