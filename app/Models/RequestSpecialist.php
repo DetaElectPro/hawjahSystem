@@ -43,7 +43,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class RequestSpecialist extends Model
 {
-    protected $fillable = ['name', 'address', 'start_time', 'end_time', 'price', 'medical_id', 'status'];
+    protected $fillable = ['name', 'address', 'start_time', 'end_time', 'price', 'medical_id', 'status', 'user_id'];
 
     public function user()
     {

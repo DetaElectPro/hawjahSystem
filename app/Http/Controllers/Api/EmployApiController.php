@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Http\Requests\EmployRequest;
 use App\Models\Employ;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -31,7 +32,7 @@ class EmployApiController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return Employ|array
      */
-    public function store(Request $request)
+    public function store(EmployRequest $request)
     {
         $user = auth('api')->user()->id;
         $cvFile = $this->saveFile($request, $user);
@@ -40,10 +41,10 @@ class EmployApiController extends Controller
         $employ->cv = $cvFile;
         $employ->user_id = $user;
         $employ->save();
-        $userStatus = $employ->user()->update(['status'=> 2]);
+        $userStatus = $employ->user()->update(['status' => 2]);
 
         if (isset($employ)) {
-            return [$employ, 'statusUpdate'=>$userStatus, 'status'=>2];
+            return response()->json(['employ' => $employ, 'statusUpdate' => $userStatus, 'status' => 2]);
         } else {
             return response()->json(["error" => "no data found", $employ]);
         }
@@ -104,6 +105,8 @@ class EmployApiController extends Controller
             $image = $request->file('cv');
             $name = $random . 'cv_' . $userId . ".pdf";
             $image->move(public_path() . '/cv/', $name);
+            $name = url("cv/$name");
+
             return $name;
         }
         return false;

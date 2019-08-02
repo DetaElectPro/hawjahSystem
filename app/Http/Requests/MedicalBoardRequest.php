@@ -11,10 +11,10 @@ class MedicalBoardRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
-    {
-        return false;
-    }
+//    public function authorize()
+//    {
+//        return false;
+//    }
 
     /**
      * Get the validation rules that apply to the request.
@@ -24,7 +24,13 @@ class MedicalBoardRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'registration_number' => "required|max:20",
+            'name' => "required|max:20",
+            'field' => "required|max:20",
+            'registration_date' => "required|max:20",
+            'user_id' => "required|max:20",
+            'employ_id' => "required|max:20"
+
         ];
     }
 }
