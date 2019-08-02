@@ -19,19 +19,19 @@ use Illuminate\Database\Eloquent\Model;
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\MedicalBoard $medical_board
  * @property-read \App\User $user
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Employ newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Employ newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Employ query()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Employ whereAddress($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Employ whereBirthOfDate($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Employ whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Employ whereCv($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Employ whereGraduationDate($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Employ whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Employ whereJobTitle($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Employ whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Employ whereUserId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Employ whereYearsOfExperience($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Employ newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Employ newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Employ query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Employ whereAddress($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Employ whereBirthOfDate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Employ whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Employ whereCv($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Employ whereGraduationDate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Employ whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Employ whereJobTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Employ whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Employ whereUserId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Employ whereYearsOfExperience($value)
  * @mixin \Eloquent
  */
 class Employ extends Model
