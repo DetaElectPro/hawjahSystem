@@ -13,14 +13,14 @@ use Illuminate\Database\Eloquent\Model;
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\MedicalField $medical
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\MedicalSpecialty newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\MedicalSpecialty newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\MedicalSpecialty query()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\MedicalSpecialty whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\MedicalSpecialty whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\MedicalSpecialty whereMedicalId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\MedicalSpecialty whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\MedicalSpecialty whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|MedicalSpecialty newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|MedicalSpecialty newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|MedicalSpecialty query()
+ * @method static \Illuminate\Database\Eloquent\Builder|MedicalSpecialty whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|MedicalSpecialty whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|MedicalSpecialty whereMedicalId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|MedicalSpecialty whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|MedicalSpecialty whereUpdatedAt($value)
  * @mixin \Eloquent
  */
 class MedicalSpecialty extends Model
