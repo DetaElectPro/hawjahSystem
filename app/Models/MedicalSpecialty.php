@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $medical_id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \App\Models\MedicalField $medical
+ * @property-read MedicalField $medical
  * @method static \Illuminate\Database\Eloquent\Builder|MedicalSpecialty newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|MedicalSpecialty newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|MedicalSpecialty query()
