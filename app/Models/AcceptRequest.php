@@ -6,7 +6,6 @@ use App\User;
 use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
-use DB;
 use Illuminate\Support\Carbon;
 
 /**
