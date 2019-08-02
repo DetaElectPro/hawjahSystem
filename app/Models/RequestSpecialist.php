@@ -5,8 +5,10 @@ namespace App\Models;
 use App\Http\Controllers\Api\AcceptRequestApiController;
 use App\User;
 use Eloquent;
+use Exception;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Carbon;
 
 /**
  * App\Models\RequestSpecialist
@@ -26,8 +28,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $medical_id
  * @property int $user_id
  * @property string $status
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
  * @method static Builder|RequestSpecialist whereAddress($value)
  * @method static Builder|RequestSpecialist whereCreatedAt($value)
  * @method static Builder|RequestSpecialist whereEndTime($value)
@@ -39,7 +41,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static Builder|RequestSpecialist whereUpdatedAt($value)
  * @method static Builder|RequestSpecialist whereUserId($value)
  * @method static Builder|RequestSpecialist whereStatus($value)
- * @property-read \App\Models\AcceptRequest $acceptRequest
+ * @property-read AcceptRequest $acceptRequest
  */
 class RequestSpecialist extends Model
 {
@@ -95,7 +97,7 @@ class RequestSpecialist extends Model
     /**
      * @param $requestId
      * @return AcceptRequest|array|bool|Builder|mixed|null
-     * @throws \Exception
+     * @throws Exception
      */
     public function cancelRequestByAdmin($requestId)
     {
@@ -114,7 +116,7 @@ class RequestSpecialist extends Model
     /**
      * @param $requestId
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function cancelRequestByUser($requestId)
     {
