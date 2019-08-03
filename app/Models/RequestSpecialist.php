@@ -45,7 +45,7 @@ use Illuminate\Support\Carbon;
  */
 class RequestSpecialist extends Model
 {
-    protected $fillable = ['name', 'address', 'start_time', 'end_time', 'price', 'medical_id', 'status', 'user_id'];
+    protected $fillable = ['name', 'address', 'start_time', 'end_time', 'price', 'latitude', 'longitude', 'medical_id', 'status', 'user_id'];
 
     public function user()
     {

@@ -20,6 +20,8 @@ class CreateRequestSpecialistsTable extends Migration
             $table->string('price');
             $table->string('start_time');
             $table->string('end_time');
+            $table->double('latitude');
+            $table->double('longitude');
             $table->string('status');
 
             $table->bigInteger('medical_id')->unsigned();

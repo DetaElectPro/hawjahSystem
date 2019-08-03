@@ -11,13 +11,15 @@ $factory->define(RequestSpecialist::class, function (Faker $faker) {
         'address' => $faker->address,
         'start_time' => $faker->time('H:i:s', 'now'),
         'end_time' => $faker->time('H:i:s', 'now'),
+        'latitude' => $faker->latitude,
+        'longitude' => $faker->longitude,
         'price' => $faker->numberBetween(100, 300),
         'medical_id' => function () {
             return factory(App\Models\MedicalSpecialty::class)->create()->id;
         },
         'status' => random_int(1, 3),
-        'user_id'=> function(){
-        return factory(App\User::class)->create()->id;
+        'user_id' => function () {
+            return factory(App\User::class)->create()->id;
         }
     ];
 });
