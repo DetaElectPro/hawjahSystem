@@ -8,8 +8,6 @@ use Faker\Generator as Faker;
 $factory->define(MedicalSpecialty::class, function (Faker $faker) {
     return [
         'name' => $faker->unique()->jobTitle,
-        'medical_id' => function () {
-            return factory(App\Models\MedicalField::class)->create()->id;
-        }
+        'medical_id' => random_int(1, 20)
     ];
 });

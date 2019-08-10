@@ -20,7 +20,7 @@ class CreateEmploysTable extends Migration
             $table->date('birth_of_date');
             $table->string('address');
             $table->integer('years_of_experience');
-            $table->text('cv');
+            $table->text('cv')->nullable();
 
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

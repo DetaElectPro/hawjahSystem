@@ -29,7 +29,7 @@ class EmployRequest extends FormRequest
             'birth_of_date' => 'required',
             'address' => 'required',
             'years_of_experience' => 'required',
-            'cv' => 'required',
+//            'cv' => 'required',
         ];
     }
 }

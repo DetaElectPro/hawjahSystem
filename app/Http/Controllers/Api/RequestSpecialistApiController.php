@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Response;
 
-class RequestSpecialistApiController extends Controller
+class  RequestSpecialistApiController extends Controller
 {
     /**
      * Display a listing of the resource.
