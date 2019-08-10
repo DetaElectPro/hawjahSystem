@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Str;
 use JWTAuth;
+use Storage;
+use App\Helpers\FileUpload ;
 
 class EmployApiController extends Controller
 {
@@ -35,7 +37,8 @@ class EmployApiController extends Controller
     public function store(EmployRequest $request)
     {
         $user = auth('api')->user()->id;
-        $cvFile = $this->saveFile($request, $user);
+        $base64String = $request->input('cv');
+        $cvFile = $this->saveFileBase64($base64String, $user);
 
         $employ = new Employ($request->all());
         $employ->cv = $cvFile;
@@ -98,17 +101,40 @@ class EmployApiController extends Controller
      * @param $request
      * @return bool|string
      */
-    public function saveFile($request, $userId)
-    {
-        $random = Str::random(10);
-        if ($request->hasfile('cv')) {
-            $image = $request->file('cv');
-            $name = $random . 'cv_' . $userId . ".pdf";
-            $image->move(public_path() . '/cv/', $name);
-            $name = url("cv/$name");
+//    public function saveFile($request, $userId)
+//    {
+//        $random = Str::random(10);
+//        if ($request->hasfile('cv')) {
+//            $image = $request->file('cv');
+//            $name = $random . 'cv_' . $userId . ".pdf";
+//            $image->move(public_path() . '/cv/', $name);
+//            $name = url("cv/$name");
+//
+//            return $name;
+//        }
+//        return false;
+//    }
 
-            return $name;
+
+
+    protected function saveFileBase64($param, $folder)
+    {
+        $folder = 'cv';
+        list($extension, $content) = explode(';', $param);
+        $tmpExtension = explode('/', $extension);
+        preg_match('/.([0-9]+) /', microtime(), $m);
+        $fileName = sprintf('img%s%s.%s', date('YmdHis'), $m[1], $tmpExtension[1]);
+        $content = explode(',', $content)[1];
+        $storage = Storage::disk('public');
+
+        $checkDirectory = $storage->exists($folder);
+
+        if (!$checkDirectory) {
+            $storage->makeDirectory($folder);
         }
-        return false;
+
+        $storage->put($folder . '/' . $fileName, base64_decode($content), 'public');
+
+        return $fileName;
     }
 }
