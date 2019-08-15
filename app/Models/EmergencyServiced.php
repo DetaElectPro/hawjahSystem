@@ -18,18 +18,18 @@ use Illuminate\Database\Eloquent\Model;
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\User $user
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\EmergencyServiced newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\EmergencyServiced newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\EmergencyServiced query()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\EmergencyServiced whereAddress($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\EmergencyServiced whereAvailableBed($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\EmergencyServiced whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\EmergencyServiced whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\EmergencyServiced whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\EmergencyServiced wherePricePerDay($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\EmergencyServiced whereType($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\EmergencyServiced whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\EmergencyServiced whereUserId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|EmergencyServiced newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|EmergencyServiced newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|EmergencyServiced query()
+ * @method static \Illuminate\Database\Eloquent\Builder|EmergencyServiced whereAddress($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|EmergencyServiced whereAvailableBed($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|EmergencyServiced whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|EmergencyServiced whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|EmergencyServiced whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|EmergencyServiced wherePricePerDay($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|EmergencyServiced whereType($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|EmergencyServiced whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|EmergencyServiced whereUserId($value)
  * @mixin \Eloquent
  */
 class EmergencyServiced extends Model

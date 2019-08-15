@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Models\Employ;
 use App\Models\MedicalBoard;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -32,16 +33,18 @@ class MedicalBoardApiController extends Controller
     public function store(Request $request)
     {
         $user = auth('api')->user()->id;
-        $medical = new MedicalBoard($request->all());
-        $medical->user_id = $user;
-        $medical->save();
-        $userStatus = $medical->user()->update(['status' => 3]);
-
-        if (isset($medical)) {
-            return [$medical, 'statusUpdate' => $userStatus, 'status' => 3];
-        } else {
-            return response()->json(["error" => "no data found", $medical]);
-        }
+        return $employ = Employ::whereUserId($user)->first('id');
+//        $medical = new MedicalBoard($request->all());
+//        $medical->user_id = $user;
+//        $medical->employ_id = $employ;
+//        $medical->save();
+//        $userStatus = $medical->user()->update(['status' => 3]);
+//
+//        if (isset($medical)) {
+//            return [$medical, 'statusUpdate' => $userStatus, 'status' => 3];
+//        } else {
+//            return response()->json(["error" => "no data found", $medical]);
+//        }
     }
 
     /**
