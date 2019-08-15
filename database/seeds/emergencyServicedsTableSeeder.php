@@ -11,6 +11,6 @@ class emergencyServicedsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Models\EmergencyServiced::class, 6)->create();
+        factory(App\Models\EmergencyServices::class, 6)->create();
     }
 }

@@ -2,10 +2,10 @@
 
 /* @var $factory \Illuminate\Database\Eloquent\Factory */
 
-use App\Models\EmergencyServiced;
+use App\Models\EmergencyServices;
 use Faker\Generator as Faker;
 
-$factory->define(EmergencyServiced::class, function (Faker $faker) {
+$factory->define(EmergencyServices::class, function (Faker $faker) {
     return [
         'name' => $faker->name,
         'address'=> $faker->address,
