@@ -15,6 +15,11 @@ class CreateFeaturedCentersTable extends Migration
     {
         Schema::create('featured_centers', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('name');
+            $table->integer('rate');
+
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }
