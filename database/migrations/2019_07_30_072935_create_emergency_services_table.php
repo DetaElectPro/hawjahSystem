@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateEmergencyServicedsTable extends Migration
+class CreateEmergencyServicesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateEmergencyServicedsTable extends Migration
      */
     public function up()
     {
-        Schema::create('emergency_serviceds', function (Blueprint $table) {
+        Schema::create('emergency_services', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('address');
