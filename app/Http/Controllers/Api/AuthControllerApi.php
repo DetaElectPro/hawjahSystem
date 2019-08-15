@@ -59,7 +59,7 @@ class AuthControllerApi extends Controller
     {
         try {
             $token = JWTAuth::parseToken()->authenticate();
-            return response()->json(["message" => "valid token", "status"=> true]);
+            return response()->json(["message" => "valid token", "status" => true]);
         } catch (\Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
 
             return response()->json(["message" => "token is expired", 'status' => false]);
@@ -73,4 +73,29 @@ class AuthControllerApi extends Controller
             // do whatever you want to do if a token is not present
         }
     }
+
+    public function profile()
+    {
+        try {
+            $user = JWTAuth::parseToken()->authenticate();
+            return $data = User::whereId($user->id)->with('employ', 'medical_board')->get(['id', 'name', 'phone', 'created_at']);
+        } catch (\Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
+
+            return response()->json(["message" => "token is expired", 'status' => false]);
+
+        } catch (\Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
+            return response()->json(["message" => "token is invalid", 'status' => false]);
+            // do whatever you want to do if a token is invalid
+
+        } catch (\Tymon\JWTAuth\Exceptions\JWTException $e) {
+            return response()->json(["message" => "token is not present", 'status' => false]);
+            // do whatever you want to do if a token is not present
+        }
+    }
+
+    public function profileById($id)
+    {
+        return User::whereId($id)->with('employ', 'medical_board')->get(['id', 'name', 'phone', 'created_at']);
+    }
+
 }
