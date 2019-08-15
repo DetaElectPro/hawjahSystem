@@ -4,12 +4,12 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Requests\EmployRequest;
 use App\Models\Employ;
+//use Faker\Provider\Image;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Str;
-use JWTAuth;
-use Storage;
-use App\Helpers\FileUpload ;
+use Image;
+//use JWTAuth;
 
 class EmployApiController extends Controller
 {
@@ -37,11 +37,9 @@ class EmployApiController extends Controller
     public function store(EmployRequest $request)
     {
         $user = auth('api')->user()->id;
-        $base64String = $request->input('cv');
-        $cvFile = $this->saveFileBase64($base64String, $user);
-
+        $file_name = $this->saveFileBase64($request, $user);
         $employ = new Employ($request->all());
-        $employ->cv = $cvFile;
+        $employ->cv = $file_name;
         $employ->user_id = $user;
         $employ->save();
         $userStatus = $employ->user()->update(['status' => 2]);
@@ -116,25 +114,12 @@ class EmployApiController extends Controller
 //    }
 
 
-
-    protected function saveFileBase64($param, $folder)
+    protected function saveFileBase64($request, $user)
     {
-        $folder = 'cv';
-        list($extension, $content) = explode(';', $param);
-        $tmpExtension = explode('/', $extension);
-        preg_match('/.([0-9]+) /', microtime(), $m);
-        $fileName = sprintf('img%s%s.%s', date('YmdHis'), $m[1], $tmpExtension[1]);
-        $content = explode(',', $content)[1];
-        $storage = Storage::disk('public');
+            $name = time().'.' . explode('/', explode(':', substr($request->cv, 0, strpos($request->cv, ';')))[1])[1];
+            Image::make($request->cv)->save(public_path('cv/').$name);
+            return $name;
 
-        $checkDirectory = $storage->exists($folder);
 
-        if (!$checkDirectory) {
-            $storage->makeDirectory($folder);
         }
-
-        $storage->put($folder . '/' . $fileName, base64_decode($content), 'public');
-
-        return $fileName;
-    }
 }
