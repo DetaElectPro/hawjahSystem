@@ -16,6 +16,7 @@ class AuthControllerApi extends Controller
         $user = User::create([
             'phone' => $request->phone,
             'name' => $request->name,
+            'role_id' => $request->role_id,
             'status' => $status,
             'password' => $request->password,
         ]);
