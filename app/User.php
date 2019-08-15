@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Models\AcceptRequest;
+use App\Models\EmergencyServices;
 use App\Models\MedicalBoard;
 use App\Models\Transaction;
 use App\Models\Wallet;
@@ -122,6 +123,11 @@ class User extends Authenticatable implements JWTSubject
     public function acceptRequest()
     {
         return $this->hasOne(AcceptRequest::class);
+    }
+
+  public function emergencyServices()
+    {
+        return $this->hasMany(EmergencyServices::class);
     }
 
     public function wallet()
