@@ -4,6 +4,7 @@ namespace App;
 
 use App\Models\AcceptRequest;
 use App\Models\MedicalBoard;
+use App\Models\Transaction;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Model;
@@ -120,5 +121,10 @@ class User extends Authenticatable implements JWTSubject
     public function acceptRequest()
     {
         return $this->hasOne(AcceptRequest::class);
+    }
+
+    public function transaction()
+    {
+        return $this->hasMany(Transaction::class);
     }
 }
