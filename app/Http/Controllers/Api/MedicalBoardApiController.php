@@ -39,8 +39,8 @@ class MedicalBoardApiController extends Controller
         $medical->user_id = $user;
         $medical->employ_id = $employ->id;
         $medical->save();
-//        $userStatus = $medical->user()->update(['status' => 3]);
-        $userStatus = User::whereId($user)->update(['status' => 3]);
+        $userStatus = $medical->user()->update(['status' => 3]);
+//        $userStatus = User::whereId($user)->update(['status' => 3]);
 
         if (isset($medical)) {
             return ['data' => $medical, 'statusUpdate' => $userStatus, 'status' => 3];
