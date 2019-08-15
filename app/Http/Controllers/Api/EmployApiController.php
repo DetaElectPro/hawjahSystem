@@ -37,7 +37,7 @@ class EmployApiController extends Controller
     public function store(EmployRequest $request)
     {
         $user = auth('api')->user()->id;
-        $file_name = $this->saveFileBase64($request, $user);
+        $file_name = $this->saveFile($request, $user);
         $employ = new Employ($request->all());
         $employ->cv = $file_name;
         $employ->user_id = $user;
@@ -99,27 +99,27 @@ class EmployApiController extends Controller
      * @param $request
      * @return bool|string
      */
-//    public function saveFile($request, $userId)
-//    {
-//        $random = Str::random(10);
-//        if ($request->hasfile('cv')) {
-//            $image = $request->file('cv');
-//            $name = $random . 'cv_' . $userId . ".pdf";
-//            $image->move(public_path() . '/cv/', $name);
-//            $name = url("cv/$name");
-//
-//            return $name;
-//        }
-//        return false;
-//    }
-
-
-    protected function saveFileBase64($request, $user)
+    public function saveFile($request, $userId)
     {
-            $name = time().'.' . explode('/', explode(':', substr($request->cv, 0, strpos($request->cv, ';')))[1])[1];
-            Image::make($request->cv)->save(public_path('cv/').$name);
+        $random = Str::random(10);
+        if ($request->hasfile('cv')) {
+            $image = $request->file('cv');
+            $name = $random . 'cv_' . $userId . ".pdf";
+            $image->move(public_path() . '/cv/', $name);
+            $name = url("cv/$name");
+
             return $name;
-
-
         }
+        return false;
+    }
+
+
+//    protected function saveFileBase64($request, $user)
+//    {
+//            $name = time().'.' . explode('/', explode(':', substr($request->cv, 0, strpos($request->cv, ';')))[1])[1];
+//            Image::make($request->cv)->save(public_path('cv/').$name);
+//            return $name;
+//
+//
+//        }
 }
