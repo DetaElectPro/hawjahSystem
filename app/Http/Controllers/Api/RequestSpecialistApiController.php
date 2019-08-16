@@ -25,15 +25,14 @@ class  RequestSpecialistApiController extends Controller
      * Store a newly created resource in storage.
      *
      * @param Request $request
-     * @return RequestSpecialist
+     * @return bool
      */
     public function store(Request $request)
     {
         $user = auth('api')->user()->id;
         $request_specialist = new RequestSpecialist($request->all());
         $request_specialist->user_id = $user;
-        $request_specialist->save();
-        return $request_specialist;
+        return $request_specialist = $request_specialist->save();
     }
 
     /**
