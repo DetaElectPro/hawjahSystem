@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Request;
 
 class LoginController extends Controller
 {
@@ -20,6 +21,9 @@ class LoginController extends Controller
 
     use AuthenticatesUsers;
 
+//    public function username(){
+//        return 'phone';
+//    }
     /**
      * Where to redirect users after login.
      *
@@ -36,4 +40,6 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
+
 }

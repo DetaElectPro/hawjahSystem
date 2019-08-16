@@ -9,8 +9,8 @@ $factory->define(RequestSpecialist::class, function (Faker $faker) {
     return [
         'name' => $faker->jobTitle,
         'address' => $faker->address,
-        'start_time' => $faker->time('H:i:s', 'now'),
-        'end_time' => $faker->time('H:i:s', 'now'),
+        'start_time' => $faker->dateTime('now'),
+        'end_time' => $faker->dateTime('now'),
         'latitude' => $faker->latitude,
         'longitude' => $faker->longitude,
         'price' => $faker->numberBetween(100, 300),

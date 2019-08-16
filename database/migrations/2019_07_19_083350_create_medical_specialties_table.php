@@ -17,9 +17,11 @@ class CreateMedicalSpecialtiesTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
 
-            $table->bigInteger('medical_id')->unsigned();
+            $table->unsignedBigInteger('medical_id');
             $table->foreign('medical_id')->references('id')->on('medical_fields')->onDelete('cascade');
             $table->timestamps();
+            $table->softDeletes();
+
         });
     }
 

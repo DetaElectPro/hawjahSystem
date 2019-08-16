@@ -2,35 +2,70 @@
 
 namespace App\Models;
 
-use Eloquent;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Carbon;
+use Eloquent as Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
- * App\Models\MedicalField
- *
- * @property int $id
- * @property string $name
- * @property Carbon|null $created_at
- * @property Carbon|null $updated_at
- * @property-read Collection|MedicalSpecialty[] $specialty
- * @method static Builder|MedicalField newModelQuery()
- * @method static Builder|MedicalField newQuery()
- * @method static Builder|MedicalField query()
- * @method static Builder|MedicalField whereCreatedAt($value)
- * @method static Builder|MedicalField whereId($value)
- * @method static Builder|MedicalField whereName($value)
- * @method static Builder|MedicalField whereUpdatedAt($value)
- * @mixin Eloquent
+ * @SWG\Definition(
+ *      definition="MedicalField",
+ *      required={"name"},
+ *      @SWG\Property(
+ *          property="id",
+ *          description="id",
+ *          type="integer",
+ *          format="int32"
+ *      ),
+ *      @SWG\Property(
+ *          property="name",
+ *          description="name",
+ *          type="string"
+ *      ),
+ *      @SWG\Property(
+ *          property="created_at",
+ *          description="created_at",
+ *          type="string",
+ *          format="date-time"
+ *      ),
+ *      @SWG\Property(
+ *          property="updated_at",
+ *          description="updated_at",
+ *          type="string",
+ *          format="date-time"
+ *      )
+ * )
  */
 class MedicalField extends Model
 {
-    protected $fillable = ['name'];
+    use SoftDeletes;
 
-    public function specialty()
-    {
-        return $this->hasMany(MedicalSpecialty::class, 'medical_id');
-    }
+    public $table = 'medical_fields';
+    
+
+    protected $dates = ['deleted_at'];
+
+
+    public $fillable = [
+        'name'
+    ];
+
+    /**
+     * The attributes that should be casted to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'id' => 'integer',
+        'name' => 'string'
+    ];
+
+    /**
+     * Validation rules
+     *
+     * @var array
+     */
+    public static $rules = [
+        'name' => 'required|min:3'
+    ];
+
+    
 }

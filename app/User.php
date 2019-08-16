@@ -10,7 +10,7 @@ use App\Models\Wallet;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Model;
-
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
 /**
@@ -56,7 +56,7 @@ class User extends Authenticatable implements JWTSubject
      * @var array
      */
     protected $fillable = [
-        'name', 'phone', 'password', 'role_id', 'status', 'player_id', 'image'
+        'name', 'email', 'phone', 'password', 'role_id', 'status', 'player_id', 'image'
     ];
 
     /**
@@ -104,6 +104,13 @@ class User extends Authenticatable implements JWTSubject
             $this->attributes['password'] = bcrypt($password);
         }
     }
+
+
+//    public function setPasswordAttribute($password)
+//    {
+//        $this->attributes['password'] = \Hash::make($password);
+//    }
+
 
     public function role()
     {

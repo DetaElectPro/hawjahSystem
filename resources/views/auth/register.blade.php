@@ -55,9 +55,21 @@
                 @endif
             </div>
 
+            <div class="form-group has-feedback{{ $errors->has('phone') ? ' has-error' : '' }}">
+                <input type="text" class="form-control" name="phone" value="{{ old('phone') }}" placeholder="phone">
+                <span class="glyphicon glyphicon-earphone form-control-feedback"></span>
+
+                @if ($errors->has('phone'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('phone') }}</strong>
+                    </span>
+                @endif
+            </div>
+
+
             <div class="form-group has-feedback{{ $errors->has('email') ? ' has-error' : '' }}">
-                <input type="email" class="form-control" name="email" value="{{ old('email') }}" placeholder="Email">
-                <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                <input type="text" class="form-control" name="email" value="{{ old('email') }}" placeholder="email">
+                <span class="glyphicon glyphicon-earphone form-control-feedback"></span>
 
                 @if ($errors->has('email'))
                     <span class="help-block">
@@ -65,6 +77,7 @@
                     </span>
                 @endif
             </div>
+
 
             <div class="form-group has-feedback{{ $errors->has('password') ? ' has-error' : '' }}">
                 <input type="password" class="form-control" name="password" placeholder="Password">

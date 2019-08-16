@@ -46,8 +46,8 @@
             {!! csrf_field() !!}
 
             <div class="form-group has-feedback {{ $errors->has('email') ? ' has-error' : '' }}">
-                <input type="email" class="form-control" name="email" value="{{ old('email') }}" placeholder="Email">
-                <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                <input type="email" class="form-control" name="email" value="{{ old('email') }}" placeholder="email">
+                <span class="glyphicon glyphicon-earemail form-control-feedback"></span>
                 @if ($errors->has('email'))
                     <span class="help-block">
                     <strong>{{ $errors->first('email') }}</strong>
@@ -80,7 +80,7 @@
                 <!-- /.col -->
             </div>
         </form>
-
+<h1>{{$auth}}</h1>
         <a href="{{ url('/password/reset') }}">I forgot my password</a><br>
         <a href="{{ url('/register') }}" class="text-center">Register a new membership</a>
 

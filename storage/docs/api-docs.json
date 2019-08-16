@@ -6,7 +6,5 @@
     },
     "basePath": "/api/v1",
     "paths": {},
-    "definitions": {
-
-    }
+    "definitions": {}
 }

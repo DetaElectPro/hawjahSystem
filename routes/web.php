@@ -17,6 +17,15 @@ Route::get('/', function () {
 
 
 Auth::routes();
+//Route::get('/login', 'Auth\LoginByPhoneController@showLoginForm');
+//Route::post('/login', 'Auth\LoginByPhoneController@login');
+Route::get('login', [ 'as' => 'login', 'uses' => 'Auth\LoginByPhoneController@showLoginForm']);
+Route::post('login', [ 'as' => 'login', 'uses' => 'Auth\LoginByPhoneController@login']);
 
-Route::get('/home', 'HomeController@index');
+Route::resource('home', 'HomeController');
 
+
+
+Route::resource('medicalFields', 'MedicalFieldController');
+
+Route::resource('medicalSpecialties', 'MedicalSpecialtyController');
