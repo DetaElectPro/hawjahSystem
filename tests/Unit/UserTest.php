@@ -16,10 +16,10 @@ class UserTest extends TestCase
      *
      * @return void
      */
-    public function testExample()
-    {
-        $this->assertTrue(true);
-    }
+//    public function testExample()
+//    {
+//        $this->assertTrue(true);
+//    }
 
     /** @test */
     public function it_can_create_a_carousel()
