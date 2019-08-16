@@ -81,4 +81,9 @@ class MedicalSpecialty extends Model
         return $this->hasMany(MedicalField::class, 'medical_id');
     }
 
+  public function specialties()
+    {
+        return $this->hasMany(MedicalSpecialty::class, 'medical_id');
+    }
+
 }
