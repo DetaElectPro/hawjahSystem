@@ -30,9 +30,9 @@ class  RequestSpecialistApiController extends Controller
     public function store(Request $request)
     {
         $user = auth('api')->user()->id;
-        $request_specialist = new RequestSpecialist($request->all());
-        $request_specialist->user_id = $user;
-        return $request_specialist = $request_specialist->save();
+//        $request_specialist = new RequestSpecialist($request->all());
+//        $request_specialist->user_id = $user;
+//        return $request_specialist = $request_specialist->save();
     }
 
     /**

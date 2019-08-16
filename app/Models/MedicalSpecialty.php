@@ -45,7 +45,7 @@ class MedicalSpecialty extends Model
     use SoftDeletes;
 
     public $table = 'medical_specialties';
-    
+
 
     protected $dates = ['deleted_at'];
 
@@ -72,9 +72,13 @@ class MedicalSpecialty extends Model
      * @var array
      */
     public static $rules = [
-        'name' => 'requierd|max:100|min|3',
+        'name' => 'required|max:100|min|3',
         'medical_id' => 'required|max:100|min:3'
     ];
 
-    
+    public function medical()
+    {
+        return $this->hasMany(MedicalField::class, 'medical_id');
+    }
+
 }

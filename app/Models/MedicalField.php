@@ -67,5 +67,8 @@ class MedicalField extends Model
         'name' => 'required|min:3'
     ];
 
-    
+    public function medical()
+    {
+        return $this->hasMany(MedicalSpecialty::class, 'medical_id');
+    }
 }
