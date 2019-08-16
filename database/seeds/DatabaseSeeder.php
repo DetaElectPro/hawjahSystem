@@ -14,10 +14,10 @@ class DatabaseSeeder extends Seeder
         $this->call(usersTableSeed::class);
         $this->call(employsTableSeed::class);
         $this->call(medicaBoradsTableSeeder::class);
-        $this->call(medicaFieldsTableSeeder::class);
-        $this->call(medicaSpecialtiesTableSeeder::class);
-        $this->call(requestSpecialistsTableSeeder::class);
-        $this->call(acceptRequestsTableSeeder::class);
+//        $this->call(medicaFieldsTableSeeder::class);
+//        $this->call(medicaSpecialtiesTableSeeder::class);
+//        $this->call(requestSpecialistsTableSeeder::class);
+//        $this->call(acceptRequestsTableSeeder::class);
         $this->call(emergencyServicedsTableSeeder::class);
     }
 }
