@@ -2,6 +2,9 @@
 
 namespace Tests\Unit;
 
+use App\User;
+use Monolog\Handler\SyslogUdp\UdpSocket;
+use Str;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -30,12 +33,12 @@ class UserTest extends TestCase
             'remember_token' => Str::random(10),
         ];
 
-        $carouselRepo = new CarouselRepository(new Carousel);
-        $carousel = $carouselRepo->createCarousel($data);
+        $userData = new User($data);
+        $userData = $userData->save();
 
-        $this->assertInstanceOf(Carousel::class, $carousel);
-        $this->assertEquals($data['title'], $carousel->title);
-        $this->assertEquals($data['link'], $carousel->link);
-        $this->assertEquals($data['image_src'], $carousel->src);
+        $this->assertInstanceOf(UdpSocket::class, $userData);
+        $this->assertEquals($data['name'], $userData->name);
+        $this->assertEquals($data['phone'], $userData->phone);
+//        $this->assertEquals($data['image_src'], $userData->src);
     }
 }
