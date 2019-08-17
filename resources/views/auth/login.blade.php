@@ -80,7 +80,6 @@
                 <!-- /.col -->
             </div>
         </form>
-<h1>{{$auth}}</h1>
         <a href="{{ url('/password/reset') }}">I forgot my password</a><br>
         <a href="{{ url('/register') }}" class="text-center">Register a new membership</a>
 
