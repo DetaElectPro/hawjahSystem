@@ -25,19 +25,13 @@
     </div>
 
 
-    <div class="container">
-        <div class="row">
-            <form class="col-md-4">
-                <label>Select</label>
-                <select class="form-control select2">
-                    @foreach($field as $item)
-                        <option>{{$item->name}}</option>
-                        @endforeach
+    <select class="js-example-basic-single" name="state">
+        @foreach($field as $item)
 
-                </select>
-            </form>
-        </div>
-    </div>
+            <option value="{{$item->id}}">{{$item->name}}</option>
+        @endforeach
+
+    </select>
 
     {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
     <a href="{!! route('medicalSpecialties.index') !!}" class="btn btn-default">Cancel</a>
@@ -45,5 +39,7 @@
 
 
 <script>
-    $('.select2').select2();
-</script>
+    // In your Javascript (external .js resource or <script> tag)
+    $(document).ready(function () {
+        $('.js-example-basic-single').select2();
+    });</script>
