@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CreateMedicalSpecialtyRequest;
 use App\Http\Requests\UpdateMedicalSpecialtyRequest;
 use App\Models\MedicalField;
+use App\Models\MedicalSpecialty;
 use App\Repositories\MedicalSpecialtyRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
@@ -30,7 +31,7 @@ class MedicalSpecialtyController extends AppBaseController
      */
     public function index()
     {
-        $medicalSpecialties = $this->medicalSpecialtyRepository->all();
+        $medicalSpecialties =MedicalSpecialty::with('medical')->get();
 
         return view('medical_specialties.index')
             ->with('medicalSpecialties', $medicalSpecialties);

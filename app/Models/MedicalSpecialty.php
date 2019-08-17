@@ -78,12 +78,12 @@ class MedicalSpecialty extends Model
 
     public function medical()
     {
-        return $this->hasMany(MedicalField::class, 'medical_id');
+        return $this->belongsTo(MedicalField::class);
     }
 
-  public function specialties()
-    {
-        return $this->hasMany(MedicalSpecialty::class, 'medical_id');
-    }
+//  public function specialties()
+//    {
+//        return $this->hasMany(MedicalSpecialty::class, 'medical_id');
+//    }
 
 }
