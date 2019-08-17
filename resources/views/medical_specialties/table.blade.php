@@ -24,5 +24,6 @@
             </tr>
         @endforeach
         </tbody>
+        {{ $medicalSpecialty->links() }}
     </table>
 </div>
