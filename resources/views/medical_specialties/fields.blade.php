@@ -32,6 +32,7 @@
                 <select class="form-control select2">
                     @foreach($field as $item)
                         <option>{{$item->name}}</option>
+                        @endforeach
 
                 </select>
             </form>
