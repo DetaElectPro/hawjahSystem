@@ -25,7 +25,7 @@
     </div>
 
 
-    <select class="js-example-basic-single" name="state">
+    <select class="js-example-basic-single" name="medical_id">
         @foreach($field as $item)
 
             <option value="{{$item->id}}">{{$item->name}}</option>
