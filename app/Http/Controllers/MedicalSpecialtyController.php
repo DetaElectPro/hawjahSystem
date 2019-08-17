@@ -28,7 +28,7 @@ class MedicalSpecialtyController extends AppBaseController
      *
      * @return Response
      */
-    public function index(Request $request)
+    public function index()
     {
         $medicalSpecialties = $this->medicalSpecialtyRepository->all();
 
@@ -50,11 +50,11 @@ class MedicalSpecialtyController extends AppBaseController
     /**
      * Store a newly created MedicalSpecialty in storage.
      *
-     * @param CreateMedicalSpecialtyRequest $request
+     * @param Request $request
      *
      * @return Response
      */
-    public function store(CreateMedicalSpecialtyRequest $request)
+    public function store(Request $request)
     {
         $input = $request->all();
 

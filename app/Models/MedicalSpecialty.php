@@ -73,7 +73,7 @@ class MedicalSpecialty extends Model
      */
     public static $rules = [
         'name' => 'required|max:100|min|3',
-        'medical_id' => 'required|max:100|min:3'
+        'medical_id' => 'max:100|min:3'
     ];
 
     public function medical()
