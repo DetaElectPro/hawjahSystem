@@ -89,6 +89,10 @@
 
 
 <script>
+    $( document ).ready(function() {
+        console.log( "ready!" );
+        myFunction();
+    });
     function myFunction() {
         document.getElementById("myDropdown").classList.toggle("show");
     }
