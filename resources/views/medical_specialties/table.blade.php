@@ -3,7 +3,7 @@
         <thead>
             <tr>
                 <th>Name</th>
-        <th>Medical Id</th>
+        <th>Medical Fields</th>
                 <th colspan="3">Action</th>
             </tr>
         </thead>
@@ -11,7 +11,7 @@
         @foreach($medicalSpecialties as $medicalSpecialty)
             <tr>
                 <td>{!! $medicalSpecialty->name !!}</td>
-            <td>{!! $medicalSpecialty->medical_id !!}</td>
+            <td>{!! $medicalSpecialty->medical->name !!}</td>
                 <td>
                     {!! Form::open(['route' => ['medicalSpecialties.destroy', $medicalSpecialty->id], 'method' => 'delete']) !!}
                     <div class='btn-group'>
