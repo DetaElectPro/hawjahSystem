@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateMedicalSpecialtyRequest;
 use App\Http\Requests\UpdateMedicalSpecialtyRequest;
+use App\Models\MedicalField;
 use App\Repositories\MedicalSpecialtyRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
@@ -42,7 +43,8 @@ class MedicalSpecialtyController extends AppBaseController
      */
     public function create()
     {
-        return view('medical_specialties.create');
+        $field = MedicalField::all(['name', 'id']);
+        return view('medical_specialties.create', compact('field'));
     }
 
     /**
@@ -99,8 +101,9 @@ class MedicalSpecialtyController extends AppBaseController
 
             return redirect(route('medicalSpecialties.index'));
         }
+        $field = MedicalField::all(['name', 'id']);
 
-        return view('medical_specialties.edit')->with('medicalSpecialty', $medicalSpecialty);
+        return view('medical_specialties.edit', compact('field'))->with('medicalSpecialty', $medicalSpecialty);
     }
 
     /**
@@ -133,9 +136,9 @@ class MedicalSpecialtyController extends AppBaseController
      *
      * @param int $id
      *
+     * @return Response
      * @throws \Exception
      *
-     * @return Response
      */
     public function destroy($id)
     {
