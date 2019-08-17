@@ -31,7 +31,7 @@ class MedicalSpecialtyController extends AppBaseController
      */
     public function index()
     {
-        $medicalSpecialties =MedicalSpecialty::with('medical')->get();
+        $medicalSpecialties =MedicalSpecialty::with('medical')->paginate();
 
         return view('medical_specialties.index')
             ->with('medicalSpecialties', $medicalSpecialties);
