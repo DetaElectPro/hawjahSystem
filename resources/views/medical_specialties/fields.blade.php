@@ -72,7 +72,7 @@
 
     <div class="dropdown">
 {{--        <button onclick="myFunction()" class="dropbtn">Dropdown</button>--}}
-        <div class="dropdown-content">
+        <div id="myDropdown" class="dropdown-content">
             <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
 
             @foreach($field as $item)
