@@ -1,4 +1,3 @@
-
 <style>
     .dropbtn {
         background-color: #4CAF50;
@@ -24,7 +23,9 @@
         border-bottom: 1px solid #ddd;
     }
 
-    #myInput:focus {outline: 3px solid #ddd;}
+    #myInput:focus {
+        outline: 3px solid #ddd;
+    }
 
     .dropdown {
         position: relative;
@@ -48,9 +49,13 @@
         display: block;
     }
 
-    .dropdown a:hover {background-color: #ddd;}
+    .dropdown a:hover {
+        background-color: #ddd;
+    }
 
-    .show {display: block;}
+    .show {
+        display: block;
+    }
 </style>
 <!-- Submit Field -->
 <div class="form-group col-sm-12">
@@ -66,18 +71,13 @@
 
 
     <div class="dropdown">
-        <button onclick="myFunction()" class="dropbtn">Dropdown</button>
-        <div id="myDropdown" class="dropdown-content">
+{{--        <button onclick="myFunction()" class="dropbtn">Dropdown</button>--}}
+        <div class="dropdown-content">
             <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
-{{--            <a href="#about">About</a>--}}
-{{--            <a href="#base">Base</a>--}}
-{{--            <a href="#blog">Blog</a>--}}
-{{--            <a href="#contact">Contact</a>--}}
-{{--            <a href="#custom">Custom</a>--}}
-{{--            <a href="#support">Support</a>--}}
+
             @foreach($field as $item)
-            <a href="#{{$item->name}}">{{$item->name}}</a>
-                @endforeach
+                <a href="#{{$item->name}}">{{$item->name}}</a>
+            @endforeach
         </div>
     </div>
 
@@ -87,15 +87,8 @@
 </div>
 
 
-
 <script>
-    $( document ).ready(function() {
-        console.log( "ready!" );
-        myFunction();
-    });
-    function myFunction() {
-        document.getElementById("myDropdown").classList.toggle("show");
-    }
+
 
     function filterFunction() {
         var input, filter, ul, li, a, i;
