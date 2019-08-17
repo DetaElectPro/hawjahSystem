@@ -1,61 +1,16 @@
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+
 <style>
-    .dropbtn {
-        background-color: #4CAF50;
-        color: white;
-        padding: 16px;
-        font-size: 16px;
-        border: none;
-        cursor: pointer;
+    .select2-container .select2-selection--single {
+        height: 34px !important;
     }
 
-    .dropbtn:hover, .dropbtn:focus {
-        background-color: #3e8e41;
+    .select2-container--default .select2-selection--single {
+        border: 1px solid #ccc !important;
+        border-radius: 0px !important;
     }
 
-    #myInput {
-        box-sizing: border-box;
-        /*background-image: url('searchicon.png');*/
-        background-position: 14px 12px;
-        background-repeat: no-repeat;
-        font-size: 16px;
-        padding: 14px 20px 12px 45px;
-        border: none;
-        border-bottom: 1px solid #ddd;
-    }
-
-    #myInput:focus {
-        outline: 3px solid #ddd;
-    }
-
-    .dropdown {
-        position: relative;
-        display: inline-block;
-    }
-
-    .dropdown-content {
-        display: none;
-        position: absolute;
-        background-color: #f6f6f6;
-        min-width: 230px;
-        overflow: auto;
-        border: 1px solid #ddd;
-        z-index: 1;
-    }
-
-    .dropdown-content a {
-        color: black;
-        padding: 12px 16px;
-        text-decoration: none;
-        display: block;
-    }
-
-    .dropdown a:hover {
-        background-color: #ddd;
-    }
-
-    .show {
-        display: block;
-    }
 </style>
 <!-- Submit Field -->
 <div class="form-group col-sm-12">
@@ -70,17 +25,18 @@
     </div>
 
 
-    <div class="dropdown">
-{{--        <button onclick="myFunction()" class="dropbtn">Dropdown</button>--}}
-        <div id="myDropdown" class="dropdown-content">
-            <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
+    <div class="container">
+        <div class="row">
+            <form class="col-md-4">
+                <label>Select</label>
+                <select class="form-control select2">
+                    @foreach($field as $item)
+                        <option>{{$item->name}}</option>
 
-            @foreach($field as $item)
-                <a href="#{{$item->name}}">{{$item->name}}</a>
-            @endforeach
+                </select>
+            </form>
         </div>
     </div>
-
 
     {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
     <a href="{!! route('medicalSpecialties.index') !!}" class="btn btn-default">Cancel</a>
@@ -88,21 +44,5 @@
 
 
 <script>
-
-
-    function filterFunction() {
-        var input, filter, ul, li, a, i;
-        input = document.getElementById("myInput");
-        filter = input.value.toUpperCase();
-        div = document.getElementById("myDropdown");
-        a = div.getElementsByTagName("a");
-        for (i = 0; i < a.length; i++) {
-            txtValue = a[i].textContent || a[i].innerText;
-            if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                a[i].style.display = "";
-            } else {
-                a[i].style.display = "none";
-            }
-        }
-    }
+    $('.select2').select2();
 </script>
