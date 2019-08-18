@@ -38,3 +38,5 @@ Route::resource('emergencyServices', 'Api\EmergencyServicedApiController');
 Route::resource('medical_fields', 'MedicalFieldAPIController');
 
 Route::resource('medical_specialties', 'MedicalSpecialtyAPIController');
+
+Route::resource('emergency_serviceds', 'EmergencyServicedAPIController');

@@ -24,3 +24,7 @@ Route::resource('home', 'HomeController');
 Route::resource('medicalFields', 'MedicalFieldController');
 
 Route::resource('medicalSpecialties', 'MedicalSpecialtyController');
+
+Route::resource('emergencyServiceds', 'EmergencyServicedController');
+
+Route::resource('emergencyServiceds', 'EmergencyServicedController');

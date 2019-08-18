@@ -17,9 +17,10 @@ class CreateEmergencyServicesTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('address');
-            $table->float('price_per_day');
+            $table->double('price_per_day');
             $table->integer('available_bed');
             $table->string('type');
+
 
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

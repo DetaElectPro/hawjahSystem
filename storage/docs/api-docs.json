@@ -6,13 +6,13 @@
     },
     "basePath": "/api/v1",
     "paths": {
-        "/emergencyServices": {
+        "/emergencyServiceds": {
             "get": {
                 "tags": [
-                    "MedicalField"
+                    "EmergencyServiced"
                 ],
-                "summary": "Get a listing of the emergencyServices.",
-                "description": "Get all emergencyServices",
+                "summary": "Get a listing of the EmergencyServiceds.",
+                "description": "Get all EmergencyServiceds",
                 "produces": [
                     "application/json"
                 ],
@@ -27,7 +27,7 @@
                                 "data": {
                                     "type": "array",
                                     "items": {
-                                        "$ref": "#/definitions/MedicalField"
+                                        "$ref": "#/definitions/EmergencyServiced"
                                     }
                                 },
                                 "message": {
@@ -41,10 +41,10 @@
             },
             "post": {
                 "tags": [
-                    "MedicalField"
+                    "EmergencyServiced"
                 ],
-                "summary": "Store a newly created MedicalField in storage",
-                "description": "Store MedicalField",
+                "summary": "Store a newly created EmergencyServiced in storage",
+                "description": "Store EmergencyServiced",
                 "produces": [
                     "application/json"
                 ],
@@ -52,10 +52,10 @@
                     {
                         "name": "body",
                         "in": "body",
-                        "description": "MedicalField that should be stored",
+                        "description": "EmergencyServiced that should be stored",
                         "required": false,
                         "schema": {
-                            "$ref": "#/definitions/MedicalField"
+                            "$ref": "#/definitions/EmergencyServiced"
                         }
                     }
                 ],
@@ -68,7 +68,7 @@
                                     "type": "boolean"
                                 },
                                 "data": {
-                                    "$ref": "#/definitions/MedicalField"
+                                    "$ref": "#/definitions/EmergencyServiced"
                                 },
                                 "message": {
                                     "type": "string"
@@ -80,13 +80,13 @@
                 }
             }
         },
-        "/emergencyServices/{id}": {
+        "/emergencyServiceds/{id}": {
             "get": {
                 "tags": [
-                    "MedicalField"
+                    "EmergencyServiced"
                 ],
-                "summary": "Display the specified MedicalField",
-                "description": "Get MedicalField",
+                "summary": "Display the specified EmergencyServiced",
+                "description": "Get EmergencyServiced",
                 "produces": [
                     "application/json"
                 ],
@@ -94,7 +94,7 @@
                     {
                         "name": "id",
                         "in": "path",
-                        "description": "id of MedicalField",
+                        "description": "id of EmergencyServiced",
                         "required": true,
                         "type": "integer"
                     }
@@ -108,7 +108,7 @@
                                     "type": "boolean"
                                 },
                                 "data": {
-                                    "$ref": "#/definitions/MedicalField"
+                                    "$ref": "#/definitions/EmergencyServiced"
                                 },
                                 "message": {
                                     "type": "string"
@@ -121,10 +121,10 @@
             },
             "put": {
                 "tags": [
-                    "MedicalField"
+                    "EmergencyServiced"
                 ],
-                "summary": "Update the specified MedicalField in storage",
-                "description": "Update MedicalField",
+                "summary": "Update the specified EmergencyServiced in storage",
+                "description": "Update EmergencyServiced",
                 "produces": [
                     "application/json"
                 ],
@@ -132,17 +132,17 @@
                     {
                         "name": "id",
                         "in": "path",
-                        "description": "id of MedicalField",
+                        "description": "id of EmergencyServiced",
                         "required": true,
                         "type": "integer"
                     },
                     {
                         "name": "body",
                         "in": "body",
-                        "description": "MedicalField that should be updated",
+                        "description": "EmergencyServiced that should be updated",
                         "required": false,
                         "schema": {
-                            "$ref": "#/definitions/MedicalField"
+                            "$ref": "#/definitions/EmergencyServiced"
                         }
                     }
                 ],
@@ -155,7 +155,7 @@
                                     "type": "boolean"
                                 },
                                 "data": {
-                                    "$ref": "#/definitions/MedicalField"
+                                    "$ref": "#/definitions/EmergencyServiced"
                                 },
                                 "message": {
                                     "type": "string"
@@ -168,10 +168,10 @@
             },
             "delete": {
                 "tags": [
-                    "MedicalField"
+                    "EmergencyServiced"
                 ],
-                "summary": "Remove the specified MedicalField from storage",
-                "description": "Delete MedicalField",
+                "summary": "Remove the specified EmergencyServiced from storage",
+                "description": "Delete EmergencyServiced",
                 "produces": [
                     "application/json"
                 ],
@@ -179,7 +179,7 @@
                     {
                         "name": "id",
                         "in": "path",
-                        "description": "id of MedicalField",
+                        "description": "id of EmergencyServiced",
                         "required": true,
                         "type": "integer"
                     }
@@ -605,6 +605,59 @@
         }
     },
     "definitions": {
+        "EmergencyServiced": {
+            "required": [
+                "name",
+                "address",
+                "price_per_day",
+                "type",
+                "available_bed"
+            ],
+            "properties": {
+                "id": {
+                    "description": "id",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "name": {
+                    "description": "name",
+                    "type": "string"
+                },
+                "address": {
+                    "description": "address",
+                    "type": "string"
+                },
+                "price_per_day": {
+                    "description": "price_per_day",
+                    "type": "float",
+                    "format": "float"
+                },
+                "type": {
+                    "description": "type",
+                    "type": "string"
+                },
+                "available_bed": {
+                    "description": "available_bed",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "user_id": {
+                    "description": "user_id",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "created_at": {
+                    "description": "created_at",
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "updated_at": {
+                    "description": "updated_at",
+                    "type": "string",
+                    "format": "date-time"
+                }
+            }
+        },
         "MedicalField": {
             "required": [
                 "name"
