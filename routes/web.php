@@ -28,3 +28,4 @@ Route::resource('medicalSpecialties', 'MedicalSpecialtyController');
 Route::resource('emergencyServiceds', 'EmergencyServicedController');
 
 Route::resource('emergencyServiceds', 'EmergencyServicedController');
+
