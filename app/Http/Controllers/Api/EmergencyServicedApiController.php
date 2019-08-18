@@ -1,68 +1,279 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\API;
 
 use App\Models\EmergencyServices;
-use Illuminate\Database\Eloquent\Collection;
+use App\Repositories\EmergencyServiceRepository;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\AppBaseController;
+use Response;
 
-class EmergencyServicedApiController extends Controller
+/**
+ * Class EmergencyServicedApiController
+ * @package App\Http\Controllers\API
+ */
+class EmergencyServicedApiController extends AppBaseController
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return EmergencyServices[]|Collection
-     */
-    public function index()
+    /** @var  EmergencyServiceRepository */
+    private $emergencyServiceRepository;
+
+    public function __construct(EmergencyServiceRepository $emergencyServiceRepo)
     {
-        return EmergencyServices::all();
+        $this->emergencyServiceRepository = $emergencyServiceRepo;
     }
 
     /**
-     * Store a newly created resource in storage.
+     * @param Request $request
+     * @return Response
      *
-     * @param \Illuminate\Http\Request $request
-     * @return bool
+     * @SWG\Get(
+     *      path="/emergencyServices",
+     *      summary="Get a listing of the EmergencyServices.",
+     *      tags={"EmergencyServices"},
+     *      description="Get all emergencyServices",
+     *      produces={"application/json"},
+     *      @SWG\Response(
+     *          response=200,
+     *          description="successful operation",
+     *          @SWG\Schema(
+     *              type="object",
+     *              @SWG\Property(
+     *                  property="success",
+     *                  type="boolean"
+     *              ),
+     *              @SWG\Property(
+     *                  property="data",
+     *                  type="array",
+     *                  @SWG\Items(ref="#/definitions/EmergencyServices")
+     *              ),
+     *              @SWG\Property(
+     *                  property="message",
+     *                  type="string"
+     *              )
+     *          )
+     *      )
+     * )
      */
-    public function store(Request $request)
+    public function index(Request $request)
     {
-        $emergencyServcied = new EmergencyServices($request->all());
+        $emergencyServices = $this->emergencyServiceRepository->all(
+            $request->except(['skip', 'limit']),
+            $request->get('skip'),
+            $request->get('limit')
+        );
 
-        return $emergencyServcied->save();
+        return $this->sendResponse($emergencyServices->toArray(), 'Emergency Services retrieved successfully');
     }
 
     /**
-     * Display the specified resource.
+     * @param CreateEmergencyServicesAPIRequest $request
+     * @return Response
      *
+     * @SWG\Post(
+     *      path="/emergencyServices",
+     *      summary="Store a newly created EmergencyServices in storage",
+     *      tags={"EmergencyServices"},
+     *      description="Store EmergencyServices",
+     *      produces={"application/json"},
+     *      @SWG\Parameter(
+     *          name="body",
+     *          in="body",
+     *          description="EmergencyServices that should be stored",
+     *          required=false,
+     *          @SWG\Schema(ref="#/definitions/EmergencyServices")
+     *      ),
+     *      @SWG\Response(
+     *          response=200,
+     *          description="successful operation",
+     *          @SWG\Schema(
+     *              type="object",
+     *              @SWG\Property(
+     *                  property="success",
+     *                  type="boolean"
+     *              ),
+     *              @SWG\Property(
+     *                  property="data",
+     *                  ref="#/definitions/EmergencyServices"
+     *              ),
+     *              @SWG\Property(
+     *                  property="message",
+     *                  type="string"
+     *              )
+     *          )
+     *      )
+     * )
+     */
+    public function store(CreateEmergencyServicesAPIRequest $request)
+    {
+        $input = $request->all();
+
+        $EmergencyServices = $this->emergencyServiceRepository->create($input);
+
+        return $this->sendResponse($EmergencyServices->toArray(), 'Emergency Services saved successfully');
+    }
+
+    /**
      * @param int $id
-     * @return EmergencyServices|EmergencyServices[]|Collection|\Illuminate\Database\Eloquent\Model
+     * @return Response
+     *
+     * @SWG\Get(
+     *      path="/emergencyServices/{id}",
+     *      summary="Display the specified EmergencyServices",
+     *      tags={"EmergencyServices"},
+     *      description="Get EmergencyServices",
+     *      produces={"application/json"},
+     *      @SWG\Parameter(
+     *          name="id",
+     *          description="id of EmergencyServices",
+     *          type="integer",
+     *          required=true,
+     *          in="path"
+     *      ),
+     *      @SWG\Response(
+     *          response=200,
+     *          description="successful operation",
+     *          @SWG\Schema(
+     *              type="object",
+     *              @SWG\Property(
+     *                  property="success",
+     *                  type="boolean"
+     *              ),
+     *              @SWG\Property(
+     *                  property="data",
+     *                  ref="#/definitions/EmergencyServices"
+     *              ),
+     *              @SWG\Property(
+     *                  property="message",
+     *                  type="string"
+     *              )
+     *          )
+     *      )
+     * )
      */
     public function show($id)
     {
-        return EmergencyServices::findOrFail($id);
+        /** @var EmergencyServices $EmergencyServices */
+        $EmergencyServices = $this->emergencyServiceRepository->find($id);
+
+        if (empty($EmergencyServices)) {
+            return $this->sendError('Emergency Services not found');
+        }
+
+        return $this->sendResponse($EmergencyServices->toArray(), 'Emergency Services retrieved successfully');
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
      * @param int $id
-     * @return bool|int
+     * @param UpdateEmergencyServicesAPIRequest $request
+     * @return Response
+     *
+     * @SWG\Put(
+     *      path="/emergencyServices/{id}",
+     *      summary="Update the specified EmergencyServices in storage",
+     *      tags={"EmergencyServices"},
+     *      description="Update EmergencyServices",
+     *      produces={"application/json"},
+     *      @SWG\Parameter(
+     *          name="id",
+     *          description="id of EmergencyServices",
+     *          type="integer",
+     *          required=true,
+     *          in="path"
+     *      ),
+     *      @SWG\Parameter(
+     *          name="body",
+     *          in="body",
+     *          description="EmergencyServices that should be updated",
+     *          required=false,
+     *          @SWG\Schema(ref="#/definitions/EmergencyServices")
+     *      ),
+     *      @SWG\Response(
+     *          response=200,
+     *          description="successful operation",
+     *          @SWG\Schema(
+     *              type="object",
+     *              @SWG\Property(
+     *                  property="success",
+     *                  type="boolean"
+     *              ),
+     *              @SWG\Property(
+     *                  property="data",
+     *                  ref="#/definitions/EmergencyServices"
+     *              ),
+     *              @SWG\Property(
+     *                  property="message",
+     *                  type="string"
+     *              )
+     *          )
+     *      )
+     * )
      */
-    public function update(Request $request, $id)
+    public function update($id, UpdateEmergencyServicesAPIRequest $request)
     {
-        return EmergencyServices::whereId($id)->update([$request->all()]);
+        $input = $request->all();
+
+        /** @var EmergencyServices $EmergencyServices */
+        $emergencyServices = $this->emergencyServiceRepository->find($id);
+
+        if (empty($emergencyServices)) {
+            return $this->sendError('Emergency Services not found');
+        }
+
+        $emergencyServices = $this->emergencyServiceRepository->update($input, $id);
+
+        return $this->sendResponse($emergencyServices->toArray(), 'Emergency Services updated successfully');
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
      * @param int $id
-     * @return int
+     * @return Response
+     *
+     * @throws \Exception
+     * @SWG\Delete(
+     *      path="/emergencyServices/{id}",
+     *      summary="Remove the specified EmergencyServices from storage",
+     *      tags={"EmergencyServices"},
+     *      description="Delete EmergencyServices",
+     *      produces={"application/json"},
+     *      @SWG\Parameter(
+     *          name="id",
+     *          description="id of EmergencyServices",
+     *          type="integer",
+     *          required=true,
+     *          in="path"
+     *      ),
+     *      @SWG\Response(
+     *          response=200,
+     *          description="successful operation",
+     *          @SWG\Schema(
+     *              type="object",
+     *              @SWG\Property(
+     *                  property="success",
+     *                  type="boolean"
+     *              ),
+     *              @SWG\Property(
+     *                  property="data",
+     *                  type="string"
+     *              ),
+     *              @SWG\Property(
+     *                  property="message",
+     *                  type="string"
+     *              )
+     *          )
+     *      )
+     * )
      */
     public function destroy($id)
     {
-        return EmergencyServices::destroy($id);
+        /** @var EmergencyServices $EmergencyServices */
+        $emergencyServices = $this->emergencyServiceRepository->find($id);
+
+        if (empty($emergencyServices)) {
+            return $this->sendError('Emergency Services not found');
+        }
+
+        $emergencyServices->delete();
+
+        return $this->sendResponse($id, 'Emergency Services deleted successfully');
     }
 }
