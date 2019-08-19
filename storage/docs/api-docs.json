@@ -205,6 +205,205 @@
                 }
             }
         },
+        "/employs": {
+            "get": {
+                "tags": [
+                    "Employ"
+                ],
+                "summary": "Get a listing of the Employs.",
+                "description": "Get all Employs",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/Employ"
+                                    }
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Employ"
+                ],
+                "summary": "Store a newly created Employ in storage",
+                "description": "Store Employ",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Employ that should be stored",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/Employ"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/Employ"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
+        "/employs/{id}": {
+            "get": {
+                "tags": [
+                    "Employ"
+                ],
+                "summary": "Display the specified Employ",
+                "description": "Get Employ",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of Employ",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/Employ"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Employ"
+                ],
+                "summary": "Update the specified Employ in storage",
+                "description": "Update Employ",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of Employ",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Employ that should be updated",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/Employ"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/Employ"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Employ"
+                ],
+                "summary": "Remove the specified Employ from storage",
+                "description": "Delete Employ",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of Employ",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "string"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
         "/medicalFields": {
             "get": {
                 "tags": [
@@ -645,6 +844,59 @@
                     "description": "user_id",
                     "type": "integer",
                     "format": "int32"
+                },
+                "created_at": {
+                    "description": "created_at",
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "updated_at": {
+                    "description": "updated_at",
+                    "type": "string",
+                    "format": "date-time"
+                }
+            }
+        },
+        "Employ": {
+            "required": [
+                "job_title",
+                "graduation_date",
+                "birth_of_date",
+                "address",
+                "years_of_experience"
+            ],
+            "properties": {
+                "id": {
+                    "description": "id",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "job_title": {
+                    "description": "job_title",
+                    "type": "string"
+                },
+                "graduation_date": {
+                    "description": "graduation_date",
+                    "type": "string",
+                    "format": "date"
+                },
+                "birth_of_date": {
+                    "description": "birth_of_date",
+                    "type": "string",
+                    "format": "date"
+                },
+                "address": {
+                    "description": "address",
+                    "type": "string"
+                },
+                "years_of_experience": {
+                    "description": "years_of_experience",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "cv": {
+                    "description": "cv",
+                    "type": "string"
                 },
                 "created_at": {
                     "description": "created_at",

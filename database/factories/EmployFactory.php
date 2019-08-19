@@ -9,11 +9,14 @@ $factory->define(Employ::class, function (Faker $faker) {
 
     return [
         'job_title' => $faker->word,
-        'graduation_date' => $faker->word,
-        'birth_of_date' => $faker->word,
+        'graduation_date' => $faker->date('Y-m-d'),
+        'birth_of_date' => $faker->date('Y-m-d'),
         'address' => $faker->word,
         'years_of_experience' => $faker->randomDigitNotNull,
         'cv' => $faker->text,
+        'user_id'=> function(){
+        return factory(App\User::class)->create()->id;
+        },
         'created_at' => $faker->date('Y-m-d H:i:s'),
         'updated_at' => $faker->date('Y-m-d H:i:s')
     ];
