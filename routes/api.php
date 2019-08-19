@@ -25,18 +25,15 @@ Route::prefix('auth')->group(function () {
 
 //Route::prefix('auth')->group(function () {
 
-Route::resource('employ', 'Api\EmployApiController');
+Route::resource('employ', 'EmployApiController');
 
-Route::resource('medical_board', 'Api\MedicalBoardApiController');
-
-//Route::resource('medical_field', 'MedicalFieldAPIController');
-
+Route::resource('medical_board', 'MedicalBoardApiController');
 //}
-Route::resource('request_specialist', 'Api\RequestSpecialistApiController');
+Route::resource('request_specialist', 'RequestSpecialistApiController');
 
-Route::resource('accept_request_specialist', 'Api\AcceptRequestApiController');
+Route::resource('accept_request_specialist', 'AcceptRequestApiController');
 
-Route::post('user_accept_request_specialist', 'Api\AcceptRequestApiController@userAccept');
+Route::post('user_accept_request_specialist', 'AcceptRequestApiController@userAccept');
 
 Route::resource('medicalFields', 'MedicalFieldAPIController');
 

@@ -11,7 +11,7 @@ use Illuminate\Support\Str;
 use Image;
 //use JWTAuth;
 
-class EmployApiController extends Controller
+class __EmployApiController extends Controller
 {
     /**
      * Display a listing of the resource.
