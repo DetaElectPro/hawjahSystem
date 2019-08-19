@@ -59,14 +59,14 @@ class MedicalFieldAPIController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $medicalFields = $this->medicalFieldRepository->all(
-            $request->except(['skip', 'limit']),
-            $request->get('skip'),
-            $request->get('limit')
-        );
-        $medicalFields = $this->medicalFieldRepository->with('medical');
+//        $medicalFields = $this->medicalFieldRepository->all(
+//            $request->except(['skip', 'limit']),
+//            $request->get('skip'),
+//            $request->get('limit')
+//        );
+       return $medicalFields = $this->medicalFieldRepository->with('medical');
 
-        return $this->sendResponse($medicalFields->toArray(), 'Medical Fields retrieved successfully');
+//        return $this->sendResponse($medicalFields->toArray(), 'Medical Fields retrieved successfully');
     }
 
     /**
