@@ -2,14 +2,13 @@
 
 /* @var $factory \Illuminate\Database\Eloquent\Factory */
 
-use App\Models\EmergencyServices;
 use Faker\Generator as Faker;
 
-$factory->define(EmergencyServices::class, function (Faker $faker) {
+$factory->define(\App\Models\EmergencyServiced::class, function (Faker $faker) {
     return [
-        'name' => $faker->name,
+        'price_per_day'=> 99.0,
+        'name' => $faker->firstName,
         'address'=> $faker->address,
-        'price_per_day'=> $faker->numberBetween(200, 1000),
         'available_bed'=> $faker->numberBetween(2,9),
         'type' =>$faker->firstName,
         'user_id'=> function(){
