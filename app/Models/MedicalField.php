@@ -31,6 +31,33 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          description="updated_at",
  *          type="string",
  *          format="date-time"
+ *      ),
+ *      @SWG\Property(
+ *          property="medical",
+ *          description="medical object for MedicalSpecialty",
+ *          type="object",
+ *          format="string|integer|date-time",
+ *        @SWG\Property(
+ *          property="name",
+ *          description="name of Specialty",
+ *          type="string",
+ *      ), @SWG\Property(
+ *          property="medical_id",
+ *          description="id of Medical Field",
+ *         type="integer",
+ *         format="int32"
+ *      ), @SWG\Property(
+ *          property="updated_at",
+ *          description="updated_at",
+ *          type="string",
+ *          format="date-time"
+ *      ),
+ *      @SWG\Property(
+ *          property="created_at",
+ *          description="created_at",
+ *          type="string",
+ *          format="date-time"
+ *      )
  *      )
  * )
  */
@@ -39,7 +66,7 @@ class MedicalField extends Model
     use SoftDeletes;
 
     public $table = 'medical_fields';
-    
+
 
     protected $dates = ['deleted_at'];
 

@@ -933,6 +933,32 @@
                     "description": "updated_at",
                     "type": "string",
                     "format": "date-time"
+                },
+                "medical": {
+                    "description": "medical object for MedicalSpecialty",
+                    "properties": {
+                        "name": {
+                            "description": "name of Specialty",
+                            "type": "string"
+                        },
+                        "medical_id": {
+                            "description": "id of Medical Field",
+                            "type": "integer",
+                            "format": "int32"
+                        },
+                        "updated_at": {
+                            "description": "updated_at",
+                            "type": "string",
+                            "format": "date-time"
+                        },
+                        "created_at": {
+                            "description": "created_at",
+                            "type": "string",
+                            "format": "date-time"
+                        }
+                    },
+                    "type": "object",
+                    "format": "string|integer|date-time"
                 }
             }
         },
