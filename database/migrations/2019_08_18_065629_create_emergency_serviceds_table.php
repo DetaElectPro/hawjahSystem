@@ -19,7 +19,7 @@ class CreateEmergencyServicedsTable extends Migration
             $table->string('address');
             $table->double('price_per_day');
             $table->string('type');
-            $table->integer('available_bed');
+            $table->integer('available');
             $table->unsignedBigInteger('user_id');
             $table->timestamps();
             $table->softDeletes();

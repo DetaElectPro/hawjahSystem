@@ -30,8 +30,8 @@
 
 <!-- Available Bed Field -->
 <div class="form-group">
-    {!! Form::label('available_bed', 'Available Bed:') !!}
-    <p>{!! $emergencyServiced->available_bed !!}</p>
+    {!! Form::label('available', 'Available Bed:') !!}
+    <p>{!! $emergencyServiced->available !!}</p>
 </div>
 
 <!-- User Id Field -->

@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 /**
  * @SWG\Definition(
  *      definition="EmergencyServiced",
- *      required={"name", "address", "price_per_day", "type", "available_bed"},
+ *      required={"name", "address", "price_per_day", "type", "available"},
  *      @SWG\Property(
  *          property="id",
  *          description="id",
@@ -37,8 +37,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          type="string"
  *      ),
  *      @SWG\Property(
- *          property="available_bed",
- *          description="available_bed",
+ *          property="available",
+ *          description="available",
  *          type="integer",
  *          format="int32"
  *      ),
@@ -77,7 +77,7 @@ class EmergencyServiced extends Model
         'address',
         'price_per_day',
         'type',
-        'available_bed',
+        'available',
         'user_id'
     ];
 
@@ -92,7 +92,7 @@ class EmergencyServiced extends Model
         'address' => 'string',
         'price_per_day' => 'double',
         'type' => 'string',
-        'available_bed' => 'integer',
+        'available' => 'integer',
         'user_id' => 'integer'
     ];
 
@@ -106,7 +106,7 @@ class EmergencyServiced extends Model
         'address' => 'required|min:3|max:191',
         'price_per_day' => 'required|min:1',
         'type' => 'required|min:3|max:60',
-        'available_bed' => 'required|min:1'
+        'available' => 'required|min:1'
     ];
 
     

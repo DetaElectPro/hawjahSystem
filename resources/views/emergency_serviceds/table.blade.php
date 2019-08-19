@@ -18,7 +18,7 @@
             <td>{!! $emergencyServiced->address !!}</td>
             <td>{!! $emergencyServiced->price_per_day !!}</td>
             <td>{!! $emergencyServiced->type !!}</td>
-            <td>{!! $emergencyServiced->available_bed !!}</td>
+            <td>{!! $emergencyServiced->available !!}</td>
             <td>{!! $emergencyServiced->user_id !!}</td>
                 <td>
                     {!! Form::open(['route' => ['emergencyServiceds.destroy', $emergencyServiced->id], 'method' => 'delete']) !!}

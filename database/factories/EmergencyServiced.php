@@ -9,7 +9,7 @@ $factory->define(\App\Models\EmergencyServiced::class, function (Faker $faker) {
         'price_per_day'=> 99.0,
         'name' => $faker->firstName,
         'address'=> $faker->address,
-        'available_bed'=> $faker->numberBetween(2,9),
+        'available'=> $faker->numberBetween(2,9),
         'type' =>$faker->firstName,
         'user_id'=> function(){
         return factory(App\User::class)->create()->id;

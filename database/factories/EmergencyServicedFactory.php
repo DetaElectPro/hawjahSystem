@@ -12,7 +12,7 @@ $factory->define(EmergencyServiced::class, function (Faker $faker) {
         'address' => $faker->word,
         'price_per_day' => $faker->word,
         'type' => $faker->word,
-        'available_bed' => $faker->randomDigitNotNull,
+        'available' => $faker->randomDigitNotNull,
         'user_id' => $faker->randomDigitNotNull,
         'created_at' => $faker->date('Y-m-d H:i:s'),
         'updated_at' => $faker->date('Y-m-d H:i:s')

@@ -810,7 +810,7 @@
                 "address",
                 "price_per_day",
                 "type",
-                "available_bed"
+                "available"
             ],
             "properties": {
                 "id": {
@@ -835,8 +835,8 @@
                     "description": "type",
                     "type": "string"
                 },
-                "available_bed": {
-                    "description": "available_bed",
+                "available": {
+                    "description": "available",
                     "type": "integer",
                     "format": "int32"
                 },

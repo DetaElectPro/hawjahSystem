@@ -55,7 +55,7 @@
         "inIndex": true
     },
     {
-        "name": "available_bed",
+        "name": "available",
         "dbType": "integer",
         "htmlType": null,
         "validations": "required|min:1",

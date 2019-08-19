@@ -21,7 +21,7 @@ class EmergencyServicedRepository extends BaseRepository
         'address',
         'price_per_day',
         'type',
-        'available_bed'
+        'available'
     ];
 
     /**
