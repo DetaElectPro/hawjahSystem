@@ -64,6 +64,7 @@ class MedicalFieldAPIController extends AppBaseController
             $request->get('skip'),
             $request->get('limit')
         );
+        $medicalFields = $this->medicalFieldRepository->with('medical');
 
         return $this->sendResponse($medicalFields->toArray(), 'Medical Fields retrieved successfully');
     }

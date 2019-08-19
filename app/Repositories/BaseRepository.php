@@ -131,7 +131,7 @@ abstract class BaseRepository
     // Eager load database relationships
     public function with($relations)
     {
-        return $this->model->with($relations);
+        return $this->model->with($relations)->get();
     }
 
     /**

@@ -29,9 +29,8 @@ Route::resource('employ', 'Api\EmployApiController');
 
 Route::resource('medical_board', 'Api\MedicalBoardApiController');
 
-Route::resource('medical_field', 'Api\MedicalFieldApiController');
+//Route::resource('medical_field', 'MedicalFieldAPIController');
 
-Route::resource('medical_specialty', 'Api\MedicalSpecialtyApiController');
 //}
 Route::resource('request_specialist', 'Api\RequestSpecialistApiController');
 
@@ -39,9 +38,9 @@ Route::resource('accept_request_specialist', 'Api\AcceptRequestApiController');
 
 Route::post('user_accept_request_specialist', 'Api\AcceptRequestApiController@userAccept');
 
-Route::resource('medical_fields', 'MedicalFieldAPIController');
+Route::resource('medicalFields', 'MedicalFieldAPIController');
 
-Route::resource('medical_specialties', 'MedicalSpecialtyAPIController');
+Route::resource('medicalSpecialties', 'MedicalSpecialtyAPIController');
 
-Route::resource('emergency_serviceds', 'EmergencyServicedAPIController');
+Route::resource('emergencyServiceds', 'EmergencyServicedAPIController');
 
