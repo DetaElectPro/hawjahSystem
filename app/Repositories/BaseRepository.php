@@ -190,4 +190,11 @@ abstract class BaseRepository
 
         return $model->delete();
     }
+
+
+    // Eager load database relationships
+    public function with($relations)
+    {
+        return $this->model->with($relations);
+    }
 }
