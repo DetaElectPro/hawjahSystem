@@ -26,9 +26,10 @@ Route::prefix('auth')->group(function () {
 //Route::prefix('auth')->group(function () {
 
 
-Route::resource('medical_board', 'MedicalBoardApiController');
+Route::resource('medicalBoards', 'MedicalBoardApiController');
+Route::resource('employs', 'EmployAPIController');
 //}
-Route::resource('request_specialist', 'RequestSpecialistApiController');
+Route::resource('requestSpecialists', 'RequestSpecialistApiController');
 
 Route::resource('accept_request_specialist', 'AcceptRequestApiController');
 
@@ -42,4 +43,3 @@ Route::resource('emergencyServiceds', 'EmergencyServicedAPIController');
 
 
 
-Route::resource('employs', 'EmployAPIController');
