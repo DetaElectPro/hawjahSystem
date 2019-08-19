@@ -9,12 +9,12 @@ use App\Repositories\EmployRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
 use Response;
+use Str;
 
 /**
  * Class EmployController
  * @package App\Http\Controllers\API
  */
-
 class EmployAPIController extends AppBaseController
 {
     /** @var  EmployRepository */
@@ -59,11 +59,7 @@ class EmployAPIController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $employs = $this->employRepository->all(
-            $request->except(['skip', 'limit']),
-            $request->get('skip'),
-            $request->get('limit')
-        );
+        $employs = $this->employRepository->with(['medical_board', 'user']);
 
         return $this->sendResponse($employs->toArray(), 'Employs retrieved successfully');
     }
@@ -108,11 +104,26 @@ class EmployAPIController extends AppBaseController
      */
     public function store(CreateEmployAPIRequest $request)
     {
-        $input = $request->all();
 
-        $employ = $this->employRepository->create($input);
+        $user = auth('api')->user()->id;
+        $file_name = $this->saveFile($request, $user);
+        $employ = new Employ($request->all());
+        $employ->cv = $file_name;
+        $employ->user_id = $user;
+        $employ->save();
+        $userStatus = $employ->user()->update(['status' => 2]);
 
-        return $this->sendResponse($employ->toArray(), 'Employ saved successfully');
+        if (isset($employ)) {
+            return response()->json(['employ' => $employ, 'statusUpdate' => $userStatus, 'status' => 2]);
+        } else {
+            return response()->json(["error" => "no data found", $employ]);
+        }
+
+//        $input = $request->all();
+//
+//        $employ = $this->employRepository->create($input);
+//
+//        return $this->sendResponse($employ->toArray(), 'Employ saved successfully');
     }
 
     /**
@@ -277,5 +288,20 @@ class EmployAPIController extends AppBaseController
         $employ->delete();
 
         return $this->sendResponse($id, 'Employ deleted successfully');
+    }
+
+
+    public function saveFile($request, $userId)
+    {
+        $random = Str::random(10);
+        if ($request->hasfile('cv')) {
+            $image = $request->file('cv');
+            $name = $random . 'cv_' . $userId . ".pdf";
+            $image->move(public_path() . '/cv/', $name);
+            $name = url("cv/$name");
+
+            return $name;
+        }
+        return false;
     }
 }

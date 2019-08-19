@@ -14,18 +14,17 @@ use Illuminate\Http\Request;
 */
 
 Route::prefix('auth')->group(function () {
-    Route::post('/register', 'Api\AuthControllerApi@register');
-    Route::post('/login', 'Api\AuthControllerApi@login');
-    Route::post('/check', 'Api\AuthControllerApi@checkAuth');
-    Route::get('/profile', 'Api\AuthControllerApi@profile')->middleware('auth');
-    Route::get('/profile/{user}', 'Api\AuthControllerApi@profileById')->middleware('auth');
-    Route::post('/logout', 'Api\AuthControllerApi@logout');
+    Route::post('/register', 'AuthControllerApi@register');
+    Route::post('/login', 'AuthControllerApi@login');
+    Route::post('/check', 'AuthControllerApi@checkAuth');
+    Route::get('/profile', 'AuthControllerApi@profile')->middleware('auth');
+    Route::get('/profile/{user}', 'AuthControllerApi@profileById')->middleware('auth');
+    Route::post('/logout', 'AuthControllerApi@logout');
 
 });
 
 //Route::prefix('auth')->group(function () {
 
-Route::resource('employ', 'EmployApiController');
 
 Route::resource('medical_board', 'MedicalBoardApiController');
 //}
