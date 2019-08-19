@@ -34,7 +34,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Employ whereYearsOfExperience($value)
  * @mixin \Eloquent
  */
-class Employ extends Model
+class __Employ extends Model
 {
     protected $fillable = [
         'job_title', 'graduation_date', 'birth_of_date', 'address', 'years_of_experience', 'cv', 'user_id'

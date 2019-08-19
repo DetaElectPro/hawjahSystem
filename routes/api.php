@@ -41,3 +41,6 @@ Route::resource('medicalSpecialties', 'MedicalSpecialtyAPIController');
 
 Route::resource('emergencyServiceds', 'EmergencyServicedAPIController');
 
+
+
+Route::resource('employs', 'EmployAPIController');

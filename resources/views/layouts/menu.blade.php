@@ -18,3 +18,7 @@
     <a href="{!! route('tests.index') !!}"><i class="fa fa-edit"></i><span>Tests</span></a>
 </li>
 
+<li class="{{ Request::is('employs*') ? 'active' : '' }}">
+    <a href="{!! route('employs.index') !!}"><i class="fa fa-edit"></i><span>Employs</span></a>
+</li>
+
