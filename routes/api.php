@@ -18,7 +18,6 @@ Route::prefix('auth')->group(function () {
     Route::post('/login', 'AuthControllerApi@login');
     Route::post('/check', 'AuthControllerApi@checkAuth');
 //    Route::get('/profile', 'AuthControllerApi@profile')->middleware('auth');
-    Route::get('/profile/{user}', 'AuthControllerApi@profileById')->middleware('auth');
     Route::post('/logout', 'AuthControllerApi@logout');
     Route::resource('/profile', 'ProfileApiController');
 
