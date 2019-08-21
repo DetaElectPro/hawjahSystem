@@ -104,26 +104,24 @@ class EmployAPIController extends AppBaseController
      */
     public function store(CreateEmployAPIRequest $request)
     {
+        try {
+            $user = auth('api')->user()->id;
+            $file_name = $this->saveFile($request, $user);
+            $employ = new Employ($request->all());
+            $employ->cv = $file_name;
+            $employ->user_id = $user;
+            $employ->save();
+            $userStatus = $employ->user()->update(['status' => 2]);
 
-        $user = auth('api')->user()->id;
-        $file_name = $this->saveFile($request, $user);
-        $employ = new Employ($request->all());
-        $employ->cv = $file_name;
-        $employ->user_id = $user;
-        $employ->save();
-        $userStatus = $employ->user()->update(['status' => 2]);
-
-        if (isset($employ)) {
-            return response()->json(['employ' => $employ, 'statusUpdate' => $userStatus, 'status' => 2]);
-        } else {
-            return response()->json(["error" => "no data found", $employ]);
+            if (isset($employ)) {
+                return response()->json(['employ' => $employ, 'statusUpdate' => $userStatus, 'status' => 2]);
+            } else {
+                return response()->json(["error" => "no data found", $employ]);
+            }
+        } catch (\Exception $exception) {
+            return response()->json(["message" => "token is expired", 'status' => false]);
         }
 
-//        $input = $request->all();
-//
-//        $employ = $this->employRepository->create($input);
-//
-//        return $this->sendResponse($employ->toArray(), 'Employ saved successfully');
     }
 
     /**

@@ -2,12 +2,14 @@
 
 namespace App\Repositories;
 
+use App\User;
 use Exception;
 use Illuminate\Container\Container as Application;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use JWTAuth;
 
 
 abstract class BaseRepository
@@ -200,5 +202,25 @@ abstract class BaseRepository
         $model = $query->findOrFail($id);
 
         return $model->delete();
+    }
+
+    public function userCheck()
+    {
+
+        try {
+            $user = JWTAuth::parseToken()->authenticate();
+            return $user;
+        } catch (\Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
+
+            return response()->json(["message" => "token is expired", 'status' => false]);
+
+        } catch (\Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
+            return response()->json(["message" => "token is invalid", 'status' => false]);
+            // do whatever you want to do if a token is invalid
+
+        } catch (\Tymon\JWTAuth\Exceptions\JWTException $e) {
+            return response()->json(["message" => "token is not present", 'status' => false]);
+            // do whatever you want to do if a token is not present
+        }
     }
 }
