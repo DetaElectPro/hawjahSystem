@@ -77,7 +77,7 @@ class ProfileApiController extends AppBaseController
      */
     public function update(Request $request, $id)
     {
-        //
+
     }
 
     /**

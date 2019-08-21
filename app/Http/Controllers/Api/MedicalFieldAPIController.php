@@ -6,6 +6,7 @@ use App\Http\Requests\API\CreateMedicalFieldAPIRequest;
 use App\Http\Requests\API\UpdateMedicalFieldAPIRequest;
 use App\Models\MedicalField;
 use App\Repositories\MedicalFieldRepository;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
 use Response;
@@ -14,7 +15,6 @@ use Response;
  * Class MedicalFieldController
  * @package App\Http\Controllers\API
  */
-
 class MedicalFieldAPIController extends AppBaseController
 {
     /** @var  MedicalFieldRepository */
@@ -27,7 +27,7 @@ class MedicalFieldAPIController extends AppBaseController
 
     /**
      * @param Request $request
-     * @return Response
+     * @return MedicalFieldRepository[]|Collection|Response
      *
      * @SWG\Get(
      *      path="/medicalFields",
@@ -57,16 +57,11 @@ class MedicalFieldAPIController extends AppBaseController
      *      )
      * )
      */
-    public function index(Request $request)
+    public function index()
     {
-//        $medicalFields = $this->medicalFieldRepository->all(
-//            $request->except(['skip', 'limit']),
-//            $request->get('skip'),
-//            $request->get('limit')
-//        );
-       return $medicalFields = $this->medicalFieldRepository->with('medical');
+        $medicalFields = $this->medicalFieldRepository->with('medical');
 
-//        return $this->sendResponse($medicalFields->toArray(), 'Medical Fields retrieved successfully');
+        return $this->sendResponse($medicalFields->toArray(), 'Medical Fields retrieved successfully');
     }
 
     /**
