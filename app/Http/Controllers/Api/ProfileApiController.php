@@ -97,10 +97,10 @@ class ProfileApiController extends AppBaseController
      * @param int $id
      * @return Response
      * @throws \Exception
-     */
+
     public function destroy($id)
     {
-        /** @var User $user */
+        /** @var User $user
         $user = $this->profileRepository->find($id);
 
         if (empty($user)) {
@@ -110,5 +110,6 @@ class ProfileApiController extends AppBaseController
         $user->delete();
 
         return $this->sendResponse($id, 'User Profile deleted successfully');
-    }
+   * }
+*/
 }
