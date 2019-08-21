@@ -14,7 +14,7 @@ class ProfileApiController extends AppBaseController
 {
 
     /** @var  EmployRepository */
-    private $employRepository;
+    private $userRepository;
 
     public function __construct(EmployRepository $employRepo)
     {
