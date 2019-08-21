@@ -77,7 +77,18 @@ class ProfileApiController extends AppBaseController
      */
     public function update(Request $request, $id)
     {
+        $input = $request->all();
 
+        /** @var User $user */
+        $user = $this->profileRepository->find($id);
+
+        if (empty($user)) {
+            return $this->sendError('User Profile not found');
+        }
+
+        $user = $this->profileRepository->update($input, $id);
+
+        return $this->sendResponse($user->toArray(), 'User Profile updated successfully');
     }
 
     /**
