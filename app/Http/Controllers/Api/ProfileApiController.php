@@ -96,9 +96,19 @@ class ProfileApiController extends AppBaseController
      *
      * @param int $id
      * @return Response
+     * @throws \Exception
      */
     public function destroy($id)
     {
-        //
+        /** @var User $user */
+        $user = $this->profileRepository->find($id);
+
+        if (empty($user)) {
+            return $this->sendError('User not found');
+        }
+
+        $user->delete();
+
+        return $this->sendResponse($id, 'User Profile deleted successfully');
     }
 }
