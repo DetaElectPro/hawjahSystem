@@ -3,34 +3,39 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\AppBaseController;
-use App\Models\Employ;
-use App\Repositories\EmployRepository;
+use App\Repositories\ProfileRepository;
 use App\User;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use JWTAuth;
+use Tymon\JWTAuth\Exceptions\JWTException;
+use Tymon\JWTAuth\Exceptions\TokenExpiredException;
 use Tymon\JWTAuth\Exceptions\TokenInvalidException;
 
 class ProfileApiController extends AppBaseController
 {
 
-    /** @var  EmployRepository */
-    private $userRepository;
+    /** @var  ProfileRepository */
+    private $profileRepository;
 
-    public function __construct(EmployRepository $employRepo)
+    public function __construct(ProfileRepository $profileRepo)
     {
-        $this->employRepository = $employRepo;
+        $this->profileRepository = $profileRepo;
     }
+
     /**
      * Display a listing of the resource.
      *
-     * @return User[]|\Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection
+     * @return User[]|Builder[]|Collection
      */
     public function index()
     {
         try {
             $user = JWTAuth::parseToken()->authenticate();
             return $data = User::whereId($user->id)->with('employ', 'medical_board')->get(['id', 'name', 'phone', 'created_at']);
-        } catch (\Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
+        } catch (TokenExpiredException $e) {
 
             return response()->json(["message" => "token is expired", 'status' => false]);
 
@@ -38,7 +43,7 @@ class ProfileApiController extends AppBaseController
             return response()->json(["message" => "token is invalid", 'status' => false]);
             // do whatever you want to do if a token is invalid
 
-        } catch (\Tymon\JWTAuth\Exceptions\JWTException $e) {
+        } catch (JWTException $e) {
             return response()->json(["message" => "token is not present", 'status' => false]);
             // do whatever you want to do if a token is not present
         }
@@ -48,27 +53,27 @@ class ProfileApiController extends AppBaseController
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param int $id
+     * @return Response
      */
     public function show($id)
     {
-        /** @var Employ $employ */
-        $employ = $this->employRepository->find($id);
+        /** @var User $user */
+        $user = $this->profileRepository->find($id);
 
-        if (empty($employ)) {
-            return $this->sendError('Employ not found');
+        if (empty($user)) {
+            return $this->sendError('User not found');
         }
 
-        return $this->sendResponse($employ->toArray(), 'Employ retrieved successfully');
+        return $this->sendResponse($user->toArray(), 'User retrieved successfully');
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param int $id
+     * @return Response
      */
     public function update(Request $request, $id)
     {
@@ -78,8 +83,8 @@ class ProfileApiController extends AppBaseController
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param int $id
+     * @return Response
      */
     public function destroy($id)
     {
