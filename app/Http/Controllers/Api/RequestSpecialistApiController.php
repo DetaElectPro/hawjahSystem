@@ -4,12 +4,22 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\AppBaseController;
 use App\Models\RequestSpecialist;
+use App\Repositories\RequestSpecialistRepository;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 
 class  RequestSpecialistApiController extends AppBaseController
 {
+
+    /** @var  RequestSpecialistRepository */
+    private $requestSpecialistRepository;
+
+    public function __construct(RequestSpecialistRepository $requestSpecialistRepo)
+    {
+        $this->requestSpecialistRepository = $requestSpecialistRepo;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -28,11 +38,11 @@ class  RequestSpecialistApiController extends AppBaseController
      */
     public function store(Request $request)
     {
-        $user = auth('api')->user()->id;
-        $request_specialist = new RequestSpecialist($request->all());
-        $request_specialist->user_id = $user;
-         $request_specialist = $request_specialist->save();
-        return $this->sendResponse($request_specialist, 'Request Specialties retrieved successfully');
+        $user_id = auth('api')->user()->id;
+        $input = $request->all();
+
+        $requestSpecialist = $this->requestSpecialistRepository->create($input + ['user_id' => $user_id]);
+        return $this->sendResponse($requestSpecialist->toArray(), 'Request Specialist saved successfully');
 
     }
 
