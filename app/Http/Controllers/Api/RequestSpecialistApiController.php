@@ -2,14 +2,13 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\AppBaseController;
 use App\Models\RequestSpecialist;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Response;
 
-class  RequestSpecialistApiController extends Controller
+class  RequestSpecialistApiController extends AppBaseController
 {
     /**
      * Display a listing of the resource.
@@ -30,9 +29,11 @@ class  RequestSpecialistApiController extends Controller
     public function store(Request $request)
     {
         $user = auth('api')->user()->id;
-//        $request_specialist = new RequestSpecialist($request->all());
-//        $request_specialist->user_id = $user;
-//        return $request_specialist = $request_specialist->save();
+        $request_specialist = new RequestSpecialist($request->all());
+        $request_specialist->user_id = $user;
+         $request_specialist = $request_specialist->save();
+        return $this->sendResponse($request_specialist, 'Request Specialties retrieved successfully');
+
     }
 
     /**
