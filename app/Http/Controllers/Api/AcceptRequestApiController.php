@@ -98,7 +98,7 @@ class AcceptRequestApiController extends Controller
                return $acceptRequest->acceptRequestAndDone($request->id, $request);
                 break;
             default:
-                return 'error';
+                return response()->json(['error'=> true, 'message'=> 'the: '.$request->status.' is note accept']);
         }
     }
 }
