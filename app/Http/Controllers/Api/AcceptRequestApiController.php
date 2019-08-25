@@ -82,7 +82,7 @@ class AcceptRequestApiController extends Controller
         $user = auth('api')->user()->id;
         $acceptRequest = new RequestSpecialist();
         switch ($request->status) {
-            case (1):
+            case (2):
                 return $acceptRequest->acceptRequestByUser($request->id, $user);
                 break;
             case (3):
