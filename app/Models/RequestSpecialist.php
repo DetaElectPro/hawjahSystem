@@ -82,8 +82,8 @@ class RequestSpecialist extends Model
             $acceptRequest->user_id = $userID;
             $acceptRequest->notes = '__';
             $acceptRequest->request_id = $requestId;
-            $acceptRequest->save();
-            return ['accept' => true, 'request' => true];
+            $acceptRequest = $acceptRequest->save();
+            return ['accept' => true, 'request' => true, 'acceptRequest'=>$acceptRequest];
         } else {
             return ['accept' => false, 'request' => false];
         }
