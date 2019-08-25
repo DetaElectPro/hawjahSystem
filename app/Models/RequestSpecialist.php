@@ -77,9 +77,10 @@ class RequestSpecialist extends Model
     public function acceptRequestByUser($requestId, $userID)
     {
         $requestSpecialist = RequestSpecialist::whereId($requestId)->whereStatus(1)->update(['status' => 2]);
-        if ($requestSpecialist) {
+        if ($requestSpecialist == 1) {
             $acceptRequest = new AcceptRequest();
             $acceptRequest->user_id = $userID;
+            $acceptRequest->notes = '__';
             $acceptRequest->request_id = $requestId;
             $acceptRequest->save();
             return ['accept' => true, 'request' => true];
@@ -90,7 +91,13 @@ class RequestSpecialist extends Model
 
     public function acceptRequestByAdmin($requestId)
     {
-        return RequestSpecialist::whereId($requestId)->whereStatus(2)->update(['status' => 3]);
+        $result = RequestSpecialist::whereId($requestId)->whereStatus(2)->update(['status' => 3]);
+        if($result == 1) {
+            return ['accept' => true, 'request' => true];
+        } else {
+            return ['accept' => false, 'request' => false];
+        }
+
     }
 
 
