@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Auth\User\User;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
@@ -26,6 +27,8 @@ class RouteServiceProvider extends ServiceProvider
         //
 
         parent::boot();
+
+        $this->binds();
     }
 
     /**
@@ -63,13 +66,6 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @return void
      */
-//    protected function mapApiRoutes()
-//    {
-//        Route::prefix('api')
-//             ->middleware('api')
-//             ->namespace($this->namespace)
-//             ->group(base_path('routes/api.php'));
-//    }
     protected function mapApiRoutes()
     {
         Route::prefix('api')
@@ -78,5 +74,19 @@ class RouteServiceProvider extends ServiceProvider
 //            ->namespace($this->namespace . "")
             ->namespace($this->namespace . "\\Api")
             ->group(base_path('routes/api.php'));
+    }
+
+    /**
+     * Bind route models
+     */
+    protected function binds()
+    {
+        Route::bind('user_by_code', function ($code) {
+            return User::whereConfirmationCode($code)->firstOrFail();
+        });
+
+        Route::bind('user_by_email', function ($email) {
+            return User::whereEmail($email)->firstOrFail();
+        });
     }
 }

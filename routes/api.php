@@ -13,33 +13,6 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::prefix('auth')->group(function () {
-    Route::post('/register', 'AuthControllerApi@register');
-    Route::post('/login', 'AuthControllerApi@login');
-    Route::post('/check', 'AuthControllerApi@checkAuth');
-//    Route::get('/profile', 'AuthControllerApi@profile')->middleware('auth');
-    Route::post('/logout', 'AuthControllerApi@logout');
-    Route::resource('/profile', 'ProfileApiController');
-
+Route::middleware('auth:api')->get('/user', function (Request $request) {
+    return $request->user();
 });
-
-//Route::prefix('auth')->group(function () {
-
-
-Route::resource('medicalBoards', 'MedicalBoardApiController');
-Route::resource('employs', 'EmployAPIController');
-//}
-Route::resource('requestSpecialists', 'RequestSpecialistApiController');
-
-Route::resource('accept_request_specialist', 'AcceptRequestApiController');
-
-Route::post('user_accept_request_specialist', 'AcceptRequestApiController@userAccept');
-
-Route::resource('medicalFields', 'MedicalFieldAPIController');
-
-Route::resource('medicalSpecialties', 'MedicalSpecialtyAPIController');
-
-Route::resource('emergencyServiceds', 'EmergencyServicedAPIController');
-
-
-
