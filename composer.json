@@ -46,7 +46,7 @@
     "fideloper/proxy": "^4.0",
     "laravel/framework": "5.8.*",
     "laravel/tinker": "^1.0",
-    "tymon/jwt-auth": "dev-master",
+    "tymon/jwt-auth": "^1.0.0-rc.4.1",
     "infyomlabs/laravel-generator": "5.8.x-dev",
     "laravelcollective/html": "^5.8.0",
     "infyomlabs/adminlte-templates": "5.8.x-dev",

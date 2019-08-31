@@ -17,7 +17,7 @@ class CreateProtectionShopTokensTable extends Migration
          * User and roles relation table
          */
         Schema::create('protection_shop_tokens', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->integer('user_id')->unsigned();
             $table->string('number');
             $table->timestamp('expires');

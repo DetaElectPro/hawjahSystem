@@ -17,7 +17,7 @@ class CreateProtectionValidationsTable extends Migration
          * User and roles relation table
          */
         Schema::create('protection_validations', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->integer('user_id')->unsigned();
             $table->timestamp('ttl');
             $table->longText('validation_result');

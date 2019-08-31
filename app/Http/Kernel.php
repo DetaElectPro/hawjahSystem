@@ -34,7 +34,9 @@ class Kernel extends HttpKernel
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
-            \App\Http\Middleware\DetectLocale::class
+            \App\Http\Middleware\DetectLocale::class,
+            \Barryvdh\Cors\HandleCors::class,
+
         ],
 
         'admin' => [
@@ -65,5 +67,23 @@ class Kernel extends HttpKernel
         'authorize' => \App\Http\Middleware\Authorize::class,
         'protection' => \App\Http\Middleware\Protection::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+        'jwt.auth' => \Tymon\JWTAuth\Http\Middleware\Authenticate::class,
+        'jwt.refresh' => \Tymon\JWTAuth\Http\Middleware\RefreshToken::class,
+    ];
+
+    /**
+     * The priority-sorted list of middleware.
+     *
+     * This forces non-global middleware to always be in the given order.
+     *
+     * @var array
+     */
+    protected $middlewarePriority = [
+        \Illuminate\Session\Middleware\StartSession::class,
+        \Illuminate\View\Middleware\ShareErrorsFromSession::class,
+        \App\Http\Middleware\Authenticate::class,
+        \Illuminate\Session\Middleware\AuthenticateSession::class,
+        \Illuminate\Routing\Middleware\SubstituteBindings::class,
+        \Illuminate\Auth\Middleware\Authorize::class,
     ];
 }
