@@ -18,7 +18,7 @@ class CreateProtectionValidationsTable extends Migration
          */
         Schema::create('protection_validations', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('user_id')->unsigned();
+            $table->unsignedBigInteger('user_id');
             $table->timestamp('ttl');
             $table->longText('validation_result');
 

@@ -18,7 +18,7 @@ class CreateProtectionShopTokensTable extends Migration
          */
         Schema::create('protection_shop_tokens', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('user_id')->unsigned();
+            $table->unsignedBigInteger('user_id');
             $table->string('number');
             $table->timestamp('expires');
             $table->string('success_url');
