@@ -12,7 +12,7 @@ $factory->define(\App\Models\EmergencyServiced::class, function (Faker $faker) {
         'available'=> $faker->numberBetween(2,9),
         'type' =>$faker->firstName,
         'user_id'=> function(){
-        return factory(App\User::class)->create()->id;
+        return factory(\App\Models\Auth\User\User::class)->create()->id;
         }
     ];
 });

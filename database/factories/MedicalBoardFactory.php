@@ -12,7 +12,7 @@ $factory->define(MedicalBoard::class, function (Faker $faker) {
         'field'=> $faker->jobTitle,
         'registration_date'=> $faker->date('Y-m-d', 'now'),
         'user_id'=> function(){
-        return factory(App\User::class)->create()->id;
+        return factory(\App\Models\Auth\User\User::class)->create()->id;
         },
         'employ_id'=> function(){
         return factory(App\Models\Employ::class)->create()->id;

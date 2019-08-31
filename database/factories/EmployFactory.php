@@ -15,7 +15,7 @@ $factory->define(Employ::class, function (Faker $faker) {
         'years_of_experience' => $faker->randomDigitNotNull,
         'cv' => $faker->text,
         'user_id'=> function(){
-        return factory(App\User::class)->create()->id;
+        return factory(App\Models\Auth\User\User::class)->create()->id;
         },
         'created_at' => $faker->date('Y-m-d H:i:s'),
         'updated_at' => $faker->date('Y-m-d H:i:s')
