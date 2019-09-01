@@ -6,6 +6,7 @@ use Database\traits\DisableForeignKeys;
 use Carbon\Carbon as Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Ramsey\Uuid\Uuid;
 
 class UsersSeeder extends Seeder
 {
@@ -24,20 +25,20 @@ class UsersSeeder extends Seeder
         $users = [
             [
                 'name' => 'Admin',
-                'email' => 'admin.laravel@labs64.com',
+                'email' => 'admin@gmail.com',
                 'password' => bcrypt('admin'),
                 'active' => true,
-                'confirmation_code' => \Ramsey\Uuid\Uuid::uuid4(),
+                'confirmation_code' => Uuid::uuid4(),
                 'confirmed' => true,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],
             [
                 'name' => 'Demo',
-                'email' => 'demo.laravel@labs64.com',
+                'email' => 'demo@gmail.com',
                 'password' => bcrypt('demo'),
                 'active' => true,
-                'confirmation_code' => \Ramsey\Uuid\Uuid::uuid4(),
+                'confirmation_code' => Uuid::uuid4(),
                 'confirmed' => true,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
