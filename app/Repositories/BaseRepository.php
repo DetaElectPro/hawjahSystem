@@ -2,7 +2,7 @@
 
 namespace App\Repositories;
 
-use App\User;
+use App\Models\Auth\User;
 use Exception;
 use Illuminate\Container\Container as Application;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
