@@ -1,7 +1,7 @@
 <?php
 
+use App\Models\Auth\User\User;
 use Illuminate\Database\Seeder;
-
 class usersTableSeed extends Seeder
 {
     /**
@@ -12,7 +12,7 @@ class usersTableSeed extends Seeder
     public function run()
     {
         self::group();
-        factory(App\User::class, 5)->create();
+        factory(User::class, 5)->create();
     }
 
     public function group()

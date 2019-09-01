@@ -2,6 +2,11 @@
 
 use Illuminate\Http\Request;
 
+Route::middleware('auth:api')->get('/user', function (Request $request) {
+    return $request->user();
+});
+
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -31,9 +36,9 @@ Route::resource('employs', 'EmployAPIController');
 //}
 Route::resource('requestSpecialists', 'RequestSpecialistApiController');
 
-Route::resource('accept_request_specialist', 'AcceptRequestApiController');
+Route::resource('acceptRequestSpecialists', 'AcceptRequestApiController');
 
-Route::post('user_accept_request_specialist', 'AcceptRequestApiController@userAccept');
+Route::post('userAcceptRequestSpecialists', 'AcceptRequestApiController@userAccept');
 
 Route::resource('medicalFields', 'MedicalFieldAPIController');
 

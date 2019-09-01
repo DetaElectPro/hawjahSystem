@@ -19,7 +19,7 @@ $factory->define(RequestSpecialist::class, function (Faker $faker) {
         },
         'status' => random_int(1, 3),
         'user_id' => function () {
-            return factory(App\User::class)->create()->id;
+            return factory(\App\Models\Auth\User\User::class)->create()->id;
         }
     ];
 });

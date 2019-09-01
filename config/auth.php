@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Auth\User\User;
+
 return [
 
     /*
@@ -14,7 +16,7 @@ return [
     */
 
     'defaults' => [
-        'guard' => 'api',
+        'guard' => 'web',
         'passwords' => 'users',
     ],
 
@@ -67,7 +69,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => App\User::class,
+            'model' => User::class,
         ],
 
         // 'users' => [
@@ -99,4 +101,56 @@ return [
         ],
     ],
 
+    /*
+     * Configurations for the user
+     */
+    'users' => [
+        /*
+         * Whether or not public registration is on
+         */
+        'registration' => env('ENABLE_REGISTRATION', true),
+
+        /*
+         * The role the user is assigned to when they sign up from the frontend, not namespaced
+         */
+        'default_role' => 'authenticated',
+
+        /*
+         * Whether or not the user has to confirm their email when signing up
+         */
+        'confirm_email' => true,
+
+        /*
+         * Whether or not the users email can be changed on the edit profile screen
+         */
+        'change_email' => false,
+    ],
+
+    /**
+     * Configurations for the socialite
+     */
+    'socialite' => [
+
+        /**
+         * Disable social login for roles
+         */
+        'except_roles' => ['administrator'],
+
+        /*
+        * Socialite session variable name
+        * Contains the name of the currently logged in provider in the users session
+        * Makes it so social logins can not change passwords, etc.
+        */
+        'session_name' => 'socialite_provider',
+    ],
+
+    /*
+     * Application captcha specific settings
+     */
+    'captcha' => [
+        /*
+         * Whether the registration captcha is on or off
+         */
+        'registration' => env('REGISTRATION_CAPTCHA_STATUS', false),
+    ],
 ];
