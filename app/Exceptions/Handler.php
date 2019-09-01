@@ -5,6 +5,7 @@ namespace App\Exceptions;
 use Exception;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
 
 class Handler extends ExceptionHandler
 {
@@ -27,7 +28,7 @@ class Handler extends ExceptionHandler
      *
      * This is a great spot to send exceptions to Sentry, Bugsnag, etc.
      *
-     * @param  \Exception $exception
+     * @param \Exception $exception
      * @return void
      */
     public function report(Exception $exception)
@@ -41,20 +42,20 @@ class Handler extends ExceptionHandler
     /**
      * Render an exception into an HTTP response.
      *
-     * @param  \Illuminate\Http\Request $request
-     * @param  \Exception $exception
+     * @param \Illuminate\Http\Request $request
+     * @param \Exception $exception
      * @return \Illuminate\Http\Response
      */
-    public function render($request, Exception $exception)
-    {
-        return parent::render($request, $exception);
-    }
+//    public function render($request, Exception $exception)
+//    {
+//        return parent::render($request, $exception);
+//    }
 
     /**
      * Convert an authentication exception into an unauthenticated response.
      *
-     * @param  \Illuminate\Http\Request $request
-     * @param  \Illuminate\Auth\AuthenticationException $exception
+     * @param \Illuminate\Http\Request $request
+     * @param \Illuminate\Auth\AuthenticationException $exception
      * @return \Illuminate\Http\Response
      */
     protected function unauthenticated($request, AuthenticationException $exception)
@@ -85,4 +86,26 @@ class Handler extends ExceptionHandler
             $message->to($emails)->subject(config('app.name') . ' ' . config('app.env') . ' | Error ' . class_basename($exception));
         });
     }
+
+    public function render($request, Exception $exception)
+    {
+        if ($exception instanceof UnauthorizedHttpException) {
+            $preException = $exception->getPrevious();
+            if ($preException instanceof
+                \Tymon\JWTAuth\Exceptions\TokenExpiredException) {
+                return response()->json(['error' => 'TOKEN_EXPIRED']);
+            } else if ($preException instanceof
+                \Tymon\JWTAuth\Exceptions\TokenInvalidException) {
+                return response()->json(['error' => 'TOKEN_INVALID']);
+            } else if ($preException instanceof
+                \Tymon\JWTAuth\Exceptions\TokenBlacklistedException) {
+                return response()->json(['error' => 'TOKEN_BLACKLISTED']);
+            }
+            if ($exception->getMessage() === 'Token not provided') {
+                return response()->json(['error' => 'Token not provided']);
+            }
+        }
+        return parent::render($request, $exception);
+    }
+
 }
