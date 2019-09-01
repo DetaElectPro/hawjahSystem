@@ -26,6 +26,7 @@ class UsersSeeder extends Seeder
             [
                 'name' => 'Admin',
                 'email' => 'admin@gmail.com',
+                'phone' => '0114847112',
                 'password' => bcrypt('admin'),
                 'active' => true,
                 'confirmation_code' => Uuid::uuid4(),
@@ -36,6 +37,7 @@ class UsersSeeder extends Seeder
             [
                 'name' => 'Demo',
                 'email' => 'demo@gmail.com',
+                'phone' => '0917321783',
                 'password' => bcrypt('demo'),
                 'active' => true,
                 'confirmation_code' => Uuid::uuid4(),
