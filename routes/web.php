@@ -78,3 +78,20 @@ Route::group(['as' => 'protection.'], function () {
     Route::get('membership/access-denied', 'MembershipController@failed')->name('membership.failed');
     Route::get('membership/clear-cache/', 'MembershipController@clearValidationCache')->name('membership.clear_validation_cache');
 });
+
+
+Route::resource('medicalFields', 'Web\MedicalFieldController');
+
+Route::resource('medicalSpecialties', 'Web\MedicalSpecialtyController');
+
+Route::resource('emergencyServiceds', 'Web\EmergencyServicedController');
+
+Route::resource('emergencyServiceds', 'Web\EmergencyServicedController');
+
+
+Auth::routes();
+
+Route::get('/home', 'Web\HomeController@index')->name('home');
+
+
+Route::resource('employs', 'Web\EmployController');
