@@ -17,14 +17,14 @@ use Illuminate\Database\Eloquent\Model;
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  * @property-read \App\Models\Auth\User\User $user
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Auth\User\SocialAccount whereAvatar($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Auth\User\SocialAccount whereCreatedAt($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Auth\User\SocialAccount whereId($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Auth\User\SocialAccount whereProvider($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Auth\User\SocialAccount whereProviderId($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Auth\User\SocialAccount whereToken($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Auth\User\SocialAccount whereUpdatedAt($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Auth\User\SocialAccount whereUserId($value)
+ * @method static \Illuminate\Database\Query\Builder|SocialAccount whereAvatar($value)
+ * @method static \Illuminate\Database\Query\Builder|SocialAccount whereCreatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|SocialAccount whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|SocialAccount whereProvider($value)
+ * @method static \Illuminate\Database\Query\Builder|SocialAccount whereProviderId($value)
+ * @method static \Illuminate\Database\Query\Builder|SocialAccount whereToken($value)
+ * @method static \Illuminate\Database\Query\Builder|SocialAccount whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|SocialAccount whereUserId($value)
  * @mixin \Eloquent
  */
 class SocialAccount extends Model
