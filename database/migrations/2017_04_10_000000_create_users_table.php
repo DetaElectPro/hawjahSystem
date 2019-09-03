@@ -27,8 +27,6 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('player_id')->nullable();
             $table->integer('status')->default(1);
-            $table->unsignedBigInteger('role_id');
-            $table->foreign('role_id')->references('id')->on('groups')->onDelete('cascade');
             $table->timestamps();
             $table->softDeletes();
 
