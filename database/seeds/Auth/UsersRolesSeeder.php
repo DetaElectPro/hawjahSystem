@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Auth\Role\Role;
 use Database\traits\TruncateTable;
 use Database\traits\DisableForeignKeys;
 use Illuminate\Database\Seeder;
@@ -31,7 +32,7 @@ class UsersRolesSeeder extends Seeder
 
             $role = !is_array($role) ? [$role] : $role;
 
-            $roles = \App\Models\Auth\Role\Role::whereIn('name', $role)->get();
+            $roles = Role::whereIn('name', $role)->get();
 
             $user->roles()->attach($roles);
         }
