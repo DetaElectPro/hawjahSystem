@@ -56,8 +56,33 @@
                     </li>
                 </ul>
             </div>
+
+{{--            my edit--}}
             <div class="menu_section">
                 <h3>{{ __('views.backend.section.navigation.sub_header_2') }}</h3>
+                <ul class="nav side-menu">
+                    <li>
+                        <a href="{{ route('admin.medicalFields.index') }}">
+                            <i class="fa fa-users" aria-hidden="true"></i>
+                            Medical Fields
+                        </a>
+                    </li><li>
+                        <a href="{{ route('admin.medicalFields.create') }}">
+                            <i class="fa fa-users" aria-hidden="true"></i>
+                            {{ __('views.backend.section.navigation.menu_1_3') }}
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('admin.permissions') }}">
+                            <i class="fa fa-key" aria-hidden="true"></i>
+                            {{ __('views.backend.section.navigation.menu_1_2') }}
+                        </a>
+                    </li>
+                </ul>
+            </div>
+{{--            end my edit--}}
+            <div class="menu_section">
+                <h3>{{ __('views.backend.section.navigation.sub_header_3') }}</h3>
 
                 <ul class="nav side-menu">
                     <li>

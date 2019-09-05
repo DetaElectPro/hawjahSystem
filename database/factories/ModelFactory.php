@@ -23,7 +23,6 @@ $factory->define(\App\Models\Auth\User\User::class, function (Faker\Generator $f
         'email' => $faker->unique()->safeEmail,
         'password' => $password ?: $password = bcrypt('123456'),
         'phone' => $faker->unique()->phoneNumber,
-        'role_id' => 2,
         'remember_token' => Str::random(10),
     ];
 });

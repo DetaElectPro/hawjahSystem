@@ -11,22 +11,7 @@ class usersTableSeed extends Seeder
      */
     public function run()
     {
-        self::group();
         factory(User::class, 5)->create();
     }
 
-    public function group()
-    {
-        DB::table('groups')->insert([
-            'name' => 'admin',
-        ]);
-
-        DB::table('groups')->insert([
-            'name' => 'boss',
-        ]);
-
-        DB::table('groups')->insert([
-            'name' => 'user',
-        ]);
-    }
 }

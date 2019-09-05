@@ -91,7 +91,7 @@ class User extends Authenticatable implements JWTSubject
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'phone', 'password', 'role_id', 'status', 'player_id', 'image'
+        'name', 'email', 'phone', 'password', 'status', 'player_id', 'image'
     ];
 
     /**
@@ -147,10 +147,6 @@ class User extends Authenticatable implements JWTSubject
 //    }
 
 
-    public function role()
-    {
-        return $this->belongsTo('App\Models\Group');
-    }
 
     public function employ()
     {
