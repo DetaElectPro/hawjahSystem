@@ -10,7 +10,7 @@ npm-shrinkwrap.json
 bower_components/
 
 composer.phar
-composer.lock
+# composer.lock
 phpunit.phar
 
 public/assets
