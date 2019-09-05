@@ -2,6 +2,9 @@
 
 namespace App\Providers;
 
+use Barryvdh\Debugbar\Facade;
+use Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider;
+use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
@@ -39,18 +42,18 @@ class AppServiceProvider extends ServiceProvider
             /**
              * Loader for registering facades.
              */
-            $loader = \Illuminate\Foundation\AliasLoader::getInstance();
+            $loader = AliasLoader::getInstance();
 
             /*
              * Load third party local providers
              */
-            $this->app->register(\Barryvdh\Debugbar\ServiceProvider::class);
-            $this->app->register(\Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class);
+//            $this->app->register(\Barryvdh\Debugbar\ServiceProvider::class);
+            $this->app->register(IdeHelperServiceProvider::class);
 
             /*
              * Load third party local aliases
              */
-            $loader->alias('Debugbar', \Barryvdh\Debugbar\Facade::class);
+            $loader->alias('Debugbar', Facade::class);
         }
     }
 }

@@ -1,5 +1,10 @@
 <?php
 
+use App\Helpers\Meta\Facades\MetaFacade;
+use App\Helpers\ToJs\Facades\ToJsFacade;
+use App\Providers\MetaServiceProvider;
+use App\Providers\ProtectionProvider;
+use App\Providers\ToJsServiceProvider;
 use Collective\Html\FormFacade;
 use Collective\Html\HtmlFacade;
 use Collective\Html\HtmlServiceProvider;
@@ -186,10 +191,10 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        \App\Providers\ToJsServiceProvider::class,
-        \App\Providers\MetaServiceProvider::class,
+        ToJsServiceProvider::class,
+        MetaServiceProvider::class,
         Kyslik\ColumnSortable\ColumnSortableServiceProvider::class,
-        \App\Providers\ProtectionProvider::class,
+        ProtectionProvider::class,
 
         /*
          * InfyOm Packages
@@ -258,8 +263,8 @@ return [
         'Html' => Collective\Html\HtmlFacade::class,
         'Gravatar' => Creativeorange\Gravatar\Facades\Gravatar::class,
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
-        'ToJs' => \App\Helpers\ToJs\Facades\ToJsFacade::class,
-        'Meta' => \App\Helpers\Meta\Facades\MetaFacade::class,
+        'ToJs' => ToJsFacade::class,
+        'Meta' => MetaFacade::class,
         'JWTAuth' => Tymon\JWTAuth\Facades\JWTAuth::class,
         'JWTFactory' => Tymon\JWTAuth\Facades\JWTFactory::class,
         'Flash' => Laracasts\Flash\Flash::class,
