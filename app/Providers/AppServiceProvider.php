@@ -22,6 +22,9 @@ class AppServiceProvider extends ServiceProvider
         if ($this->app->environment() == 'production') {
             //URL::forceScheme('https');
         }
+        $this->app->bind('path.public', function() {
+            return base_path().'/../public_html';
+        });
 
         // Set the default string length for Laravel5.4
         // https://laravel-news.com/laravel-5-4-key-too-long-error
