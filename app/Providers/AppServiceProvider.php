@@ -2,8 +2,8 @@
 
 namespace App\Providers;
 
-use Barryvdh\Debugbar\Facade;
-use Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider;
+// use Barryvdh\Debugbar\Facade;
+// use Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider;
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\URL;
