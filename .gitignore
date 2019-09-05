@@ -16,7 +16,7 @@ phpunit.phar
 public/assets
 public/mix-manifest.json
 
-.env
+# .env
 .env.*.php
 .env.php
 .sass-cache
