@@ -13,7 +13,7 @@
                <div class="row">
                    {!! Form::model($medicalField, ['route' => ['medicalFields.update', $medicalField->id], 'method' => 'patch']) !!}
 
-                        @include('medical_fields.fields')
+                        @include('admin.Web.medical_fields.fields')
 
                    {!! Form::close() !!}
                </div>

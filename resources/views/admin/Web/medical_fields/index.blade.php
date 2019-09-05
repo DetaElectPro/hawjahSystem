@@ -15,7 +15,7 @@
         <div class="clearfix"></div>
         <div class="box box-primary">
             <div class="box-body">
-                    @include('medical_fields.table')
+                    @include('admin.Web.medical_fields.table')
             </div>
         </div>
         <div class="text-center">

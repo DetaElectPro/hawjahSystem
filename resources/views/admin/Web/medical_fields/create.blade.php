@@ -14,7 +14,7 @@
                 <div class="row">
                     {!! Form::open(['route' => 'medicalFields.store']) !!}
 
-                        @include('medical_fields.fields')
+                        @include('admin.Web.medical_fields.fields')
 
                     {!! Form::close() !!}
                 </div>

@@ -65,9 +65,22 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::get('permissions/{user}/repeat', 'PermissionController@repeat')->name('permissions.repeat');
     Route::get('dashboard/log-chart', 'DashboardController@getLogChartData')->name('dashboard.log.chart');
     Route::get('dashboard/registration-chart', 'DashboardController@getRegistrationChartData')->name('dashboard.registration.chart');
+
+    //web
+
+
+
 });
 
+Route::group(['prefix'=>'admin'], function (){
+    Route::resource('medicalFields', 'Web\MedicalFieldController');
 
+    Route::resource('medicalSpecialties', 'Web\MedicalSpecialtyController');
+
+    Route::resource('emergencyServiceds', 'Web\EmergencyServicedController');
+
+    Route::resource('emergencyServiceds', 'Web\EmergencyServicedController');
+});
 Route::get('/', 'HomeController@index');
 
 /**
@@ -80,13 +93,13 @@ Route::group(['as' => 'protection.'], function () {
 });
 
 
-Route::resource('medicalFields', 'Web\MedicalFieldController');
-
-Route::resource('medicalSpecialties', 'Web\MedicalSpecialtyController');
-
-Route::resource('emergencyServiceds', 'Web\EmergencyServicedController');
-
-Route::resource('emergencyServiceds', 'Web\EmergencyServicedController');
+//Route::resource('medicalFields', 'Web\MedicalFieldController');
+//
+//Route::resource('medicalSpecialties', 'Web\MedicalSpecialtyController');
+//
+//Route::resource('emergencyServiceds', 'Web\EmergencyServicedController');
+//
+//Route::resource('emergencyServiceds', 'Web\EmergencyServicedController');
 
 
 Auth::routes();
