@@ -54,15 +54,15 @@
     "appointer/swaggervel": "dev-master"
   },
   "require-dev": {
-    "fzaninotto/faker": "^1.8",
-    "mockery/mockery": "1.2.*",
-    "phpunit/phpunit": "^8.1",
     "barryvdh/laravel-debugbar": "^3.2",
     "barryvdh/laravel-ide-helper": "^2.6",
+    "beyondcode/laravel-dump-server": "^1.0",
     "doctrine/dbal": "^2.9",
     "filp/whoops": "^2.3",
-    "beyondcode/laravel-dump-server": "^1.0",
-    "nunomaduro/collision": "^3.0"
+    "fzaninotto/faker": "^1.8",
+    "mockery/mockery": "1.2.*",
+    "nunomaduro/collision": "^3.0",
+    "phpunit/phpunit": "^8.1"
   },
   "autoload": {
     "classmap": [

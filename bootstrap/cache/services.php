@@ -64,6 +64,7 @@
     60 => 'Prettus\\Repository\\Providers\\RepositoryServiceProvider',
     61 => 'InfyOm\\Generator\\InfyOmGeneratorServiceProvider',
     62 => 'InfyOm\\AdminLTETemplates\\AdminLTETemplatesServiceProvider',
+    63 => 'Barryvdh\\Debugbar\\ServiceProvider',
   ),
   'eager' => 
   array (
@@ -107,6 +108,7 @@
     37 => 'Prettus\\Repository\\Providers\\RepositoryServiceProvider',
     38 => 'InfyOm\\Generator\\InfyOmGeneratorServiceProvider',
     39 => 'InfyOm\\AdminLTETemplates\\AdminLTETemplatesServiceProvider',
+    40 => 'Barryvdh\\Debugbar\\ServiceProvider',
   ),
   'deferred' => 
   array (
