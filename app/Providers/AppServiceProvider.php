@@ -2,8 +2,8 @@
 
 namespace App\Providers;
 
-// use Barryvdh\Debugbar\Facade;
-// use Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider;
+use Barryvdh\Debugbar\Facade;
+use Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider;
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\URL;
@@ -22,9 +22,9 @@ class AppServiceProvider extends ServiceProvider
         if ($this->app->environment() == 'production') {
             //URL::forceScheme('https');
         }
-        $this->app->bind('path.public', function() {
-            return base_path().'/../public_html';
-        });
+        // $this->app->bind('path.public', function() {
+        //     return base_path().'/../public_html';
+        // });
 
         // Set the default string length for Laravel5.4
         // https://laravel-news.com/laravel-5-4-key-too-long-error
@@ -50,8 +50,8 @@ class AppServiceProvider extends ServiceProvider
             /*
              * Load third party local providers
              */
-            // $this->app->register(\Barryvdh\Debugbar\ServiceProvider::class);
-            // $this->app->register(IdeHelperServiceProvider::class);
+            $this->app->register(\Barryvdh\Debugbar\ServiceProvider::class);
+            $this->app->register(IdeHelperServiceProvider::class);
 
             /*
              * Load third party local aliases
