@@ -1,6 +1,6 @@
 @extends('admin.layouts.admin')
 
-@section('title', __('views.medicalFields.index.title'))
+@section('title', 'Medical Fields')
 
 @section('content')
     <div class="row">
@@ -8,9 +8,9 @@
                width="100%">
             <thead>
             <tr>
-                <th>@sortablelink('name',  __('views.medicalFields.index.table_header_0'),['page' => $medicalFields->currentPage()])</th>
-                <th>@sortablelink('created_at', __('views.medicalFields.index.table_header_1'),['page' => $medicalFields->currentPage()])</th>
-                <th>@sortablelink('updated_at', __('views.medicalFields.index.table_header_2'),['page' => $medicalFields->currentPage()])</th>
+                <th>@sortablelink('name',  'name',['page' => $medicalFields->currentPage()])</th>
+                <th>@sortablelink('created_at', 'created at',['page' => $medicalFields->currentPage()])</th>
+                <th>@sortablelink('updated_at', 'updated at',['page' => $medicalFields->currentPage()])</th>
                 <th>Actions</th>
             </tr>
             </thead>
