@@ -4,6 +4,7 @@
 
 @section('content')
     <div class="row">
+        <a class="btn button" href="{{ router('medicalFields.create') }}"
         <table class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0"
                width="100%">
             <thead>
