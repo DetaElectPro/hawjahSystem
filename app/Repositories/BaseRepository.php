@@ -65,7 +65,7 @@ abstract class BaseRepository
         }
 
         return $this->model = $model;
-    }
+    } 
 
     /**
      * Paginate records for scaffold.
