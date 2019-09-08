@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="row">
-        <a class="btn button" href="{{ route('medicalFields.create') }}"> New Field</a>
+        <a class="btn  btn-primary" href="{{ route('medicalFields.create') }}"> New Field</a>
         <table class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0"
                width="100%">
             <thead>
