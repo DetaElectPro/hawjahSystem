@@ -22,9 +22,9 @@
                     <td>{{ $medicalField->created_at }}</td>
                     <td>{{ $medicalField->updated_at }}</td>
                     <td>
-                        <a class="btn btn-xs btn-primary" href="{{ route('medicalFields.show', [$medicalField->id]) }}" data-toggle="tooltip" data-placement="top" data-title="{{ __('views.medicalFieldsindex.show') }}">
+                        {{-- <a class="btn btn-xs btn-primary" href="{{ route('medicalFields.show', [$medicalField->id]) }}" data-toggle="tooltip" data-placement="top" data-title="{{ __('views.medicalFieldsindex.show') }}">
                             <i class="fa fa-eye"></i>
-                        </a>
+                        </a> --}}
                         <a class="btn btn-xs btn-info" href="{{ route('medicalFields.edit', [$medicalField->id]) }}" data-toggle="tooltip" data-placement="top" data-title="{{ __('views.medicalFieldsindex.edit') }}">
                             <i class="fa fa-pencil"></i>
                         </a>
