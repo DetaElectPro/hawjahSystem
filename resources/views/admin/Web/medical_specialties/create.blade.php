@@ -9,7 +9,7 @@
 
                 <div class="form-group">
                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name" >
-                        {{ __('views.medicalSpecialties.edit.name') }}
+                        Specialties name
                         <span class="required">*</span>
                     </label>
                     <div class="col-md-6 col-sm-6 col-xs-12">
@@ -31,9 +31,9 @@
                        medical Fields
                     </label>
                     <div class="col-md-6 col-sm-6 col-xs-12">
-                        <select id="roles" name="roles[]" class="select2" multiple="multiple" style="width: 100%" autocomplete="off">
+                        <select id="roles" name="medical_id" class="select2" style="width: 100%" autocomplete="off">
                             @foreach($field as $field)
-                                <option @if($medicalSpecialty->medical->find($field->id)) selected="selected" @endif>{{ $field->name }}</option>
+                        <option value="{{ $field->id }}">{{ $field->name }}</option>
                             @endforeach
                         </select>
                     </div>
