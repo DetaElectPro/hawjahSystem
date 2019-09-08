@@ -31,9 +31,9 @@ class MedicalSpecialtyController extends AppBaseController
      */
     public function index()
     {
-        $medicalSpecialties =MedicalSpecialty::with('medical')->paginate();
+        $medicalSpecialties = $this->medicalSpecialtyRepository->withpaginateSortable('medical', 'name', 20);
 
-        return view('medical_specialties.index')
+        return view('admin.web.medical_specialties.index')
             ->with('medicalSpecialties', $medicalSpecialties);
     }
 
@@ -45,7 +45,7 @@ class MedicalSpecialtyController extends AppBaseController
     public function create()
     {
         $field = MedicalField::all(['name', 'id']);
-        return view('medical_specialties.create', compact('field'));
+        return view('admin.web.medical_specialties.create', compact('field'));
     }
 
     /**
@@ -102,9 +102,9 @@ class MedicalSpecialtyController extends AppBaseController
 
             return redirect(route('medicalSpecialties.index'));
         }
-        $field = MedicalField::all(['name', 'id']);
+        $fields = MedicalField::all(['name', 'id']);
 
-        return view('medical_specialties.edit', compact('field'))->with('medicalSpecialty', $medicalSpecialty);
+        return view('admin.web.medical_specialties.edit', compact('fields'))->with('medicalSpecialty', $medicalSpecialty);
     }
 
     /**

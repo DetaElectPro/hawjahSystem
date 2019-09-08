@@ -15,7 +15,7 @@ class CreateMedicalSpecialtiesTable extends Migration
     {
         Schema::create('medical_specialties', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name');
+            $table->string('name')->unique();
 
             $table->unsignedBigInteger('medical_id');
             $table->foreign('medical_id')->references('id')->on('medical_fields')->onDelete('cascade');

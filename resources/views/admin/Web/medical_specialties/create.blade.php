@@ -1,11 +1,11 @@
 @extends('admin.layouts.admin')
 
-@section('title','Medical Specialty', ['name' => $medicalSpecialty->name]) )
+@section('title','Medical Specialty' )
 
 @section('content')
     <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12">
-            {{ Form::open(['route'=>['medicalSpecialties.update', $medicalSpecialty->id],'method' => 'put','class'=>'form-horizontal form-label-left']) }}
+            {{ Form::open(['route'=>'medicalSpecialties.store','method' => 'POST','class'=>'form-horizontal form-label-left']) }}
 
                 <div class="form-group">
                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name" >
@@ -14,7 +14,7 @@
                     </label>
                     <div class="col-md-6 col-sm-6 col-xs-12">
                         <input id="name" type="text" class="form-control col-md-7 col-xs-12 @if($errors->has('name')) parsley-error @endif"
-                               name="name" value="{{ $medicalSpecialty->name }}" required>
+                               name="name" required>
                         @if($errors->has('name'))
                             <ul class="parsley-errors-list filled">
                                 @foreach($errors->get('name') as $error)
@@ -32,8 +32,8 @@
                     </label>
                     <div class="col-md-6 col-sm-6 col-xs-12">
                         <select id="roles" name="roles[]" class="select2" multiple="multiple" style="width: 100%" autocomplete="off">
-                            @foreach($fields as $role)
-                                <option @if($medicalSpecialty->medical->find($role->id)) selected="selected" @endif value="{{ $role->id }}">{{ $role->name }}</option>
+                            @foreach($field as $field)
+                                <option @if($medicalSpecialty->medical->find($field->id)) selected="selected" @endif>{{ $field->name }}</option>
                             @endforeach
                         </select>
                     </div>
