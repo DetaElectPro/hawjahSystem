@@ -67,17 +67,16 @@
                             Medical Fields
                         </a>
                     </li><li>
-                        <a href="{{ route('medicalFields.create') }}">
+                        <a href="{{ route('medicalSpecialties.index') }}">
                             <i class="fa fa-users" aria-hidden="true"></i>
-                            {{ __('views.backend.section.navigation.menu_1_3') }}
-                        </a>
+                            Medical Specialties                        </a>
                     </li>
-                    <li>
+                    {{-- <li>
                         <a href="{{ route('admin.permissions') }}">
                             <i class="fa fa-key" aria-hidden="true"></i>
                             {{ __('views.backend.section.navigation.menu_1_2') }}
                         </a>
-                    </li>
+                    </li> --}}
                 </ul>
             </div>
 {{--            end my edit--}}
