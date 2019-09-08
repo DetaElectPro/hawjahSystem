@@ -79,7 +79,6 @@ Route::group(['prefix'=>'admin'], function (){
 
     Route::resource('emergencyServiceds', 'Web\EmergencyServicedController');
 
-    Route::resource('emergencyServiceds', 'Web\EmergencyServicedController');
 });
 Route::get('/', 'HomeController@index');
 

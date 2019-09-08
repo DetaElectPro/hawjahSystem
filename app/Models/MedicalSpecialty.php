@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Kyslik\ColumnSortable\Sortable; 
+
 
 /**
  * @SWG\Definition(
@@ -42,7 +44,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class MedicalSpecialty extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes, Sortable;
 
     public $table = 'medical_specialties';
 
