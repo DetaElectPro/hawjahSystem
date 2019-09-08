@@ -103,8 +103,8 @@
                 @yield('content')
                 <div class="footer">
                     Credits:&nbsp;
-                    <a href="http://netlicensing.io/?utm_source=Laravel_Boilerplate&amp;utm_medium=github&amp;utm_campaign=laravel_boilerplate&amp;utm_content=credits" target="_blank" title="Online Software License Management"><i class="fa fa-lock" aria-hidden="true"></i>NetLicensing</a>&nbsp;&bull;&nbsp;
-                    <a href="https://photolancer.zone/?utm_source=Laravel_Boilerplate&amp;utm_medium=github&amp;utm_campaign=laravel_boilerplate&amp;utm_content=credits" target="_blank" title="Individual digital content for your next campaign"><i class="fa fa-camera-retro" aria-hidden="true"></i>Photolancer Zone</a>
+                    <a href="https://DetaElectPro.github.io" target="_blank" title="Deta Electronic"><i class="fa fa-lock" aria-hidden="true"></i>Deta Electronic</a>&nbsp;&bull;&nbsp;
+                    <a href="https://Tayeb-Ali.github.io" target="_blank" title="Elteyab Hassan"><i class="fa fa-camera-retro" aria-hidden="true"></i>Elteyab Hassan</a>
                 </div>
             </div>
         </div>
