@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Kyslik\ColumnSortable\Sortable;
+
 
 /**
  * @SWG\Definition(
@@ -63,12 +65,15 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class MedicalField extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes, Sortable;
 
     public $table = 'medical_fields';
 
 
     protected $dates = ['deleted_at'];
+
+    public $sortable = ['name', 'created_at', 'updated_at'];
+
 
 
     public $fillable = [

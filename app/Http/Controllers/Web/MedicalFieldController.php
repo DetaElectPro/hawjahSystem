@@ -13,7 +13,7 @@ use Response;
 class MedicalFieldController extends AppBaseController
 {
     /** @var  MedicalFieldRepository */
-    private $medicalFieldRepository;
+    private $medicalFieldRepository; 
 
     public function __construct(MedicalFieldRepository $medicalFieldRepo)
     {
@@ -29,7 +29,7 @@ class MedicalFieldController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $medicalFields = $this->medicalFieldRepository->all();
+        $medicalFields = $this->medicalFieldRepository->paginateSortable('name', 20);
 
         return view('admin.web.medical_fields.index')
             ->with('medicalFields', $medicalFields);

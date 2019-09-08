@@ -78,7 +78,17 @@ abstract class BaseRepository
     {
         $query = $this->allQuery();
 
-        return $query->paginate($perPage, $columns);
+        return $query->sortable(['name'=>'asc'])->paginate($perPage, $columns);
+    }
+
+    public function paginateSortable($sortable ,$perPage, $columns = ['*'])
+    {
+      return  $this->model->sortable([$sortable => 'asc'])->paginate($perPage, $columns);
+    }
+
+    public function withpaginateSortable($with, $sortable ,$perPage, $columns = ['*'])
+    {
+      return  $this->model->with($with)->sortable([$sortable => 'asc'])->paginate($perPage, $columns);
     }
 
     /**
@@ -122,7 +132,7 @@ abstract class BaseRepository
      *
      * @return LengthAwarePaginator|Builder[]|Collection
      */
-    public function all($search = [], $skip = null, $limit = null, $columns = ['*'])
+    public function all($search = [], $skip = null, $limit = null, $columns = ['*']) 
     {
         $query = $this->allQuery($search, $skip, $limit);
 

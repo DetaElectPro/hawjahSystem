@@ -62,12 +62,12 @@
                 <h3>{{ __('views.backend.section.navigation.sub_header_2') }}</h3>
                 <ul class="nav side-menu">
                     <li>
-                        <a href="{{ route('admin.medicalFields.index') }}">
+                        <a href="{{ route('medicalFields.index') }}">
                             <i class="fa fa-users" aria-hidden="true"></i>
                             Medical Fields
                         </a>
                     </li><li>
-                        <a href="{{ route('admin.medicalFields.create') }}">
+                        <a href="{{ route('medicalFields.create') }}">
                             <i class="fa fa-users" aria-hidden="true"></i>
                             {{ __('views.backend.section.navigation.menu_1_3') }}
                         </a>
