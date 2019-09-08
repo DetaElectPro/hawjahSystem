@@ -115,7 +115,7 @@ class MedicalSpecialtyController extends AppBaseController
      *
      * @return Response
      */
-    public function update($id, UpdateMedicalSpecialtyRequest $request)
+    public function update($id, Request $request)
     {
         $medicalSpecialty = $this->medicalSpecialtyRepository->find($id);
 

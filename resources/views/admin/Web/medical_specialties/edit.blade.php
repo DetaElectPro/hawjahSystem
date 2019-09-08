@@ -31,9 +31,9 @@
                        medical Fields
                     </label>
                     <div class="col-md-6 col-sm-6 col-xs-12">
-                        <select id="roles" name="roles[]" class="select2" multiple="multiple" style="width: 100%" autocomplete="off">
-                            @foreach($fields as $role)
-                                <option @if($medicalSpecialty->medical->find($role->id)) selected="selected" @endif value="{{ $role->id }}">{{ $role->name }}</option>
+                        <select id="roles" name="medical_id" class="select2" style="width: 100%" autocomplete="off">
+                            @foreach($fields as $field)
+                                <option @if($medicalSpecialty->medical->find($field->id)) selected="selected" @endif value="{{ $field->id }}">{{ $field->name }}</option>
                             @endforeach
                         </select>
                     </div>
