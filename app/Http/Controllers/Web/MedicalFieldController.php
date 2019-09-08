@@ -31,7 +31,7 @@ class MedicalFieldController extends AppBaseController
     {
         $medicalFields = $this->medicalFieldRepository->paginateSortable('name', 20);
 
-        return view('admin.web.medical_fields.index')
+        return view('admin.Web.medical_fields.index')
             ->with('medicalFields', $medicalFields);
     }
 
@@ -42,7 +42,7 @@ class MedicalFieldController extends AppBaseController
      */
     public function create()
     {
-        return view('admin.web.medical_fields.create');
+        return view('admin.Web.medical_fields.create');
     }
 
     /**
@@ -80,7 +80,7 @@ class MedicalFieldController extends AppBaseController
             return redirect(route('medicalFields.index'));
         }
 
-        return view('admin.web.medical_fields.show')->with('medicalField', $medicalField);
+        return view('admin.Web.medical_fields.show')->with('medicalField', $medicalField);
     }
 
     /**
@@ -100,7 +100,7 @@ class MedicalFieldController extends AppBaseController
             return redirect(route('medicalFields.index'));
         }
 
-        return view('admin.web.medical_fields.edit')->with('medicalField', $medicalField);
+        return view('admin.Web.medical_fields.edit')->with('medicalField', $medicalField);
     }
 
     /**
