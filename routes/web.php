@@ -72,7 +72,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
 
 });
 
-Route::group(['prefix'=>'admin'], function (){
+Route::group(['prefix'=>'admin', 'middleware' => 'admin'], function (){
     Route::resource('medicalFields', 'Web\MedicalFieldController');
 
     Route::resource('medicalSpecialties', 'Web\MedicalSpecialtyController');
