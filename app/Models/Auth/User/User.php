@@ -64,7 +64,7 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
  * @method static Builder|User whereUpdatedAt($value)
  * @mixin Eloquent
  */
-class User  implements JWTSubject
+class User extends Authenticatable implements JWTSubject
 {
     use Rolable,
         UserAttributes,
