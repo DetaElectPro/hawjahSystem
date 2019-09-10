@@ -68,11 +68,7 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
 class User extends Authenticatable implements JWTSubject
 {
 
-    use AuthenticatesUsers, RegistersUsers {
-        AuthenticatesUsers::redirectPath insteadof RegistersUsers;
-        AuthenticatesUsers::guard insteadof RegistersUsers;
-    }
-    
+
     use Rolable,
         UserAttributes,
         UserScopes,
