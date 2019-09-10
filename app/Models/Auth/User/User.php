@@ -64,12 +64,8 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
  * @method static Builder|User whereUpdatedAt($value)
  * @mixin Eloquent
  */
-class User extends Authenticatable implements JWTSubject
+class User  implements JWTSubject
 {
-
-    use EntrustUserTrait {
-        EntrustUserTrait::restore insteadof SoftDeletes;
-        }
     use Rolable,
         UserAttributes,
         UserScopes,
