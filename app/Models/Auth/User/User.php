@@ -66,6 +66,10 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
  */
 class User extends Authenticatable implements JWTSubject
 {
+
+    use EntrustUserTrait {
+        EntrustUserTrait::restore insteadof SoftDeletes;
+        }
     use Rolable,
         UserAttributes,
         UserScopes,
