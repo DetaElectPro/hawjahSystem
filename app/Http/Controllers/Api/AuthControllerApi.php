@@ -2,17 +2,28 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Requests\UserRequest;
-use App\Models\Auth\User\User;
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use JWTAuth;
+use Illuminate\Http\Request;
+use App\Models\Auth\User\User;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Validator;
 
 class AuthControllerApi extends Controller
 {
-    public function register(UserRequest $request)
+    public function register(Request $request)
     {
         $status = 1;
+          
+        $validator = Validator::make($request->all(), [
+           'email' => 'email|unique:users',
+           'name' => 'required|max:255',
+            'phone' => 'required|unique:users|max:10',
+            'password' => 'required|max:30|min:6'
+       ]);
+        
+       if ($validator->fails()) {
+            return response()->json(["message"=> $validator->messages()->first(), "error"=> true]);
+        }
         $user = User::create([
             'phone' => $request->phone,
             'name' => $request->name,
@@ -21,7 +32,7 @@ class AuthControllerApi extends Controller
             'password' => $request->password,
         ]);
 
-        $token = auth()->login($user);
+        $token = auth('api')->login($user);
 
         return $this->respondWithToken($token);
     }
@@ -31,7 +42,7 @@ class AuthControllerApi extends Controller
     {
         $credentials = request(['phone', 'password']);
 
-        if (!$token = auth()->attempt($credentials)) {
+        if (!$token = auth('api')->attempt($credentials)) {
             return response()->json(['error' => 'Unauthorized'], 401);
         }
         return $this->respondWithToken($token);
@@ -50,8 +61,8 @@ class AuthControllerApi extends Controller
 
             'access_token' => $token,
             'token_type' => 'bearer',
-            'expires_in' => auth()->factory()->getTTL() * 31556926,
-            'user' => auth()->user()
+            'expires_in' => auth('api')->factory()->getTTL() * 31556926,
+            'user' => auth('api')->user()
         ]);
     }
 
