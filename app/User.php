@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Auth\User;
+namespace App;
 
 use App\Models\AcceptRequest;
 use App\Models\Auth\Role\Role;
@@ -24,7 +24,6 @@ use App\Models\Auth\User\Traits\Scopes\UserScopes;
 use App\Models\Auth\User\Traits\Relations\UserRelations;
 use Kyslik\ColumnSortable\Sortable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
-
 
 /**
  * App\Models\Auth\User\User
@@ -63,11 +62,12 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
  * @method static Builder|User whereUpdatedAt($value)
  * @mixin Eloquent
  */
+
 class User extends Authenticatable implements JWTSubject
 {
 
 
-    use Rolable,
+    use Rolable, 
         UserAttributes,
         UserScopes,
         UserRelations,
@@ -147,18 +147,6 @@ class User extends Authenticatable implements JWTSubject
 //        $this->attributes['password'] = \Hash::make($password);
 //    }
 
- /**
-     * Validation rules
-     *
-     * @var array
-     */
-    public static $rules = [
-        'name' => 'required|max:255',
-        'phone' => 'required|unique:users|max:10',
-        'password' => 'required|max:30|min:6'
-    ];
-
-
 
 
     public function employ()
@@ -180,6 +168,7 @@ class User extends Authenticatable implements JWTSubject
     {
         return $this->hasMany(EmergencyServiced::class);
     }
+
 
     protected $dates = ['deleted_at'];
 }

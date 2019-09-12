@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\API;
 
+use Response;
+use App\Models\Employ;
+use Illuminate\Support\Str;
+use Illuminate\Http\Request;
+use App\Repositories\EmployRepository;
+use App\Http\Controllers\AppBaseController;
 use App\Http\Requests\API\CreateEmployAPIRequest;
 use App\Http\Requests\API\UpdateEmployAPIRequest;
-use App\Models\Employ;
-use App\Repositories\EmployRepository;
-use Illuminate\Http\Request;
-use App\Http\Controllers\AppBaseController;
-use Response;
-use Str;
 
 /**
  * Class EmployController

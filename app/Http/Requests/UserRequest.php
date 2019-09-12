@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Auth\User\User;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UserRequest extends FormRequest
@@ -11,10 +12,10 @@ class UserRequest extends FormRequest
      *
      * @return bool
      */
-//    public function authorize()
-//    {
-//        return true;
-//    }
+   public function authorize()
+   {
+       return true;
+   }
 
     /**
      * Get the validation rules that apply to the request.
@@ -23,10 +24,12 @@ class UserRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'name' => 'required|max:255',
-            'phone' => 'required|unique:users|max:10',
-            'password' => 'required|max:30|min:6'
-        ];
+        return User::$rules;
+
+        // return [
+        //     'name' => 'required|max:255',
+        //     'phone' => 'required|unique:users|max:10',
+        //     'password' => 'required|max:30|min:6'
+        // ];
     }
 }
