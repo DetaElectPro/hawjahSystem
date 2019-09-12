@@ -17,16 +17,13 @@
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-Route::get('/register', function(){
-    return "Hi";
-});
 
 
 
 Route::prefix('auth')->group(function () {
     Route::post('/login', 'AuthControllerApi@login');
     Route::post('/check', 'AuthControllerApi@checkAuth');
-    Route::post('/new', 'AuthControllerApi@register');
+    Route::post('/register', 'AuthControllerApi@register');
 
 //    Route::get('/profile', 'AuthControllerApi@profile')->middleware('auth');
     Route::post('/logout', 'AuthControllerApi@logout');
