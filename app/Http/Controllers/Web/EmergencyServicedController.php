@@ -30,7 +30,7 @@ class EmergencyServicedController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $emergencyServiceds = $this->emergencyServicedRepository->withpaginateSortable('user', '',20);
+        $emergencyServiceds = $this->emergencyServicedRepository->withpaginateSortable('user', '', 20);
 
         return view('admin.Web.emergency_serviceds.index')
             ->with('emergencyServiceds', $emergencyServiceds);
@@ -82,7 +82,7 @@ class EmergencyServicedController extends AppBaseController
             return redirect(route('emergencyServiceds.index'));
         }
 
-        return view('emergency_serviceds.show')->with('emergencyServiced', $emergencyServiced);
+        return view('admin.Web.emergency_serviceds.show')->with('emergencyServiced', $emergencyServiced);
     }
 
     /**
@@ -95,6 +95,7 @@ class EmergencyServicedController extends AppBaseController
     public function edit($id)
     {
         $emergencyServiced = $this->emergencyServicedRepository->find($id);
+        $users = User::all(['id', 'name']);
 
         if (empty($emergencyServiced)) {
             Flash::error('Emergency Serviced not found');
@@ -102,7 +103,7 @@ class EmergencyServicedController extends AppBaseController
             return redirect(route('emergencyServiceds.index'));
         }
 
-        return view('emergency_serviceds.edit')->with('emergencyServiced', $emergencyServiced);
+        return view('admin.Web.emergency_serviceds.edit', compact('users'))->with('emergencyServiced', $emergencyServiced);
     }
 
     /**
@@ -135,9 +136,9 @@ class EmergencyServicedController extends AppBaseController
      *
      * @param int $id
      *
+     * @return Response
      * @throws \Exception
      *
-     * @return Response
      */
     public function destroy($id)
     {
