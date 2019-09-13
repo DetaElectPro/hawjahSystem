@@ -5,8 +5,8 @@
     <!-- top tiles -->
     <div class="row tile_count">
         <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-            <span class="count_top"><i class="fa fa-users"></i> {{ __('views.admin.dashboard.count_0') }}</span>
-            <div class="count green">{{ $counts['users'] }}</div>
+            <span class="count_top"><i class="fa fa-users"></i>All  Complete Requests</span>
+            <div class="count green">{{ $counts['request'] }}</div>
         </div>
         <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
             <span class="count_top"><i class="fa fa-address-card"></i> {{ __('views.admin.dashboard.count_1') }}</span>
