@@ -42,7 +42,8 @@
                             <i class="fa fa-users" aria-hidden="true"></i>
                             {{ __('views.backend.section.navigation.menu_1_1') }}
                         </a>
-                    </li><li>
+                    </li>
+                    <li>
                         <a href="{{ route('admin.users.restore') }}">
                             <i class="fa fa-users" aria-hidden="true"></i>
                             {{ __('views.backend.section.navigation.menu_1_3') }}
@@ -57,29 +58,30 @@
                 </ul>
             </div>
 
-{{--            my edit--}}
+            {{--            my edit--}}
             <div class="menu_section">
-                <h3>{{ __('views.backend.section.navigation.sub_header_2') }}</h3>
+                <h3>Medical Management</h3>
                 <ul class="nav side-menu">
                     <li>
                         <a href="{{ route('medicalFields.index') }}">
                             <i class="fa fa-users" aria-hidden="true"></i>
                             Medical Fields
                         </a>
-                    </li><li>
+                    </li>
+                    <li>
                         <a href="{{ route('medicalSpecialties.index') }}">
                             <i class="fa fa-users" aria-hidden="true"></i>
-                            Medical Specialties                        </a>
+                            Medical Specialties </a>
                     </li>
-                    {{-- <li>
-                        <a href="{{ route('admin.permissions') }}">
+                    <li>
+                        <a href="{{ route('emergencyServiceds.index') }}">
                             <i class="fa fa-key" aria-hidden="true"></i>
-                            {{ __('views.backend.section.navigation.menu_1_2') }}
+                            Emergency Services
                         </a>
-                    </li> --}}
+                    </li>
                 </ul>
             </div>
-{{--            end my edit--}}
+            {{--            end my edit--}}
             <div class="menu_section">
                 <h3>{{ __('views.backend.section.navigation.sub_header_3') }}</h3>
 
@@ -108,9 +110,11 @@
             <div class="menu_section">
                 <h3>{{ __('views.backend.section.navigation.sub_header_3') }}</h3>
                 <ul class="nav side-menu">
-                  <li>
-                      <a href="http://netlicensing.io/?utm_source=Laravel_Boilerplate&utm_medium=github&utm_campaign=laravel_boilerplate&utm_content=credits" target="_blank" title="Online Software License Management"><i class="fa fa-lock" aria-hidden="true"></i>NetLicensing</a>
-                  </li>
+                    <li>
+                        <a href="http://netlicensing.io/?utm_source=Laravel_Boilerplate&utm_medium=github&utm_campaign=laravel_boilerplate&utm_content=credits"
+                           target="_blank" title="Online Software License Management"><i class="fa fa-lock"
+                                                                                         aria-hidden="true"></i>NetLicensing</a>
+                    </li>
                 </ul>
             </div>
         </div>

@@ -29,9 +29,9 @@ class EmergencyServicedController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $emergencyServiceds = $this->emergencyServicedRepository->all();
+        $emergencyServiceds = $this->emergencyServicedRepository->withpaginateSortable('user', '',20);
 
-        return view('emergency_serviceds.index')
+        return view('admin.Web.emergency_serviceds.index')
             ->with('emergencyServiceds', $emergencyServiceds);
     }
 

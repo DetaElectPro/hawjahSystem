@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
+use App\Models\Auth\User\User;
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Kyslik\ColumnSortable\Sortable;
 
 /**
  * @SWG\Definition(
@@ -64,7 +66,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class EmergencyServiced extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes,Sortable;
 
     public $table = 'emergency_serviceds';
     
@@ -109,5 +111,9 @@ class EmergencyServiced extends Model
         'available' => 'required|min:1'
     ];
 
-    
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
