@@ -1,39 +1,113 @@
 @extends('admin.layouts.admin')
 
-@section('title','Medical Specialty' )
+@section('title','Create Emergency Serviced' )
 
 @section('content')
     <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12">
-            {{ Form::open(['route'=>'medicalSpecialties.store','method' => 'POST','class'=>'form-horizontal form-label-left']) }}
+            {{ Form::open(['route'=>'emergencyServiceds.store','method' => 'POST','class'=>'form-horizontal form-label-left']) }}
 
-                <div class="form-group">
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name" >
-                        Specialties name
-                        <span class="required">*</span>
-                    </label>
-                    <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input id="name" type="text" class="form-control col-md-7 col-xs-12 @if($errors->has('name')) parsley-error @endif"
-                               name="name" required>
-                        @if($errors->has('name'))
-                            <ul class="parsley-errors-list filled">
-                                @foreach($errors->get('name') as $error)
-                                        <li class="parsley-required">{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        @endif
-                    </div>
+            <div class="form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name" >
+                    Place name
+                    <span class="required">*</span>
+                </label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <input id="name" type="text" class="form-control col-md-7 col-xs-12 @if($errors->has('name')) parsley-error @endif"
+                           name="name" required>
+                    @if($errors->has('name'))
+                        <ul class="parsley-errors-list filled">
+                            @foreach($errors->get('name') as $error)
+                                <li class="parsley-required">{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    @endif
                 </div>
+            </div>
 
-            
+              <div class="form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="address" >
+                    Address
+                    <span class="required">*</span>
+                </label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <input id="address" type="text" class="form-control col-md-7 col-xs-12 @if($errors->has('address')) parsley-error @endif"
+                           name="address" required>
+                    @if($errors->has('address'))
+                        <ul class="parsley-errors-list filled">
+                            @foreach($errors->get('address') as $error)
+                                <li class="parsley-required">{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    @endif
+                </div>
+            </div>
+
+              <div class="form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="price_per_day" >
+                    price Per Day
+                    <span class="required">*</span>
+                </label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <input id="price_per_day" type="number" class="form-control col-md-7 col-xs-12 @if($errors->has('price_per_day')) parsley-error @endif"
+                           name="price_per_day" required>
+                    @if($errors->has('price_per_day'))
+                        <ul class="parsley-errors-list filled">
+                            @foreach($errors->get('price_per_day') as $error)
+                                <li class="parsley-required">{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    @endif
+                </div>
+            </div>
+
+
+              <div class="form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="type" >
+                    Type
+                    <span class="required">*</span>
+                </label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <input id="type" type="text" class="form-control col-md-7 col-xs-12 @if($errors->has('type')) parsley-error @endif"
+                           name="type" required>
+                    @if($errors->has('type'))
+                        <ul class="parsley-errors-list filled">
+                            @foreach($errors->get('type') as $error)
+                                <li class="parsley-required">{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    @endif
+                </div>
+            </div>
+
+
+              <div class="form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="available" >
+                    Available
+                    <span class="required">*</span>
+                </label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <input id="available" type="number" class="form-control col-md-7 col-xs-12 @if($errors->has('available')) parsley-error @endif"
+                           name="available" required>
+                    @if($errors->has('available'))
+                        <ul class="parsley-errors-list filled">
+                            @foreach($errors->get('available') as $error)
+                                <li class="parsley-required">{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    @endif
+                </div>
+            </div>
+
+
                 <div class="form-group">
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="medical">
-                       medical Fields
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="user">
+                       Create by User ->
                     </label>
                     <div class="col-md-6 col-sm-6 col-xs-12">
-                        <select id="roles" name="medical_id" class="select2" style="width: 100%" autocomplete="off">
-                            @foreach($field as $field)
-                        <option value="{{ $field->id }}">{{ $field->name }}</option>
+                        <select id="user" name="user_id" class="select2" style="width: 100%" autocomplete="off">
+                            @foreach($users as $user)
+                        <option value="{{ $user->id }}">{{ $user->name }}</option>
                             @endforeach
                         </select>
                     </div>

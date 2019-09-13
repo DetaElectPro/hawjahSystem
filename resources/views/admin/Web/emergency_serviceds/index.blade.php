@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="row">
-        <a class="btn  btn-primary" href="{{ route('Emergency Serviced.create') }}"> New Emergency Serviced</a>
+        <a class="btn  btn-primary" href="{{ route('emergencyServiceds.create') }}"> New Emergency Serviced</a>
         <table class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0"
                width="100%">
             <thead>
@@ -24,7 +24,7 @@
             @foreach($emergencyServiceds as $emergencyServiced)
                 <tr>
                     <td>{{ $emergencyServiced->name }}</td>
-                    <td>{{ $emergencyServiced->user()->name }}</td>
+                    <td>{{ $emergencyServiced->user->name }}</td>
                     <td>{{ $emergencyServiced->address }}</td>
                     <td>{{ $emergencyServiced->price_per_day }}</td>
                     <td>{{ $emergencyServiced->type }}</td>
@@ -32,10 +32,13 @@
                     <td>{{ $emergencyServiced->created_at }}</td>
                     <td>{{ $emergencyServiced->updated_at }}</td>
                     <td>
-                        {{-- <a class="btn btn-xs btn-primary" href="{{ route('medicalFields.show', [$emergencyServiced->id]) }}" data-toggle="tooltip" data-placement="top" data-title="{{ __('views.medicalFieldsindex.show') }}">
+                        <a class="btn btn-xs btn-primary"
+                           href="{{ route('medicalFields.show', [$emergencyServiced->id]) }}" data-toggle="tooltip"
+                           data-placement="top" data-title="{{ __('views.medicalFieldsindex.show') }}">
                             <i class="fa fa-eye"></i>
-                        </a> --}}
-                        <a class="btn btn-xs btn-info" href="{{ route('emergencyServiceds.edit', [$emergencyServiced->id]) }}"
+                        </a>
+                        <a class="btn btn-xs btn-info"
+                           href="{{ route('emergencyServiceds.edit', [$emergencyServiced->id]) }}"
                            data-toggle="tooltip" data-placement="top"
                            data-title="{{ __('views.emergencyServiceds.edit') }}">
                             <i class="fa fa-pencil"></i>

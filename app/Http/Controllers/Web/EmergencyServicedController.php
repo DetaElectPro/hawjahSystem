@@ -6,6 +6,7 @@ use App\Http\Requests\CreateEmergencyServicedRequest;
 use App\Http\Requests\UpdateEmergencyServicedRequest;
 use App\Repositories\EmergencyServicedRepository;
 use App\Http\Controllers\AppBaseController;
+use App\User;
 use Illuminate\Http\Request;
 use Flash;
 use Response;
@@ -42,7 +43,8 @@ class EmergencyServicedController extends AppBaseController
      */
     public function create()
     {
-        return view('emergency_serviceds.create');
+        $users = User::all(['id', 'name']);
+        return view('admin.Web.emergency_serviceds.create', compact('users'));
     }
 
     /**
