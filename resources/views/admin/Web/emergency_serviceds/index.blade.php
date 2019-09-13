@@ -32,17 +32,18 @@
                     <td>{{ $emergencyServiced->created_at }}</td>
                     <td>{{ $emergencyServiced->updated_at }}</td>
                     <td>
-                        <a class="btn btn-xs btn-primary"
-                           href="{{ route('medicalFields.show', [$emergencyServiced->id]) }}" data-toggle="tooltip"
-                           data-placement="top" data-title="{{ __('views.medicalFieldsindex.show') }}">
-                            <i class="fa fa-eye"></i>
-                        </a>
+{{--                        <a class="btn btn-xs btn-primary"--}}
+{{--                           href="{{ route('emergencyServiceds.show', [$emergencyServiced->id]) }}" data-toggle="tooltip"--}}
+{{--                           data-placement="top" data-title="{{ __('views.emergencyServiceds.show') }}">--}}
+{{--                            <i class="fa fa-eye"></i>--}}
+{{--                        </a>--}}
                         <a class="btn btn-xs btn-info"
                            href="{{ route('emergencyServiceds.edit', [$emergencyServiced->id]) }}"
                            data-toggle="tooltip" data-placement="top"
                            data-title="{{ __('views.emergencyServiceds.edit') }}">
                             <i class="fa fa-pencil"></i>
                         </a>
+
                         <a href="{{ route('emergencyServiceds.destroy', [$emergencyServiced->id]) }}"
                            class="btn btn-xs btn-danger user_destroy" data-toggle="tooltip" data-placement="top"
                            data-title="{{ __('views.emergencyServiceds.delete') }}">
