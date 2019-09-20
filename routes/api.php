@@ -51,3 +51,6 @@ Route::resource('emergencyServiceds', 'EmergencyServicedAPIController');
 
 
 
+
+
+Route::resource('pharmacies', 'PharmacyAPIController');
