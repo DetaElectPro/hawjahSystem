@@ -41,9 +41,9 @@ class  RequestSpecialistApiController extends AppBaseController
         $user_id = auth('api')->user()->id;
         $input = $request->all();
 
-        // $requestSpecialist = $this->requestSpecialistRepository->create($input + ['user_id' => $user_id]);
-        // return $this->sendResponse($requestSpecialist->toArray(), 'Request Specialist saved successfully');
-        return $request->all();
+        $requestSpecialist = $this->requestSpecialistRepository->create($input + ['user_id' => $user_id]);
+        return $this->sendResponse($requestSpecialist->toArray(), 'Request Specialist saved successfully');
+        // return $request->all();
 
     }
 
