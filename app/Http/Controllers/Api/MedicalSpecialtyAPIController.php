@@ -170,7 +170,7 @@ class MedicalSpecialtyAPIController extends AppBaseController
         /** @var MedicalSpecialty $medicalSpecialty */
         $medicalSpecialty = MedicalSpecialty::where('medical_id', $id)->get();
 
-        return $this->sendResponse($medicalSpecialty->toArray(), 'Medical Specialty By Cat retrieved successfully');
+        return $medicalSpecialty;
     }
 
     /**
