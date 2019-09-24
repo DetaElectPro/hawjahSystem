@@ -45,7 +45,7 @@ Route::post('userAcceptRequestSpecialists', 'AcceptRequestApiController@userAcce
 
 Route::resource('medicalFields', 'MedicalFieldAPIController');
 
-Route::get('/medicalFields/{id}', 'MedicalSpecialtyAPIController@medicalFields');
+Route::get('/medicalFieldCat/{id}', 'MedicalSpecialtyAPIController@medicalFields');
 
 Route::resource('medicalSpecialties', 'MedicalSpecialtyAPIController');
 
