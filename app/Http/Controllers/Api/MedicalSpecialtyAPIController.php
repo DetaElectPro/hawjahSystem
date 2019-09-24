@@ -156,18 +156,21 @@ class MedicalSpecialtyAPIController extends AppBaseController
     public function show($id)
     {
         /** @var MedicalSpecialty $medicalSpecialty */
-        $medicalSpecialty = $this->medicalSpecialtyRepository->find($id);
+        // $medicalSpecialty = $this->medicalSpecialtyRepository->find($id);
 
-        if (empty($medicalSpecialty)) {
-            return $this->sendError('Medical Specialty not found');
-        }
+        // if (empty($medicalSpecialty)) {
+        //     return $this->sendError('Medical Specialty not found');
+        // }
 
-        return $this->sendResponse($medicalSpecialty->toArray(), 'Medical Specialty retrieved successfully');
+        // return $this->sendResponse($medicalSpecialty->toArray(), 'Medical Specialty retrieved successfully');
+
+        $medicalSpecialty = MedicalSpecialty::where('medical_id', $id)->get();
+
+        return $medicalSpecialty;
     }
 
     public function byMedicalCat($id)
     {
-        /** @var MedicalSpecialty $medicalSpecialty */
         $medicalSpecialty = MedicalSpecialty::where('medical_id', $id)->get();
 
         return $medicalSpecialty;
