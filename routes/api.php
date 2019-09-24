@@ -32,7 +32,7 @@ Route::prefix('auth')->group(function () {
 });
 
 Route::prefix('cat')->group(function () {
-    Route::get('medicalFields/{id}', 'MedicalSpecialtyAPIController@medicalFields');
+    Route::get('/medicalFC/{id}', 'MedicalSpecialtyAPIController@medicalFields');
 });
 
 Route::resource('medicalBoards', 'MedicalBoardApiController');
