@@ -165,6 +165,14 @@ class MedicalSpecialtyAPIController extends AppBaseController
         return $this->sendResponse($medicalSpecialty->toArray(), 'Medical Specialty retrieved successfully');
     }
 
+    public function byMedicalCat($id)
+    {
+        /** @var MedicalSpecialty $medicalSpecialty */
+        $medicalSpecialty = MedicalSpecialty::where('medical_id', $id)->get();
+
+        return $this->sendResponse($medicalSpecialty->toArray(), 'Medical Specialty By Cat retrieved successfully');
+    }
+
     /**
      * @param int $id
      * @param UpdateMedicalSpecialtyAPIRequest $request
