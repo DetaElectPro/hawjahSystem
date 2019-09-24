@@ -31,8 +31,9 @@ Route::prefix('auth')->group(function () {
 
 });
 
-//Route::prefix('auth')->group(function () {
-
+Route::prefix('cat')->group(function () {
+    Route::get('medicalFields/{id}', 'MedicalSpecialtyAPIController@medicalFields');
+});
 
 Route::resource('medicalBoards', 'MedicalBoardApiController');
 Route::resource('employs', 'EmployAPIController');
@@ -45,10 +46,7 @@ Route::post('userAcceptRequestSpecialists', 'AcceptRequestApiController@userAcce
 
 Route::resource('medicalFields', 'MedicalFieldAPIController');
 
-Route::get('/medicalFieldCat/{id}', 'MedicalSpecialtyAPIController@medicalFields');
-
 Route::resource('medicalSpecialties', 'MedicalSpecialtyAPIController');
-
 
 Route::resource('emergencyServiceds', 'EmergencyServicedAPIController');
 
