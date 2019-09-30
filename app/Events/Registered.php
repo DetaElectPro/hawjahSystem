@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Events\Auth;
+namespace App\Events;
 
 use Illuminate\Queue\SerializesModels;
 use PhpParser\Node\Scalar\String_;

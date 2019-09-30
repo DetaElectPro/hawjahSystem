@@ -40,6 +40,10 @@ class Kernel extends HttpKernel
 
         ],
 
+        'autheticated' => [
+            'auth'
+        ],
+        
         'admin' => [
             'auth',
             'authorize:view,backend'

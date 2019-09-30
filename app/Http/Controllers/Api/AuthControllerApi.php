@@ -12,6 +12,9 @@ use Illuminate\Support\Facades\Validator;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Tymon\JWTAuth\Exceptions\TokenExpiredException;
 use Tymon\JWTAuth\Exceptions\TokenInvalidException;
+use App\Events\Registered;
+use Illuminate\Support\Facades\Auth;
+
 
 class AuthControllerApi extends Controller
 {
@@ -30,7 +33,6 @@ class AuthControllerApi extends Controller
         }
         $image = self::saveImage($request);
  
-        event(new Registered($user, $request->role));
         $user = User::create([
             'phone' => $request->phone,
             'name' => $request->name,
@@ -42,7 +44,10 @@ class AuthControllerApi extends Controller
  // attach role
  $role = \App\Models\Auth\Role\Role::where('name', $request->role)->first();
  $user->roles()->attach($role);
-        $token = auth('api')->login($user);
+
+ event(new Registered($user, $request->role));
+
+ $token = auth('api')->login($user);
 
         return $this->respondWithToken($token);
     }
