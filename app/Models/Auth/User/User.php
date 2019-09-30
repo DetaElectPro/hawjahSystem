@@ -13,6 +13,7 @@ use App\Models\Protection\ProtectionValidation;
 use Carbon\Carbon;
 // use Eloquent;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Notifications\DatabaseNotification;
 use Illuminate\Notifications\DatabaseNotificationCollection;
@@ -181,5 +182,14 @@ class User extends Authenticatable implements JWTSubject
         return $this->hasMany(EmergencyServiced::class);
     }
 
+    /**
+     * Relation with role
+     *
+     * @return BelongsToMany
+     */
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class, 'users_roles', 'user_id', 'role_id');
+    }
     protected $dates = ['deleted_at'];
 }

@@ -22,6 +22,7 @@ trait Rolable
         return ($this->roles->contains('id', null, $role) || $this->roles->contains('name', null, $role));
     }
 
+
     /**
      * Checks if the user has a roles.
      *

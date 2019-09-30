@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Models\Auth\Role\Role;
 use Carbon\Carbon;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Str;
 use JWTAuth;
 use Illuminate\Http\Request;
@@ -18,6 +20,10 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthControllerApi extends Controller
 {
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     */
     public function register(Request $request)
     {
         $status = 1;
@@ -32,7 +38,6 @@ class AuthControllerApi extends Controller
             return response()->json(["message" => $validator->messages()->first(), "error" => true]);
         }
         $image = self::saveImage($request);
- 
         $user = User::create([
             'phone' => $request->phone,
             'name' => $request->name,
@@ -41,26 +46,46 @@ class AuthControllerApi extends Controller
             'password' => $request->password,
             'image' => $image,
         ]);
- // attach role
- $role = \App\Models\Auth\Role\Role::where('name', $request->role)->first();
- $user->roles()->attach($role);
+        // attach role
+        $role = Role::where('name', $request->role)->first();
+        $user->roles()->attach($role);
 
- event(new Registered($user, $request->role));
+        event(new Registered($user, $request->role));
 
- $token = auth('api')->login($user);
+        $token = auth('api')->login($user);
 
         return $this->respondWithToken($token);
     }
 
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function login(Request $request)
+    {
 
-    public function login()
+        if (Auth::attempt(['phone' => $request->phone, 'password' => $request->password])) {
+            if (!Auth::user()->hasRole($request->role)) {
+                return response()->json(["error" => "Permission denied. No suitable role found"], 400);
+            }
+            $credentials = request(['phone', 'password']);
+            $token = auth('api')->attempt($credentials);
+            return $this->respondWithToken($token);
+
+//            return response()->json(["token" => $token, "user" => $user]);
+        }
+        return response()->json(["error" => "Invalid Login"], 400);
+    }
+
+    public function login2()
     {
         $credentials = request(['phone', 'password']);
+
 
         if (!$token = auth('api')->attempt($credentials)) {
             return response()->json(['error' => 'Unauthorized'], 401);
         }
-        if(!Auth::user()->hasRole($request->role)) {
+        if (!Auth::user()->hasRole('doctors')) {
             return response()->json(["error" => "Permission denied. No suitable role found"], 400);
         }
         return $this->respondWithToken($token);
