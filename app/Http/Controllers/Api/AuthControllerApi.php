@@ -29,7 +29,8 @@ class AuthControllerApi extends Controller
             return response()->json(["message" => $validator->messages()->first(), "error" => true]);
         }
         $image = self::saveImage($request);
-
+ 
+        event(new Registered($user, $request->role));
         $user = User::create([
             'phone' => $request->phone,
             'name' => $request->name,
@@ -38,7 +39,9 @@ class AuthControllerApi extends Controller
             'password' => $request->password,
             'image' => $image,
         ]);
-
+ // attach role
+ $role = \App\Models\Auth\Role\Role::where('name', $request->role)->first();
+ $user->roles()->attach($role);
         $token = auth('api')->login($user);
 
         return $this->respondWithToken($token);
@@ -51,6 +54,9 @@ class AuthControllerApi extends Controller
 
         if (!$token = auth('api')->attempt($credentials)) {
             return response()->json(['error' => 'Unauthorized'], 401);
+        }
+        if(!Auth::user()->hasRole($request->role)) {
+            return response()->json(["error" => "Permission denied. No suitable role found"], 400);
         }
         return $this->respondWithToken($token);
     }
