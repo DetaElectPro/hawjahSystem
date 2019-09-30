@@ -38,6 +38,7 @@ class AuthControllerApi extends Controller
             return response()->json(["message" => $validator->messages()->first(), "error" => true]);
         }
         $image = self::saveImage($request);
+
         $user = User::create([
             'phone' => $request->phone,
             'name' => $request->name,
@@ -57,39 +58,30 @@ class AuthControllerApi extends Controller
         return $this->respondWithToken($token);
     }
 
-    /**
-     * @param Request $request
-     * @return JsonResponse
-     */
     public function login(Request $request)
     {
+        $credentials = request(['phone', 'password']);
 
         if (Auth::attempt(['phone' => $request->phone, 'password' => $request->password])) {
-            if (!Auth::user()->hasRole($request->role)) {
-                return response()->json(["error" => "Permission denied. No suitable role found"], 400);
+            if (!Auth::user()->hasRole($request->role) && !$token = auth('api')->attempt($credentials)) {
+                return response()->json(["error" => "Permission denied. No suitable role found", 'api'=> 'Unauthorized'], 401);
             }
-            $credentials = request(['phone', 'password']);
             $token = auth('api')->attempt($credentials);
             return $this->respondWithToken($token);
 
-//            return response()->json(["token" => $token, "user" => $user]);
         }
         return response()->json(["error" => "Invalid Login"], 400);
     }
 
-    public function login2()
-    {
-        $credentials = request(['phone', 'password']);
-
-
-        if (!$token = auth('api')->attempt($credentials)) {
-            return response()->json(['error' => 'Unauthorized'], 401);
-        }
-        if (!Auth::user()->hasRole('doctors')) {
-            return response()->json(["error" => "Permission denied. No suitable role found"], 400);
-        }
-        return $this->respondWithToken($token);
-    }
+//    public function login()
+//    {
+//        $credentials = request(['phone', 'password']);
+//
+//        if (!$token = auth('api')->attempt($credentials)) {
+//            return response()->json(['error' => 'Unauthorized'], 401);
+//        }
+//        return $this->respondWithToken($token);
+//    }
 
     public function logout()
     {
