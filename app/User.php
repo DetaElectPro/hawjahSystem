@@ -77,7 +77,7 @@ class User extends Authenticatable implements JWTSubject
         Sortable,
         Protectable;
 
-    public $sortable = ['name', 'email', 'created_at', 'updated_at'];
+    public $sortable = ['name', 'email', 'created_at', 'updated_at', 'image'];
 
     /**
      * The database table used by the model.

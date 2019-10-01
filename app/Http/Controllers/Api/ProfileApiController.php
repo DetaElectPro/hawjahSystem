@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Str;
 use JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Tymon\JWTAuth\Exceptions\TokenExpiredException;
@@ -49,6 +50,27 @@ class ProfileApiController extends AppBaseController
         }
     }
 
+    public function store(Request $request)
+    {
+        $inpute = $request->all();
+        try {
+            $user = auth('api')->user()->id;
+            if ($request->hasFile('image')) {
+                $file_name = $this->saveFile($request, $user);
+                $profile = User::findOrFail($user);
+                $profile->fill($request->all());
+                $profile->image = $file_name;
+                $profile->save();
+                return response()->json(['profile' => $profile]);
+            } else {
+                $profile = $this->profileRepository->update($inpute, $user);
+                return response()->json(['profile' => $profile]);
+            }
+
+        } catch (\Exception $exception) {
+            return response()->json(["message" => "$exception", 'status' => false]);
+        }
+    }
 
     /**
      * Display the specified resource.
@@ -75,20 +97,45 @@ class ProfileApiController extends AppBaseController
      * @param int $id
      * @return Response
      */
+//    public function update(Request $request, $id)
+//    {
+//        $input = $request->all();
+
+//        /** @var User $user */
+//        $user = $this->profileRepository->find($id);
+//
+//        if (empty($user)) {
+//            return $this->sendError('User Profile not found');
+//        }
+//
+//        $user = $this->profileRepository->update($input, $id);
+//
+//        return $this->sendResponse($user->toArray(), 'User Profile updated successfully');
+//    }
+
+    /**
+     * @param Request $request
+     * @return User|bool|\Illuminate\Database\Query\Builder|\Illuminate\Http\JsonResponse|int
+     */
     public function update(Request $request, $id)
     {
-        $input = $request->all();
+        $inpute = $request->all();
+        try {
+            $user = auth('api')->user()->id;
+            if ($request->hasFile('image')) {
+                $file_name = $this->saveFile($request, $user);
+                $profile = User::whereId($user);
+                $profile->image = $file_name;
+                $profile->save($request->all());
+                return response()->json(['profile' => $profile]);
+            } else {
+                $profile = $this->profileRepository->update($inpute, $user);
+                return response()->json(['profile' => $profile]);
+            }
 
-        /** @var User $user */
-        $user = $this->profileRepository->find($id);
-
-        if (empty($user)) {
-            return $this->sendError('User Profile not found');
+        } catch (\Exception $exception) {
+            return response()->json(["message" => "$exception", 'status' => false]);
         }
-
-        $user = $this->profileRepository->update($input, $id);
-
-        return $this->sendResponse($user->toArray(), 'User Profile updated successfully');
     }
 
     /**
@@ -97,19 +144,35 @@ class ProfileApiController extends AppBaseController
      * @param int $id
      * @return Response
      * @throws \Exception
+     *
+     * public function destroy($id)
+     * {
+     * /** @var User $user
+     * $user = $this->profileRepository->find($id);
+     *
+     * if (empty($user)) {
+     * return $this->sendError('User not found');
+     * }
+     *
+     * $user->delete();
+     *
+     * return $this->sendResponse($id, 'User Profile deleted successfully');
+     * }
+     */
 
-    public function destroy($id)
+
+    public function saveFile($request, $userId)
     {
-        /** @var User $user
-        $user = $this->profileRepository->find($id);
+        $random = Str::random(10);
+        if ($request->hasfile('image')) {
+            $image = $request->file('image');
+            $name = $random . 'image_' . $userId . ".jpg";
+            $image->move(public_path() . '/profiles/', $name);
+            $name = url("profiles/$name");
 
-        if (empty($user)) {
-            return $this->sendError('User not found');
+            return $name;
         }
+        return false;
+    }
 
-        $user->delete();
-
-        return $this->sendResponse($id, 'User Profile deleted successfully');
-   * }
-*/
 }
