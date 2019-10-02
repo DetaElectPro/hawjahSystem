@@ -42,6 +42,8 @@ class RouteServiceProvider extends ServiceProvider
 
         $this->mapWebRoutes();
 
+        $this->mapSettingRoutes();
+
         //
     }
 
@@ -88,5 +90,14 @@ class RouteServiceProvider extends ServiceProvider
         Route::bind('user_by_email', function ($email) {
             return User::whereEmail($email)->firstOrFail();
         });
+    }
+
+    protected function mapSettingRoutes()
+    {
+        Route::prefix('setting')
+//            ->middleware('api')
+//            ->as('api.')
+            ->namespace($this->namespace)
+            ->group(base_path('routes/setting.php'));
     }
 }

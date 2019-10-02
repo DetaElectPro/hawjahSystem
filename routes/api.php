@@ -17,7 +17,6 @@ Route::prefix('cat')->group(function () {
 
 Route::resource('medicalBoards', 'MedicalBoardApiController');
 Route::resource('employs', 'EmployAPIController');
-Route::post('employs/update', 'EmployAPIController@update');
 //}
 Route::resource('requestSpecialists', 'RequestSpecialistApiController');
 
@@ -31,8 +30,9 @@ Route::resource('medicalSpecialties', 'MedicalSpecialtyAPIController');
 
 Route::resource('emergencyServiceds', 'EmergencyServicedAPIController');
 
-
-
-
-
 Route::resource('pharmacies', 'PharmacyAPIController');
+
+Route::get('emp_cv', 'EmployAPIController@cv');
+Route::post('emp_cv', 'EmployAPIController@updateCv');
+
+//php artisan route:cache

@@ -230,22 +230,22 @@ class EmployAPIController extends AppBaseController
      *      )
      * )
      */
-//    public function update($id, UpdateEmployAPIRequest $request)
-//    {
-//        $input = $request->all();
-//
-//        /** @var Employ $employ */
-//        $employ = $this->employRepository->find($id);
-//
-//        if (empty($employ)) {
-//            return $this->sendError('Employ not found');
-//        }
-//
-//        $employ = $this->employRepository->update($input, $id);
-//
-//        return $this->sendResponse($employ->toArray(), 'Employ updated successfully');
-//    }
-    public function update(Request $request)
+    public function update($id, UpdateEmployAPIRequest $request)
+    {
+        $input = $request->all();
+
+        /** @var Employ $employ */
+        $employ = $this->employRepository->find($id);
+
+        if (empty($employ)) {
+            return $this->sendError('Employ not found');
+        }
+
+        $employ = $this->employRepository->update($input, $id);
+
+        return $this->sendResponse($employ->toArray(), 'Employ updated successfully');
+    }
+    public function updateCv(Request $request)
     {
         $inpute = $request->all();
         try {
@@ -362,5 +362,10 @@ class EmployAPIController extends AppBaseController
         } else {
             return false;
         }
+    }
+
+    public function cv()
+    {
+        return ' cv get';
     }
 }
