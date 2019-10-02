@@ -33,6 +33,6 @@ Route::resource('emergencyServiceds', 'EmergencyServicedAPIController');
 Route::resource('pharmacies', 'PharmacyAPIController');
 
 Route::get('emp_cv', 'EmployAPIController@cv');
-Route::post('emp_cv', 'EmployAPIController@updateCv');
+Route::post('emp_cv/{id}', 'EmployAPIController@updateCv');
 
 //php artisan route:cache

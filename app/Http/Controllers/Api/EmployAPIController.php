@@ -245,14 +245,15 @@ class EmployAPIController extends AppBaseController
 
         return $this->sendResponse($employ->toArray(), 'Employ updated successfully');
     }
-    public function updateCv(Request $request)
+    public function updateCv(Request $request, $id)
     {
         $inpute = $request->all();
+        $user = auth('api')->user()->id;
+
         try {
-            $user = auth('api')->user()->id;
             if ($request->hasFile('cv')) {
                 $file_name = $this->saveFile($request, $user);
-                $employ = Employ::findOrFail($user);
+                $employ = Employ::findOrFail($id);
                 $employ->fill($request->all());
                 $employ->cv = $file_name;
                 $employ->save();
@@ -260,18 +261,18 @@ class EmployAPIController extends AppBaseController
             }
             if ($request->cv) {
                 $file_name = $this->saveBase64($request, $user);
-                $employ = Employ::findOrFail($user);
+                $employ = Employ::findOrFail($id);
                 $employ->fill($request->all());
                 $employ->cv = $file_name;
                 $employ->save();
-                return response()->json(['profile' => $employ, 'type' => 'base64']);
+                return response()->json(['employ' => $employ, 'type' => 'base64']);
             } else {
-                $employ = $this->employRepository->update($inpute, $user);
-                return response()->json(['profile' => $employ, 'type' => 'no image']);
+                $employ = $this->employRepository->update($inpute, $id);
+                return response()->json(['employ' => $employ, 'type' => 'no pdf']);
             }
 
         } catch (\Exception $exception) {
-            return response()->json(["message" => $exception->getMessage(), 'status' => false]);
+            return response()->json(["message" => $exception->getTrace(), 'status' => false]);
         }
     }
 
