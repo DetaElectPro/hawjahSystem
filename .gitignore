@@ -14,8 +14,8 @@ composer.phar
 phpunit.phar
 
 public/assets
-public/cv
-public/profiles
+#public/cv
+#public/profiles
 
 public/mix-manifest.json
 

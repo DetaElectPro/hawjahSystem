@@ -61,14 +61,23 @@ class ProfileApiController extends AppBaseController
                 $profile->fill($request->all());
                 $profile->image = $file_name;
                 $profile->save();
-                return response()->json(['profile' => $profile]);
-            } else {
+                return response()->json(['profile' => $profile, 'type'=>'request']);
+            }
+            if ($request->image){
+                $file_name = $this->saveBase64($request, $user);
+                $profile = User::findOrFail($user);
+                $profile->fill($request->all());
+                $profile->image = $file_name;
+                $profile->save();
+                return response()->json(['profile' => $profile, 'type'=>'base64']);
+            }
+            else {
                 $profile = $this->profileRepository->update($inpute, $user);
-                return response()->json(['profile' => $profile]);
+                return response()->json(['profile' => $profile, 'type'=>'no image']);
             }
 
         } catch (\Exception $exception) {
-            return response()->json(["message" => "error", 'status' => false]);
+            return response()->json(["message" => $exception->getMessage(), 'status' => false]);
         }
     }
 
@@ -175,4 +184,15 @@ class ProfileApiController extends AppBaseController
         return false;
     }
 
+    public function saveBase64($request, $userId)
+    {
+        $image = $request->image;  // your base64 encoded
+        $image = str_replace('data:image/png;base64,', '', $image);
+        $image = str_replace(' ', '+', $image);
+        $imageName = str::random(10).'.'.'jpg';
+
+        \File::put(public_path().'/profiles/'.$imageName, base64_decode($image));
+        $imageName = url("profiles/$imageName");
+        return $imageName;
+    }
 }
