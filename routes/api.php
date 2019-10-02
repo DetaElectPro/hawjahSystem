@@ -17,6 +17,7 @@ Route::prefix('cat')->group(function () {
 
 Route::resource('medicalBoards', 'MedicalBoardApiController');
 Route::resource('employs', 'EmployAPIController');
+Route::post('employs/update', 'EmployAPIController@update');
 //}
 Route::resource('requestSpecialists', 'RequestSpecialistApiController');
 

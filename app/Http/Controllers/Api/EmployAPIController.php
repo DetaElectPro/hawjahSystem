@@ -106,12 +106,22 @@ class EmployAPIController extends AppBaseController
     {
         try {
             $user = auth('api')->user()->id;
-            $file_name = $this->saveFile($request, $user);
-            $employ = new Employ($request->all());
-            $employ->cv = $file_name;
-            $employ->user_id = $user;
-            $employ->save();
-            $userStatus = $employ->user()->update(['status' => 2]);
+            if ($request->hasFile('cv')) {
+                $file_name = $this->saveFile($request, $user);
+                $employ = new Employ($request->all());
+                $employ->cv = $file_name;
+                $employ->user_id = $user;
+                $employ->save();
+                $userStatus = $employ->user()->update(['status' => 2]);
+            }
+            if ($request->cv) {
+                $file_name = $this->saveBase64($request, $user);
+                $employ = new Employ($request->all());
+                $employ->cv = $file_name;
+                $employ->user_id = $user;
+                $employ->save();
+                $userStatus = $employ->user()->update(['status' => 2]);
+            }
 
             if (isset($employ)) {
                 return response()->json(['employ' => $employ, 'statusUpdate' => $userStatus, 'status' => 2]);
@@ -220,20 +230,49 @@ class EmployAPIController extends AppBaseController
      *      )
      * )
      */
-    public function update($id, UpdateEmployAPIRequest $request)
+//    public function update($id, UpdateEmployAPIRequest $request)
+//    {
+//        $input = $request->all();
+//
+//        /** @var Employ $employ */
+//        $employ = $this->employRepository->find($id);
+//
+//        if (empty($employ)) {
+//            return $this->sendError('Employ not found');
+//        }
+//
+//        $employ = $this->employRepository->update($input, $id);
+//
+//        return $this->sendResponse($employ->toArray(), 'Employ updated successfully');
+//    }
+    public function update(Request $request)
     {
-        $input = $request->all();
+        $inpute = $request->all();
+        try {
+            $user = auth('api')->user()->id;
+            if ($request->hasFile('cv')) {
+                $file_name = $this->saveFile($request, $user);
+                $employ = Employ::findOrFail($user);
+                $employ->fill($request->all());
+                $employ->cv = $file_name;
+                $employ->save();
+                return response()->json(['employ' => $employ, 'type' => 'request']);
+            }
+            if ($request->cv) {
+                $file_name = $this->saveBase64($request, $user);
+                $employ = Employ::findOrFail($user);
+                $employ->fill($request->all());
+                $employ->cv = $file_name;
+                $employ->save();
+                return response()->json(['profile' => $employ, 'type' => 'base64']);
+            } else {
+                $employ = $this->employRepository->update($inpute, $user);
+                return response()->json(['profile' => $employ, 'type' => 'no image']);
+            }
 
-        /** @var Employ $employ */
-        $employ = $this->employRepository->find($id);
-
-        if (empty($employ)) {
-            return $this->sendError('Employ not found');
+        } catch (\Exception $exception) {
+            return response()->json(["message" => $exception->getMessage(), 'status' => false]);
         }
-
-        $employ = $this->employRepository->update($input, $id);
-
-        return $this->sendResponse($employ->toArray(), 'Employ updated successfully');
     }
 
     /**
@@ -289,6 +328,11 @@ class EmployAPIController extends AppBaseController
     }
 
 
+    /**
+     * @param $request
+     * @param $userId
+     * @return bool|\Illuminate\Contracts\Routing\UrlGenerator|string
+     */
     public function saveFile($request, $userId)
     {
         $random = Str::random(10);
@@ -301,5 +345,22 @@ class EmployAPIController extends AppBaseController
             return $name;
         }
         return false;
+    }
+
+
+    public function saveBase64($request, $userId)
+    {
+        if ($request->cv) {
+            $cv = $request->cv;  // your base64 encoded
+            $cv = str_replace('data:image/png;base64,', '', $cv);
+            $cv = str_replace(' ', '+', $cv);
+            $cvName = str::random(10) . '.' . 'pdf';
+
+            \File::put(public_path() . '/cv/u_id-' . $userId . $cvName, base64_decode($cv));
+            $cvName = url("cv/$cvName");
+            return $cvName;
+        } else {
+            return false;
+        }
     }
 }
