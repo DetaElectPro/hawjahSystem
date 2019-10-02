@@ -35,7 +35,7 @@ class ProfileApiController extends AppBaseController
     {
         try {
             $user = JWTAuth::parseToken()->authenticate();
-            return $data = User::whereId($user->id)->with('employ', 'medical_board')->get(['id', 'name', 'phone', 'created_at']);
+            return $data = User::whereId($user->id)->with('employ', 'medical_board')->first(['id', 'name', 'phone', 'image', 'created_at']);
         } catch (TokenExpiredException $e) {
 
             return response()->json(["message" => "token is expired", 'status' => false]);
@@ -68,7 +68,7 @@ class ProfileApiController extends AppBaseController
             }
 
         } catch (\Exception $exception) {
-            return response()->json(["message" => "$exception", 'status' => false]);
+            return response()->json(["message" => "error", 'status' => false]);
         }
     }
 
