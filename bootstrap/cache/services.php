@@ -66,6 +66,7 @@
     62 => 'Prettus\\Repository\\Providers\\RepositoryServiceProvider',
     63 => 'InfyOm\\Generator\\InfyOmGeneratorServiceProvider',
     64 => 'InfyOm\\AdminLTETemplates\\AdminLTETemplatesServiceProvider',
+    65 => 'NotificationChannels\\OneSignal\\OneSignalServiceProvider',
   ),
   'eager' => 
   array (
@@ -111,6 +112,7 @@
     39 => 'Prettus\\Repository\\Providers\\RepositoryServiceProvider',
     40 => 'InfyOm\\Generator\\InfyOmGeneratorServiceProvider',
     41 => 'InfyOm\\AdminLTETemplates\\AdminLTETemplatesServiceProvider',
+    42 => 'NotificationChannels\\OneSignal\\OneSignalServiceProvider',
   ),
   'deferred' => 
   array (
