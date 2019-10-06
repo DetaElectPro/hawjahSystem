@@ -45,6 +45,17 @@
       0 => 'Barryvdh\\LaravelIdeHelper\\IdeHelperServiceProvider',
     ),
   ),
+  'berkayk/onesignal-laravel' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Berkayk\\OneSignal\\OneSignalServiceProvider',
+    ),
+    'aliases' => 
+    array (
+      'OneSignal' => 'Berkayk\\OneSignal\\OneSignalFacade',
+    ),
+  ),
   'beyondcode/laravel-dump-server' => 
   array (
     'providers' => 
@@ -111,6 +122,13 @@
     'aliases' => 
     array (
       'Flash' => 'Laracasts\\Flash\\Flash',
+    ),
+  ),
+  'laravel-notification-channels/onesignal' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'NotificationChannels\\OneSignal\\OneSignalServiceProvider',
     ),
   ),
   'laravel/socialite' => 
