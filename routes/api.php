@@ -22,6 +22,7 @@ Route::resource('requestSpecialists', 'RequestSpecialistApiController');
 
 Route::resource('acceptRequestSpecialists', 'AcceptRequestApiController');
 
+//Route::get('userAcceptRequestSpecialists', 'AcceptRequestApiController@index');
 Route::post('userAcceptRequestSpecialists', 'AcceptRequestApiController@userAccept');
 
 Route::resource('medicalFields', 'MedicalFieldAPIController');
