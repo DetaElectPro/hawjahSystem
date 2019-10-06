@@ -143,7 +143,7 @@ abstract class BaseRepository
     // Eager load database relationships
     public function with($relations)
     {
-        return $this->model->with($relations)->orderBy('updated_at', 'desc')->get();
+        return $this->model->with($relations)->orderBy('created_at', 'desc')->get();
     }
 
     /**
