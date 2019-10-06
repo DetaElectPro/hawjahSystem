@@ -204,6 +204,7 @@ return [
         Prettus\Repository\Providers\RepositoryServiceProvider::class,
         InfyOmGeneratorServiceProvider::class,
         InfyOm\AdminLTETemplates\AdminLTETemplatesServiceProvider::class,
+        NotificationChannels\OneSignal\OneSignalServiceProvider::class,
         // Barryvdh\Debugbar\ServiceProvider::class,
 
     ],

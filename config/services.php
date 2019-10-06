@@ -37,6 +37,11 @@ return [
         'secret' => env('STRIPE_SECRET'),
     ],
 
+    'onesignal' => [
+        'app_id' => env('ONESIGNAL_APP_ID'),
+        'rest_api_key' => env('ONESIGNAL_REST_API_KEY')
+    ],
+
     /*
      * Socialite Credentials
      * Redirect URL's need to be the same as specified on each network you set up this application on
@@ -47,34 +52,34 @@ return [
      * Make sure 'scopes' and 'with' are arrays, if their are none, use empty arrays []
      */
     'bitbucket' => [
-        'client_id'     => env('BITBUCKET_CLIENT_ID'),
+        'client_id' => env('BITBUCKET_CLIENT_ID'),
         'client_secret' => env('BITBUCKET_CLIENT_SECRET'),
-        'redirect'      => env('BITBUCKET_REDIRECT'),
-        'scopes'        => [],
-        'with'          => [],
+        'redirect' => env('BITBUCKET_REDIRECT'),
+        'scopes' => [],
+        'with' => [],
     ],
 
     'facebook' => [
-        'client_id'     => env('FACEBOOK_CLIENT_ID'),
+        'client_id' => env('FACEBOOK_CLIENT_ID'),
         'client_secret' => env('FACEBOOK_CLIENT_SECRET'),
-        'redirect'      => env('FACEBOOK_REDIRECT'),
-        'scopes'        => [],
-        'with'          => [],
-        'fields'        => [],
+        'redirect' => env('FACEBOOK_REDIRECT'),
+        'scopes' => [],
+        'with' => [],
+        'fields' => [],
     ],
 
     'github' => [
-        'client_id'     => env('GITHUB_CLIENT_ID'),
+        'client_id' => env('GITHUB_CLIENT_ID'),
         'client_secret' => env('GITHUB_CLIENT_SECRET'),
-        'redirect'      => env('GITHUB_REDIRECT'),
-        'scopes'        => [],
-        'with'          => [],
+        'redirect' => env('GITHUB_REDIRECT'),
+        'scopes' => [],
+        'with' => [],
     ],
 
     'google' => [
-        'client_id'     => env('GOOGLE_CLIENT_ID'),
+        'client_id' => env('GOOGLE_CLIENT_ID'),
         'client_secret' => env('GOOGLE_CLIENT_SECRET'),
-        'redirect'      => env('GOOGLE_REDIRECT'),
+        'redirect' => env('GOOGLE_REDIRECT'),
 
         /*
          * Only allows google to grab email address
@@ -90,19 +95,19 @@ return [
     ],
 
     'linkedin' => [
-        'client_id'     => env('LINKEDIN_CLIENT_ID'),
+        'client_id' => env('LINKEDIN_CLIENT_ID'),
         'client_secret' => env('LINKEDIN_CLIENT_SECRET'),
-        'redirect'      => env('LINKEDIN_REDIRECT'),
-        'scopes'        => [],
-        'with'          => [],
-        'fields'        => [],
+        'redirect' => env('LINKEDIN_REDIRECT'),
+        'scopes' => [],
+        'with' => [],
+        'fields' => [],
     ],
 
     'twitter' => [
-        'client_id'     => env('TWITTER_CLIENT_ID'),
+        'client_id' => env('TWITTER_CLIENT_ID'),
         'client_secret' => env('TWITTER_CLIENT_SECRET'),
-        'redirect'      => env('TWITTER_REDIRECT'),
-        'scopes'        => [],
-        'with'          => [],
+        'redirect' => env('TWITTER_REDIRECT'),
+        'scopes' => [],
+        'with' => [],
     ],
 ];
