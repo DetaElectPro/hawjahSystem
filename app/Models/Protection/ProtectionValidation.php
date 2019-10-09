@@ -19,6 +19,9 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Protection\ProtectionValidation whereUserId($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Protection\ProtectionValidation whereValidationResult($value)
  * @mixin \Eloquent
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Protection\ProtectionValidation newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Protection\ProtectionValidation newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Protection\ProtectionValidation query()
  */
 class ProtectionValidation extends Model
 {

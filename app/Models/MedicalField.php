@@ -8,7 +8,9 @@ use Kyslik\ColumnSortable\Sortable;
 
 
 /**
- * @SWG\Definition(
+ * App\Models\MedicalField
+ *
+ * @SWG\Definition (
  *      definition="MedicalField",
  *      required={"name"},
  *      @SWG\Property(
@@ -62,6 +64,28 @@ use Kyslik\ColumnSortable\Sortable;
  *      )
  *      )
  * )
+ * @property int $id
+ * @property string $name
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\MedicalSpecialty[] $medical
+ * @property-read int|null $medical_count
+ * @method static bool|null forceDelete()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\MedicalField newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\MedicalField newQuery()
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\MedicalField onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\MedicalField query()
+ * @method static bool|null restore()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\MedicalField sortable($defaultParameters = null)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\MedicalField whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\MedicalField whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\MedicalField whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\MedicalField whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\MedicalField whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\MedicalField withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\MedicalField withoutTrashed()
+ * @mixin \Eloquent
  */
 class MedicalField extends Model
 {

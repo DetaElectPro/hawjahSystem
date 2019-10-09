@@ -8,7 +8,9 @@ use Kyslik\ColumnSortable\Sortable;
 
 
 /**
- * @SWG\Definition(
+ * App\Models\MedicalSpecialty
+ *
+ * @SWG\Definition (
  *      definition="MedicalSpecialty",
  *      required={"medical_id"},
  *      @SWG\Property(
@@ -41,6 +43,29 @@ use Kyslik\ColumnSortable\Sortable;
  *          format="date-time"
  *      )
  * )
+ * @property int $id
+ * @property string $name
+ * @property int $medical_id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property-read \App\Models\MedicalField $medical
+ * @method static bool|null forceDelete()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\MedicalSpecialty newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\MedicalSpecialty newQuery()
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\MedicalSpecialty onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\MedicalSpecialty query()
+ * @method static bool|null restore()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\MedicalSpecialty sortable($defaultParameters = null)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\MedicalSpecialty whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\MedicalSpecialty whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\MedicalSpecialty whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\MedicalSpecialty whereMedicalId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\MedicalSpecialty whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\MedicalSpecialty whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\MedicalSpecialty withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\MedicalSpecialty withoutTrashed()
+ * @mixin \Eloquent
  */
 class MedicalSpecialty extends Model
 {

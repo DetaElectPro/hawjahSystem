@@ -22,6 +22,10 @@ use App\Models\Auth\Role\Traits\Relations\RoleRelations;
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Auth\Role\Role whereUpdatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Auth\Role\Role whereWeight($value)
  * @mixin \Eloquent
+ * @property-read int|null $users_count
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Auth\Role\Role newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Auth\Role\Role newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Auth\Role\Role query()
  */
 class Role extends Model
 {

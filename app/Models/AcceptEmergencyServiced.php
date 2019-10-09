@@ -7,13 +7,39 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * Class AcceptEmergencyServiced
+ *
  * @package App\Models
  * @version October 9, 2019, 9:45 am UTC
- *
  * @property string needing
  * @property string image
  * @property string price
  * @property integer emergency_id
+ * @property int $id
+ * @property string $needing
+ * @property string $image
+ * @property float $price
+ * @property int $emergency_id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property-read \App\Models\EmergencyServiced $emergency
+ * @method static bool|null forceDelete()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\AcceptEmergencyServiced newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\AcceptEmergencyServiced newQuery()
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\AcceptEmergencyServiced onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\AcceptEmergencyServiced query()
+ * @method static bool|null restore()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\AcceptEmergencyServiced whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\AcceptEmergencyServiced whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\AcceptEmergencyServiced whereEmergencyId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\AcceptEmergencyServiced whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\AcceptEmergencyServiced whereImage($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\AcceptEmergencyServiced whereNeeding($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\AcceptEmergencyServiced wherePrice($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\AcceptEmergencyServiced whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\AcceptEmergencyServiced withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\AcceptEmergencyServiced withoutTrashed()
+ * @mixin \Eloquent
  */
 class AcceptEmergencyServiced extends Model
 {
@@ -43,7 +69,7 @@ class AcceptEmergencyServiced extends Model
         'needing' => 'string',
         'image' => 'string',
         'report' => 'string',
-        'price' => 'string',
+        'price' => 'double',
         'emergency_id' => 'integer'
     ];
 
@@ -57,5 +83,9 @@ class AcceptEmergencyServiced extends Model
 //        'price' => 'required'
     ];
 
-    
+
+    public function emergency()
+    {
+        return $this->belongsTo(EmergencyServiced::class, 'emergency_id');
+    }
 }

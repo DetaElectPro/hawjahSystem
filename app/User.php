@@ -62,6 +62,33 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
  * @method static Builder|User whereRole($role)
  * @method static Builder|User whereUpdatedAt($value)
  * @mixin Eloquent
+ * @property string $phone
+ * @property string|null $image
+ * @property \Illuminate\Support\Carbon|null $email_verified_at
+ * @property string|null $player_id
+ * @property int $status
+ * @property-read \App\Models\AcceptRequest $acceptRequest
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\EmergencyServiced[] $emergencyServices
+ * @property-read int|null $emergency_services_count
+ * @property-read \App\Models\Employ $employ
+ * @property-read \App\Models\MedicalBoard $medical_board
+ * @property-read int|null $notifications_count
+ * @property-read int|null $protection_shop_tokens_count
+ * @property-read int|null $providers_count
+ * @property-read int|null $roles_count
+ * @method static bool|null forceDelete()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\User newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\User newQuery()
+ * @method static \Illuminate\Database\Query\Builder|\App\User onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\User query()
+ * @method static bool|null restore()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereEmailVerifiedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereImage($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\User wherePhone($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\User wherePlayerId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereStatus($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\User withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|\App\User withoutTrashed()
  */
 
 class User extends Authenticatable implements JWTSubject

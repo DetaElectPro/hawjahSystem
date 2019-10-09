@@ -26,6 +26,9 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Query\Builder|SocialAccount whereUpdatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|SocialAccount whereUserId($value)
  * @mixin \Eloquent
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Auth\User\SocialAccount newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Auth\User\SocialAccount newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Auth\User\SocialAccount query()
  */
 class SocialAccount extends Model
 {

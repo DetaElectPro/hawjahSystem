@@ -29,6 +29,9 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Protection\ProtectionShopToken whereSuccessUrlTitle($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Protection\ProtectionShopToken whereUserId($value)
  * @mixin \Eloquent
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Protection\ProtectionShopToken newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Protection\ProtectionShopToken newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Protection\ProtectionShopToken query()
  */
 class ProtectionShopToken extends Model
 {

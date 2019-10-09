@@ -18,7 +18,7 @@ class CreateAcceptEmergencyServicedsTable extends Migration
             $table->string('needing');
             $table->string('image');
             $table->string('price');
-            $table->integer('emergency_id')->unsigned();
+            $table->unsignedBigInteger('emergency_id');
             $table->timestamps();
             $table->softDeletes();
             $table->foreign('emergency_id')->references('id')->on('emergency_serviceds');

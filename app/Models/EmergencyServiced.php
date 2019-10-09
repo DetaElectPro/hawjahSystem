@@ -8,7 +8,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Kyslik\ColumnSortable\Sortable;
 
 /**
- * @SWG\Definition(
+ * App\Models\EmergencyServiced
+ *
+ * @SWG\Definition (
  *      definition="EmergencyServiced",
  *      required={"name", "address", "price_per_day", "type", "available"},
  *      @SWG\Property(
@@ -63,6 +65,38 @@ use Kyslik\ColumnSortable\Sortable;
  *          format="date-time"
  *      )
  * )
+ * @property int $id
+ * @property string $name
+ * @property string $address
+ * @property float $price_per_day
+ * @property string $type
+ * @property int $available
+ * @property int $user_id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property-read \App\Models\AcceptEmergencyServiced $emergency
+ * @property-read \App\Models\Auth\User\User $user
+ * @method static bool|null forceDelete()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\EmergencyServiced newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\EmergencyServiced newQuery()
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\EmergencyServiced onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\EmergencyServiced query()
+ * @method static bool|null restore()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\EmergencyServiced sortable($defaultParameters = null)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\EmergencyServiced whereAddress($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\EmergencyServiced whereAvailable($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\EmergencyServiced whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\EmergencyServiced whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\EmergencyServiced whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\EmergencyServiced whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\EmergencyServiced wherePricePerDay($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\EmergencyServiced whereType($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\EmergencyServiced whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\EmergencyServiced whereUserId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\EmergencyServiced withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\EmergencyServiced withoutTrashed()
+ * @mixin \Eloquent
  */
 class EmergencyServiced extends Model
 {
@@ -115,5 +149,10 @@ class EmergencyServiced extends Model
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function emergency()
+    {
+        return $this->hasOne(AcceptEmergencyServiced::class, 'emergency_id');
     }
 }

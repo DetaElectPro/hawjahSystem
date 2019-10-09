@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Requests\API\CreateAcceptEmergencyServicedAPIRequest;
 use App\Http\Requests\API\UpdateAcceptEmergencyServicedAPIRequest;
 use App\Models\AcceptEmergencyServiced;
+use App\Models\EmergencyServiced;
 use App\Repositories\AcceptEmergencyServicedRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
@@ -53,6 +54,10 @@ class AcceptEmergencyServicedAPIController extends AppBaseController
      */
     public function store(CreateAcceptEmergencyServicedAPIRequest $request)
     {
+        $available = $request->available - $request->needing;
+        $requestSpecialist = EmergencyServiced::whereId($request->id)->update(['available' => $available]);
+        $emergency = EmergencyServiced();
+        if ($emergency->needing)
         $input = $request->all();
 
         $acceptEmergencyServiced = $this->acceptEmergencyServicedRepository->create($input);

@@ -43,6 +43,12 @@ use Illuminate\Support\Carbon;
  * @method static Builder|RequestSpecialist whereUserId($value)
  * @method static Builder|RequestSpecialist whereStatus($value)
  * @property-read AcceptRequest $acceptRequest
+ * @property float|null $latitude
+ * @property float|null $longitude
+ * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
+ * @property-read int|null $notifications_count
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\RequestSpecialist whereLatitude($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\RequestSpecialist whereLongitude($value)
  */
 class RequestSpecialist extends Model
 {
