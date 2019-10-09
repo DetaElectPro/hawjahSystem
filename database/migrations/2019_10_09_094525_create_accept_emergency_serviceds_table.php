@@ -16,8 +16,10 @@ class CreateAcceptEmergencyServicedsTable extends Migration
         Schema::create('accept_emergency_serviceds', function (Blueprint $table) {
             $table->increments('id');
             $table->string('needing');
-            $table->string('image');
-            $table->string('price');
+            $table->string('image')->nullable();
+            $table->double('price')->nullable();
+            $table->text('report')->nullable();
+            $table->integer('status')->nullable();
             $table->unsignedBigInteger('emergency_id');
             $table->unsignedBigInteger('user_id');
             $table->timestamps();

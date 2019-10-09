@@ -62,7 +62,7 @@ class AcceptEmergencyServicedAPIController extends AppBaseController
             $acceptEmergencyServiced->fill($input);
             $acceptEmergencyServiced->user_id = $user;
             $acceptEmergencyServiced->image = $file_name;
-            $acceptEmergencyServiced = $acceptEmergencyServiced->save();
+            $acceptEmergencyServiced->save();
             return response()->json([
                 "success" => true,
                 "need" => $requestEmergency,
@@ -73,7 +73,7 @@ class AcceptEmergencyServicedAPIController extends AppBaseController
             $acceptEmergencyServiced = new AcceptEmergencyServiced();
             $acceptEmergencyServiced->fill($input);
             $acceptEmergencyServiced->user_id = $user;
-            $acceptEmergencyServiced = $acceptEmergencyServiced->save();
+            $acceptEmergencyServiced->save();
             return response()->json([
                 "success" => true,
                 "need" => $requestEmergency,
