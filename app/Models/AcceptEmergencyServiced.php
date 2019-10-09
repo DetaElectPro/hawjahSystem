@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\User;
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -12,13 +13,15 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @version October 9, 2019, 9:45 am UTC
  * @property string needing
  * @property string image
+ * @property string report
+ * @property string user_id
  * @property string price
  * @property integer emergency_id
  * @property int $id
- * @property string $needing
- * @property string $image
- * @property float $price
- * @property int $emergency_id
+// * @property string $needing
+// * @property string $image
+// * @property float $price
+// * @property int $emergency_id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property \Illuminate\Support\Carbon|null $deleted_at
@@ -87,5 +90,10 @@ class AcceptEmergencyServiced extends Model
     public function emergency()
     {
         return $this->belongsTo(EmergencyServiced::class, 'emergency_id');
+    }
+
+    public function userRequest()
+    {
+        return $this->belongsTo(User::class, 'user_id');
     }
 }

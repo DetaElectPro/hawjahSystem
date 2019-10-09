@@ -9,13 +9,13 @@ use App\Models\EmergencyServiced;
 use App\Repositories\AcceptEmergencyServicedRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
+use Illuminate\Support\Str;
 use Response;
 
 /**
  * Class AcceptEmergencyServicedController
  * @package App\Http\Controllers\API
  */
-
 class AcceptEmergencyServicedAPIController extends AppBaseController
 {
     /** @var  AcceptEmergencyServicedRepository */
@@ -35,11 +35,7 @@ class AcceptEmergencyServicedAPIController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $acceptEmergencyServiceds = $this->acceptEmergencyServicedRepository->all(
-            $request->except(['skip', 'limit']),
-            $request->get('skip'),
-            $request->get('limit')
-        );
+        $acceptEmergencyServiceds = $this->acceptEmergencyServicedRepository->with(['user', 'emergency']);
 
         return $this->sendResponse($acceptEmergencyServiceds->toArray(), 'Accept Emergency Serviceds retrieved successfully');
     }
@@ -54,15 +50,37 @@ class AcceptEmergencyServicedAPIController extends AppBaseController
      */
     public function store(CreateAcceptEmergencyServicedAPIRequest $request)
     {
+        $user = auth('api')->user()->id;
+
         $available = $request->available - $request->needing;
-        $requestSpecialist = EmergencyServiced::whereId($request->id)->update(['available' => $available]);
-        $emergency = EmergencyServiced();
-        if ($emergency->needing)
-        $input = $request->all();
+        $requestEmergency = EmergencyServiced::whereId($request->emergency_id)->update(['available' => $available]);
+        if ($request->hasFile('image')) {
+            $file_name = $this->saveFile($request, $user);
+            $input = $request->all();
 
-        $acceptEmergencyServiced = $this->acceptEmergencyServicedRepository->create($input);
+            $acceptEmergencyServiced = new AcceptEmergencyServiced();
+            $acceptEmergencyServiced->fill($input);
+            $acceptEmergencyServiced->user_id = $user;
+            $acceptEmergencyServiced->image = $file_name;
+            $acceptEmergencyServiced = $acceptEmergencyServiced->save();
+            return response()->json([
+                "success" => true,
+                "need" => $requestEmergency,
+                "data" => $acceptEmergencyServiced,
+                "message" => "Accept Emergency Serviced saved successfully"]);
+        } else {
+            $input = $request->all();
+            $acceptEmergencyServiced = new AcceptEmergencyServiced();
+            $acceptEmergencyServiced->fill($input);
+            $acceptEmergencyServiced->user_id = $user;
+            $acceptEmergencyServiced = $acceptEmergencyServiced->save();
+            return response()->json([
+                "success" => true,
+                "need" => $requestEmergency,
+                "data" => $acceptEmergencyServiced,
+                "message" => "Accept Emergency Serviced saved successfully"]);
+        }
 
-        return $this->sendResponse($acceptEmergencyServiced->toArray(), 'Accept Emergency Serviced saved successfully');
     }
 
     /**
@@ -116,9 +134,9 @@ class AcceptEmergencyServicedAPIController extends AppBaseController
      *
      * @param int $id
      *
+     * @return Response
      * @throws \Exception
      *
-     * @return Response
      */
     public function destroy($id)
     {
@@ -132,5 +150,36 @@ class AcceptEmergencyServicedAPIController extends AppBaseController
         $acceptEmergencyServiced->delete();
 
         return $this->sendResponse($id, 'Accept Emergency Serviced deleted successfully');
+    }
+
+    public function saveFile($request, $userId)
+    {
+        $random = Str::random(10);
+        if ($request->hasfile('image')) {
+            $image = $request->file('image');
+            $name = $random . 'report_' . $userId . ".jpg";
+            $image->move(public_path() . '/report/', $name);
+            $name = url("report/$name");
+
+            return $name;
+        }
+        return false;
+    }
+
+
+    public function saveBase64($request, $userId)
+    {
+        if ($request->image) {
+            $image = $request->image;  // your base64 encoded
+            $image = str_replace('data:image/png;base64,', '', $image);
+            $image = str_replace(' ', '+', $image);
+            $imageName = str::random(10) . '.' . 'jpg';
+
+            \File::put(public_path() . '/report/u_id-' . $userId . $imageName, base64_decode($image));
+            $imageName = url("report/$imageName");
+            return $imageName;
+        } else {
+            return false;
+        }
     }
 }
