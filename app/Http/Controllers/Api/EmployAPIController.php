@@ -129,7 +129,8 @@ class EmployAPIController extends AppBaseController
                 return response()->json(["error" => "no data found", $employ]);
             }
         } catch (\Exception $exception) {
-            return response()->json(["message" => "token is expired", 'status' => false]);
+            return response()->json(["message" => $exception->getMessage(), 'status' => $exception->getFile(), 'code' => $exception->getCode(), 'full' => $exception]);
+//            return response()->json(["message" => "token is expired", 'status' => false]);
         }
 
     }
@@ -245,6 +246,7 @@ class EmployAPIController extends AppBaseController
 
         return $this->sendResponse($employ->toArray(), 'Employ updated successfully');
     }
+
     public function updateCv(Request $request, $id)
     {
         $inpute = $request->all();
