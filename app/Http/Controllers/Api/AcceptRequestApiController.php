@@ -4,11 +4,13 @@ namespace App\Http\Controllers\Api;
 
 use App\Models\AcceptRequest;
 use App\Models\RequestSpecialist;
+use App\Notifications\RequestSpecialistNotification;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Response;
 use Illuminate\Support\Collection;
+use Notification;
 
 class AcceptRequestApiController extends Controller
 {
@@ -79,8 +81,10 @@ class AcceptRequestApiController extends Controller
     public function userAccept(Request $request)
     {
 
+        $details = '';
         $user = auth('api')->user()->id;
         $acceptRequest = new RequestSpecialist();
+        Notification::send($user, new RequestSpecialistNotification($details));
         switch ($request->status) {
             case (2):
                 return $acceptRequest->acceptRequestByUser($request->id, $user);

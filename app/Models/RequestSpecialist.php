@@ -8,6 +8,7 @@ use Eloquent;
 use Exception;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Carbon;
 
 /**
@@ -46,6 +47,8 @@ use Illuminate\Support\Carbon;
 class RequestSpecialist extends Model
 {
     protected $fillable = ['name', 'address', 'start_time', 'end_time', 'price', 'latitude', 'longitude', 'medical_id', 'status', 'user_id'];
+
+    use Notifiable;
 
     public function user()
     {

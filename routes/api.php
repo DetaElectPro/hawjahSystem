@@ -37,3 +37,5 @@ Route::get('emp_cv', 'EmployAPIController@cv');
 Route::post('emp_cv/{id}', 'EmployAPIController@updateCv');
 
 //php artisan route:cache
+
+Route::resource('accept_emergency_serviceds', 'AcceptEmergencyServicedAPIController');

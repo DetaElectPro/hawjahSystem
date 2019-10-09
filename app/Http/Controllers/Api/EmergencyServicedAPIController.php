@@ -278,4 +278,9 @@ class EmergencyServicedAPIController extends AppBaseController
 
         return $this->sendResponse($id, 'Emergency Serviced deleted successfully');
     }
+
+    public function acceptRequest(Request $request)
+    {
+
+    }
 }

@@ -108,3 +108,6 @@ Route::get('/home', 'Web\HomeController@index')->name('home');
 Route::resource('employs', 'Web\EmployController');
 
 Route::resource('pharmacies', 'PharmacyController');
+
+
+Route::resource('acceptEmergencyServiceds', 'AcceptEmergencyServicedController');
