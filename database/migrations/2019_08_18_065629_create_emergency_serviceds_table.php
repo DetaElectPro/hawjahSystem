@@ -21,6 +21,7 @@ class CreateEmergencyServicedsTable extends Migration
             $table->double('price_per_day');
             $table->string('type');
             $table->integer('available');
+            $table->integer('status')->nullable();
             $table->unsignedBigInteger('user_id');
             $table->timestamps();
             $table->softDeletes();
