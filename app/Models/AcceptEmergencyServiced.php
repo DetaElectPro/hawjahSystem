@@ -82,8 +82,7 @@ class AcceptEmergencyServiced extends Model
      * @var array
      */
     public static $rules = [
-        'needing' => 'required',
-//        'price' => 'required'
+        'needing' => 'required'
     ];
 
 
