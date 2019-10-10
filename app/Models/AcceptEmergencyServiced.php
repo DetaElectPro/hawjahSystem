@@ -18,10 +18,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string price
  * @property integer emergency_id
  * @property int $id
-// * @property string $needing
-// * @property string $image
-// * @property float $price
-// * @property int $emergency_id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property \Illuminate\Support\Carbon|null $deleted_at
@@ -49,7 +45,7 @@ class AcceptEmergencyServiced extends Model
     use SoftDeletes;
 
     public $table = 'accept_emergency_serviceds';
-    
+
 
     protected $dates = ['deleted_at'];
 
@@ -59,7 +55,8 @@ class AcceptEmergencyServiced extends Model
         'image',
         'report',
         'price',
-        'emergency_id'
+        'emergency_id',
+        'status'
     ];
 
     /**
@@ -73,6 +70,7 @@ class AcceptEmergencyServiced extends Model
         'image' => 'string',
         'report' => 'string',
         'price' => 'double',
+        'status' => 'integer',
         'emergency_id' => 'integer'
     ];
 
@@ -82,7 +80,8 @@ class AcceptEmergencyServiced extends Model
      * @var array
      */
     public static $rules = [
-        'needing' => 'required'
+        'needing' => 'required',
+        'status' => 'required'
     ];
 
 
