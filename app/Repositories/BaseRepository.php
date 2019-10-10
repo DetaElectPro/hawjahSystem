@@ -161,7 +161,6 @@ abstract class BaseRepository
     public function create($input)
     {
         $user = auth('api')->user()->id;
-        $input->user_id = $user;
         $model = $this->model->newInstance($input);
         $input->user_id = $user;
         $model->save();
