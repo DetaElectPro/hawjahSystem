@@ -35,7 +35,7 @@ class AcceptEmergencyServicedAPIController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $acceptEmergencyServiceds = $this->acceptEmergencyServicedRepository->with(['user', 'emergency']);
+        $acceptEmergencyServiceds = $this->acceptEmergencyServicedRepository->with(['userRequest', 'emergency']);
 
         return $this->sendResponse($acceptEmergencyServiceds->toArray(), 'Accept Emergency Serviceds retrieved successfully');
     }
