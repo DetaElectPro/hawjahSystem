@@ -156,26 +156,17 @@ abstract class BaseRepository
      *
      * @param array $input
      *
-     * @param null $userId
      * @return Model
      */
-    public function create($input, $userId = null)
+    public function create($input)
     {
-        if ($userId){
-            $input->user_id = $userId;
-            $model = $this->model->newInstance($input);
+        $user = auth('api')->user()->id;
+        $input->user_id = $user;
+        $model = $this->model->newInstance($input);
+        $input->user_id = $user;
+        $model->save();
 
-            $model->save();
-
-            return $model;
-        }
-        else {
-            $model = $this->model->newInstance($input);
-
-            $model->save();
-
-            return $model;
-        }
+        return $model;
     }
 
     /**
