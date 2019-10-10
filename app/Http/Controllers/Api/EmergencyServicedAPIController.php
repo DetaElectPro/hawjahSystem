@@ -110,7 +110,7 @@ class EmergencyServicedAPIController extends AppBaseController
     {
         $input = $request->all();
 
-        $emergencyServiced = $this->emergencyServicedRepository->create($input);
+        $emergencyServiced = $this->emergencyServicedRepository->create($input, ['']);
 
         return $this->sendResponse($emergencyServiced->toArray(), 'Emergency Serviced saved successfully');
     }

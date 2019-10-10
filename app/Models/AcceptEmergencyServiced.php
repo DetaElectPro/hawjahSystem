@@ -66,7 +66,7 @@ class AcceptEmergencyServiced extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'needing' => 'string',
+        'needing' => 'integer',
         'image' => 'string',
         'report' => 'string',
         'price' => 'double',
