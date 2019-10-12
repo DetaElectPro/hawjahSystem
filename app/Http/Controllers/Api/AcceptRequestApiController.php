@@ -84,7 +84,7 @@ class AcceptRequestApiController extends Controller
         $details = '';
         $user = auth('api')->user()->id;
         $acceptRequest = new RequestSpecialist();
-        Notification::send($user, new RequestSpecialistNotification($details));
+//        Notification::send($user, new RequestSpecialistNotification($details));
         switch ($request->status) {
             case (2):
                 return $acceptRequest->acceptRequestByUser($request->id, $user);
