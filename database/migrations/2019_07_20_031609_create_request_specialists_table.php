@@ -25,7 +25,7 @@ class CreateRequestSpecialistsTable extends Migration
             $table->string('status');
 
             $table->bigInteger('medical_id')->unsigned();
-            $table->foreign('medical_id')->references('id')->on('medical_fields')->onDelete('cascade');
+            $table->foreign('medical_id')->references('id')->on('medical_specialties')->onDelete('cascade');
 
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
