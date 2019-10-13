@@ -55,7 +55,7 @@ class  RequestSpecialistApiController extends AppBaseController
     public function show($id)
     {
         return $request_specialist = RequestSpecialist::whereId($id)
-            ->with('specialties.medical', 'user', 'acceptRequest.doctor')
+            ->with('specialties.medical', 'user', 'acceptRequest.doctor.employ.medical_board')
             ->first();
     }
 
