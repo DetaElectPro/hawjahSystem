@@ -38,7 +38,7 @@ class AcceptRequest extends Model
 {
     protected $fillable = ['notes', 'recommendation', 'rating', 'request_id', 'user_id'];
 
-    public function user()
+    public function doctor()
     {
         return $this->belongsTo(User::class, 'user_id');
     }

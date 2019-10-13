@@ -71,6 +71,10 @@ class RequestSpecialist extends Model
         return $this->hasOne(AcceptRequest::class, 'request_id');
     }
 
+//    public function doctor(){
+//        return $this->belongsTo(Us)
+//    }
+
     /*
      * @param statuse
      * have value from 1to 6
@@ -165,6 +169,8 @@ class RequestSpecialist extends Model
         }
 
     }
+
+
 
 
 }
