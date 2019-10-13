@@ -27,7 +27,7 @@ class  RequestSpecialistApiController extends AppBaseController
      */
     public function index()
     {
-        return RequestSpecialist::with('specialties.medical', 'user')->orderBy('created_at', 'desc')->get();
+        return RequestSpecialist::with('specialties.medical', 'user', 'acceptRequest.doctor.employ.medical_board')->orderBy('created_at', 'desc')->get();
     }
 
     /**
