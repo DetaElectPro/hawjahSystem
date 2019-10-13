@@ -20,6 +20,7 @@ class CreateRequestSpecialistsTable extends Migration
             $table->string('price');
             $table->dateTime('start_time');
             $table->dateTime('end_time');
+            $table->string('hours')->nullable();
             $table->double('latitude')->nullable();
             $table->double('longitude')->nullable();
             $table->string('status');

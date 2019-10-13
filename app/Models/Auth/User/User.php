@@ -8,6 +8,7 @@ use App\Models\Auth\Role\Role;
 use App\Models\Auth\User\Traits\Ables\Protectable;
 use App\Models\Auth\User\Traits\Attributes\UserAttributes;
 use App\Models\EmergencyServiced;
+use App\Models\Employ;
 use App\Models\MedicalBoard;
 use App\Models\Protection\ProtectionShopToken;
 use App\Models\Protection\ProtectionValidation;
@@ -45,7 +46,7 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
  * @property-read mixed $avatar
  * @property-read mixed $licensee_name
  * @property-read mixed $licensee_number
- * @property-read DatabaseNotificationCollection|DatabaseNotification[] $notifications
+* // * @property-read DatabaseNotificationCollection|DatabaseNotification[] $notifications
  * @property-read Collection|ProtectionShopToken[] $protectionShopTokens
  * @property-read ProtectionValidation $protectionValidation
  * @property-read Collection|SocialAccount[] $providers
@@ -63,34 +64,34 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
  * @method static Builder|User whereRememberToken($value)
  * @method static Builder|User whereRole($role)
  * @method static Builder|User whereUpdatedAt($value)
- * @mixin Eloquent
+* // * @mixin Eloquent
  * @property string $phone
  * @property string|null $image
  * @property \Illuminate\Support\Carbon|null $email_verified_at
  * @property string|null $player_id
  * @property int $status
- * @property-read \App\Models\AcceptRequest $acceptRequest
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\EmergencyServiced[] $emergencyServices
+ * @property-read AcceptRequest $acceptRequest
+ * @property-read Collection|EmergencyServiced[] $emergencyServices
  * @property-read int|null $emergency_services_count
- * @property-read \App\Models\Employ $employ
- * @property-read \App\Models\MedicalBoard $medical_board
+ * @property-read Employ $employ
+ * @property-read MedicalBoard $medical_board
  * @property-read int|null $notifications_count
  * @property-read int|null $protection_shop_tokens_count
  * @property-read int|null $providers_count
  * @property-read int|null $roles_count
  * @method static bool|null forceDelete()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Auth\User\User newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Auth\User\User newQuery()
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Auth\User\User onlyTrashed()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Auth\User\User query()
+ * @method static \Illuminate\Database\Eloquent\Builder|User newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|User newQuery()
+ * @method static Builder|User onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|User query()
  * @method static bool|null restore()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Auth\User\User whereEmailVerifiedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Auth\User\User whereImage($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Auth\User\User wherePhone($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Auth\User\User wherePlayerId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Auth\User\User whereStatus($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Auth\User\User withTrashed()
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Auth\User\User withoutTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereEmailVerifiedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereImage($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User wherePhone($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User wherePlayerId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereStatus($value)
+ * @method static Builder|User withTrashed()
+ * @method static Builder|User withoutTrashed()
  */
 class User extends Authenticatable implements JWTSubject
 {
