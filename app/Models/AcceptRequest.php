@@ -43,6 +43,10 @@ class AcceptRequest extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
+    public function RequestSpecialistMM()
+    {
+        return $this->belongsToMany(AcceptRequest::class, 'request_specialist_accept_request');
+    }
 
 //    public function admin()
 //    {

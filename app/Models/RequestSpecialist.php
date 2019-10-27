@@ -71,6 +71,10 @@ class RequestSpecialist extends Model
         return $this->hasOne(AcceptRequest::class, 'request_id');
     }
 
+    public function AcceptRequestMM()
+    {
+        return $this->belongsToMany(AcceptRequest::class, 'request_specialist_accept_request');
+    }
 //    public function doctor(){
 //        return $this->belongsTo(Us)
 //    }
@@ -96,7 +100,7 @@ class RequestSpecialist extends Model
             $acceptRequest->notes = '__';
             $acceptRequest->request_id = $requestId;
             $acceptRequest = $acceptRequest->save();
-            return ['accept' => true, 'request' => true, 'acceptRequest'=>$acceptRequest];
+            return ['accept' => true, 'request' => true, 'acceptRequest' => $acceptRequest];
         } else {
             return ['accept' => false, 'request' => false];
         }
@@ -105,7 +109,7 @@ class RequestSpecialist extends Model
     public function acceptRequestByAdmin($requestId)
     {
         $result = RequestSpecialist::whereId($requestId)->whereStatus(2)->update(['status' => 3]);
-        if($result == 1) {
+        if ($result == 1) {
             return ['accept' => true, 'request' => true];
         } else {
             return ['accept' => false, 'request' => false];
@@ -169,8 +173,6 @@ class RequestSpecialist extends Model
         }
 
     }
-
-
 
 
 }
