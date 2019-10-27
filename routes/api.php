@@ -1,8 +1,7 @@
 <?php
 
 Route::prefix('auth')->group(function () {
-    Route::post('/login', 'AuthControllerApi@login');
-    Route::post('test', 'AuthControllerApi@login');
+    Route::post('/login', 'AuthControllerApi@login')->name('login');
     Route::post('check', 'AuthControllerApi@checkAuth');
     Route::post('register', 'AuthControllerApi@register');
 
