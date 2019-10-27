@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use App\Models\Auth\User\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
+use Mockery\Exception;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Tymon\JWTAuth\Exceptions\TokenExpiredException;
 use Tymon\JWTAuth\Exceptions\TokenInvalidException;
@@ -75,12 +76,19 @@ class AuthControllerApi extends Controller
 
     public function login()
     {
-        $credentials = request(['phone', 'password']);
+        try {
+            $credentials = request(['phone', 'password']);
 
-        if (!$token = auth('api')->attempt($credentials)) {
-            return response()->json(['error' => 'Unauthorized'], 401);
+            if (!$token = auth('api')->attempt($credentials)) {
+                return response()->json(['error' => 'Unauthorized'], 401);
+            }
+            return $this->respondWithToken($token);
+        } catch (\Exception $exception) {
+            return response()->json([
+                'error line' => $exception->getLine(),
+                'message' => $exception->getMessage(),
+                'code' => $exception->getCode()]);
         }
-        return $this->respondWithToken($token);
     }
 
     public function logout()
