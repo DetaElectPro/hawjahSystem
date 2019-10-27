@@ -9,19 +9,20 @@
             <div class="count green">{{ $counts['request'] }}</div>
         </div>
         <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-            <span class="count_top"><i class="fa fa-address-card"></i> {{ __('views.admin.dashboard.count_1') }}</span>
+            <span class="count_top"><i class="fa fa-address-card"></i>Active/Complete Request</span>
             <div>
-                <span class="count green">{{  $counts['users'] - $counts['users_unconfirmed'] }}</span>
+                <span class="count green">{{  $counts['requestActive'] - $counts['request'] }}</span>
                 <span class="count">/</span>
-                <span class="count red">{{ $counts['users_unconfirmed'] }}</span>
+                <span class="count red">{{ $counts['request'] }}</span>
             </div>
         </div>
         <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-            <span class="count_top"><i class="fa fa-user-times "></i> {{ __('views.admin.dashboard.count_2') }}</span>
+            <span class="count_top"><i class="fa fa-user-times "></i>Servers -icu-</span>
             <div>
-                <span class="count green">{{  $counts['users'] - $counts['users_inactive'] }}</span>
-                <span class="count">/</span>
-                <span class="count red">{{ $counts['users_inactive'] }}</span>
+{{--                <span class="count green">{{  $counts['users'] - $counts['services'] }}</span>--}}
+                <span class="count green">{{$counts['services']}}</span>
+{{--                <span class="count">/</span>--}}
+{{--                <span class="count red">{{ $counts['users_inactive'] }}</span>--}}
             </div>
         </div>
         <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">

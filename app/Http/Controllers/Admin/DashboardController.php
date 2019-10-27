@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\AcceptRequest;
 use App\Models\Auth\User\User;
+use App\Models\EmergencyServiced;
 use App\Models\RequestSpecialist;
 use Arcanedev\LogViewer\Entities\Log;
 use Arcanedev\LogViewer\Entities\LogEntry;
@@ -33,6 +34,8 @@ class DashboardController extends Controller
     {
         $counts = [
             'request'=> RequestSpecialist::whereStatus(6)->count(),
+            'requestActive'=> RequestSpecialist::whereStatus(1)->count(),
+            'services'=> EmergencyServiced::all()->count(),
             'users' => \DB::table('users')->count(),
             'users_unconfirmed' => \DB::table('users')->where('confirmed', false)->count(),
             'users_inactive' => \DB::table('users')->where('active', false)->count(),

@@ -9,7 +9,7 @@
             <div class="count green">{{ $counts['request'] }}</div>
         </div>
         <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-            <span class="count_top"><i class="fa fa-address-card"></i> {{ __('views.admin.dashboard.count_1') }}</span>
+            <span class="count_top"><i class="fa fa-address-card"></i>Active</span>
             <div>
                 <span class="count green">{{  $counts['users'] - $counts['users_unconfirmed'] }}</span>
                 <span class="count">/</span>
