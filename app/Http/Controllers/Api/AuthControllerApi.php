@@ -58,30 +58,30 @@ class AuthControllerApi extends Controller
         return $this->respondWithToken($token);
     }
 
-    public function login(Request $request)
-    {
-        $credentials = request(['phone', 'password']);
-
-        if (Auth::attempt(['phone' => $request->phone, 'password' => $request->password])) {
-            if (!Auth::user()->hasRole($request->role) && !$token = auth('api')->attempt($credentials)) {
-                return response()->json(["error" => "Permission denied. No suitable role found", 'api'=> 'Unauthorized'], 401);
-            }
-            $token = auth('api')->attempt($credentials);
-            return $this->respondWithToken($token);
-
-        }
-        return response()->json(["error" => "Invalid Login"], 400);
-    }
-
-//    public function login()
+//    public function login(Request $request)
 //    {
 //        $credentials = request(['phone', 'password']);
 //
-//        if (!$token = auth('api')->attempt($credentials)) {
-//            return response()->json(['error' => 'Unauthorized'], 401);
+//        if (Auth::attempt(['phone' => $request->phone, 'password' => $request->password])) {
+//            if (!Auth::user()->hasRole($request->role) && !$token = auth('api')->attempt($credentials)) {
+//                return response()->json(["error" => "Permission denied. No suitable role found", 'api'=> 'Unauthorized'], 401);
+//            }
+//            $token = auth('api')->attempt($credentials);
+//            return $this->respondWithToken($token);
+//
 //        }
-//        return $this->respondWithToken($token);
+//        return response()->json(["error" => "Invalid Login"], 400);
 //    }
+
+    public function login()
+    {
+        $credentials = request(['phone', 'password']);
+
+        if (!$token = auth('api')->attempt($credentials)) {
+            return response()->json(['error' => 'Unauthorized'], 401);
+        }
+        return $this->respondWithToken($token);
+    }
 
     public function logout()
     {
