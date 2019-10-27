@@ -2,17 +2,17 @@
 
 Route::prefix('auth')->group(function () {
     Route::post('login', 'AuthControllerApi@login');
-    Route::post('/check', 'AuthControllerApi@checkAuth');
-    Route::post('/register', 'AuthControllerApi@register');
+    Route::post('check', 'AuthControllerApi@checkAuth');
+    Route::post('register', 'AuthControllerApi@register');
 
 //    Route::get('/profile', 'AuthControllerApi@profile')->middleware('auth');
-    Route::post('/logout', 'AuthControllerApi@logout');
-    Route::resource('/profile', 'ProfileApiController');
+    Route::post('logout', 'AuthControllerApi@logout');
+    Route::resource('profile', 'ProfileApiController');
 
 });
 
 Route::prefix('cat')->group(function () {
-    Route::get('/medicalFC/{id}', 'MedicalSpecialtyAPIController@medicalFields');
+    Route::get('medicalFC/{id}', 'MedicalSpecialtyAPIController@medicalFields');
 });
 
 Route::resource('medicalBoards', 'MedicalBoardApiController');
