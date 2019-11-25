@@ -13,7 +13,7 @@ composer.phar
 # composer.lock
 phpunit.phar
 
-public/assets
+#public/assets
 #public/cv
 #public/profiles
 

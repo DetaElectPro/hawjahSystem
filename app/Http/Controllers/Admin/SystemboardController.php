@@ -30,6 +30,7 @@ class SystemboardController extends Controller
     public function index()
     {
         $counts = [
+            'requestActive' => RequestSpecialist::whereStatus(6)->count(),
             'request' => RequestSpecialist::whereStatus(6)->count(),
             'users' => \DB::table('users')->count(),
             'users_unconfirmed' => \DB::table('users')->where('confirmed', false)->count(),
@@ -43,7 +44,7 @@ class SystemboardController extends Controller
             }
         }
 
-        return view('admin.dashboard', ['counts' => $counts]);
+        return view('admin.systemboard', ['counts' => $counts]);
     }
 
 

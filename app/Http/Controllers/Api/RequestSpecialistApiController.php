@@ -4,10 +4,12 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\AppBaseController;
 use App\Models\RequestSpecialist;
+use App\Notifications\RequestSpecialistNotification;
 use App\Repositories\RequestSpecialistRepository;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
+use Notification;
 
 class  RequestSpecialistApiController extends AppBaseController
 {
@@ -42,6 +44,9 @@ class  RequestSpecialistApiController extends AppBaseController
         $input = $request->all();
 
         $requestSpecialist = $this->requestSpecialistRepository->create($input + ['user_id' => $user_id]);
+//        Notification::send($user, new MyFirstNotification($details));
+        Notification::send($user_id, new RequestSpecialistNotification($input));
+
         return $this->sendResponse($requestSpecialist->toArray(), 'Request Specialist saved successfully');
 
     }
