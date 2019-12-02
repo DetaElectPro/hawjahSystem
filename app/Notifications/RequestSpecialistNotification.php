@@ -3,10 +3,10 @@
 namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
-use NotificationChannels\OneSignal\OneSignalButton;
+//use NotificationChannels\OneSignal\OneSignalButton;
 use NotificationChannels\OneSignal\OneSignalChannel;
 use NotificationChannels\OneSignal\OneSignalMessage;
-use NotificationChannels\OneSignal\OneSignalWebButton;
+//use NOneSignalWebButton;
 use Illuminate\Notifications\Notification;
 
 
@@ -43,12 +43,14 @@ class RequestSpecialistNotification extends Notification
     public function toOneSignal($notifiable)
     {
         return OneSignalMessage::create()
-            ->subject('New Specialist Request: ' . $notifiable)
-            ->button(
-                OneSignalButton::create('id')
-                    ->text('show')
-                    ->icon('http://www.hultcenter.org/sitecm/i/facebook-icon.png')
-            );
+            ->setSubject("New Request from  {$notifiable->name}")
+            ->setBody("Click here to see details.");
+        //            ->webButton(
+//                OneSignalWebButton::create('link-1')
+//                    ->text('Click here')
+//                    ->icon('https://upload.wikimedia.org/wikipedia/commons/4/4f/Laravel_logo.png')
+//                    ->url('http://laravel.com')
+//            );
     }
 
     /**
