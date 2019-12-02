@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Auth\User\User;
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Notifications\Notifiable;
 use Kyslik\ColumnSortable\Sortable;
 
 /**
@@ -100,10 +101,10 @@ use Kyslik\ColumnSortable\Sortable;
  */
 class EmergencyServiced extends Model
 {
-    use SoftDeletes,Sortable;
+    use SoftDeletes, Sortable, Notifiable;
 
     public $table = 'emergency_serviceds';
-    
+
 
     protected $dates = ['deleted_at'];
 
