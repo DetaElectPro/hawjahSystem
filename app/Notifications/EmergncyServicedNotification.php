@@ -4,8 +4,6 @@ namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Notifications\Messages\MailMessage;
 use NotificationChannels\OneSignal\OneSignalChannel;
 use NotificationChannels\OneSignal\OneSignalMessage;
 
@@ -13,20 +11,22 @@ class EmergncyServicedNotification extends Notification
 {
     use Queueable;
 
+    private $details;
+
     /**
      * Create a new notification instance.
      *
-     * @return void
+     * @param $details
      */
-    public function __construct()
+    public function __construct($details)
     {
-        //
+        $this->details = $details;
     }
 
     /**
      * Get the notification's delivery channels.
      *
-     * @param  mixed  $notifiable
+     * @param mixed $notifiable
      * @return array
      */
     public function via($notifiable)
@@ -37,20 +37,20 @@ class EmergncyServicedNotification extends Notification
     /**
      * Get the mail representation of the notification.
      *
-     * @param  mixed  $notifiable
-     * @return \Illuminate\Notifications\Messages\MailMessage
+     * @param mixed $notifiable
+     * @return OneSignalMessage
      */
     public function toOneSignal($notifiable)
     {
         return OneSignalMessage::create()
-            ->setSubject("New Request from  {$notifiable->name}")
+            ->setSubject("New Emergency serves:  {$notifiable->name}")
             ->setBody("Click here to see details.");
     }
 
     /**
      * Get the array representation of the notification.
      *
-     * @param  mixed  $notifiable
+     * @param mixed $notifiable
      * @return array
      */
     public function toArray($notifiable)
