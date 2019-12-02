@@ -204,7 +204,6 @@ return [
         Prettus\Repository\Providers\RepositoryServiceProvider::class,
         InfyOmGeneratorServiceProvider::class,
         InfyOm\AdminLTETemplates\AdminLTETemplatesServiceProvider::class,
-        NotificationChannels\OneSignal\OneSignalServiceProvider::class,
         // Barryvdh\Debugbar\ServiceProvider::class,
 
     ],
@@ -270,7 +269,6 @@ return [
         'JWTFactory' => Tymon\JWTAuth\Facades\JWTFactory::class,
         'Flash' => Laracasts\Flash\Flash::class,
         // 'Debugbar' => Barryvdh\Debugbar\Facade::class,
-        'OneSignal' => Berkayk\OneSignal\OneSignalFacade::class
 
 
     ],
