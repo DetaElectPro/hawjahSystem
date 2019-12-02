@@ -37,11 +37,6 @@ return [
         'secret' => env('STRIPE_SECRET'),
     ],
 
-    'onesignal' => [
-        'app_id' => env('3633588b-5b98-41fa-bf2b-84d95a2e9c06'),
-        'rest_api_key' => env('OGZmNGFlODgtMGQ4ZC00OGQzLTk2NmUtMTgxYjE5MjMyNGY3')
-    ],
-
     /*
      * Socialite Credentials
      * Redirect URL's need to be the same as specified on each network you set up this application on

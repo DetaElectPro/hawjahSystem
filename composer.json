@@ -48,7 +48,6 @@
     "infyomlabs/swagger-generator": "dev-master",
     "kyslik/column-sortable": "^5.8",
     "labs64/netlicensingclient-php": "^2.3",
-    "laravel-notification-channels/onesignal": "^2.0",
     "laravel/framework": "5.8.*",
     "laravel/socialite": "^4.1",
     "laravel/tinker": "^1.0",

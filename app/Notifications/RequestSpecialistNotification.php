@@ -3,11 +3,6 @@
 namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
-//use NotificationChannels\OneSignal\OneSignalButton;
-use NotificationChannels\OneSignal\OneSignalButton as OneSignalButtonAlias;
-use NotificationChannels\OneSignal\OneSignalChannel;
-use NotificationChannels\OneSignal\OneSignalMessage;
-//use NOneSignalWebButton;
 use Illuminate\Notifications\Notification;
 
 
@@ -34,24 +29,9 @@ class RequestSpecialistNotification extends Notification
      */
     public function via($notifiable)
     {
-        return [OneSignalChannel::class];
     }
 
-    /**
-     * @param $notifiable
-     * @return OneSignalMessage
-     */
-    public function toOneSignal($notifiable)
-    {
-        OneSignalMessage::create()
-            ->subject('New Request')
-            ->body("New Request from  {$notifiable->name}")
-            ->button(
-                OneSignalButtonAlias::create()
-                    ->text("Open")
-//                    ->icon('button icon')
-            );
-    }
+
 
     /**
      * return a single player-id
