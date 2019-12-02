@@ -270,7 +270,7 @@ return [
         'JWTFactory' => Tymon\JWTAuth\Facades\JWTFactory::class,
         'Flash' => Laracasts\Flash\Flash::class,
         // 'Debugbar' => Barryvdh\Debugbar\Facade::class,
-//        'OneSignal' => Berkayk\OneSignal\OneSignalFacade::class
+        'OneSignal' => Berkayk\OneSignal\OneSignalFacade::class
 
 
     ],

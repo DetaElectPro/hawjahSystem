@@ -126,26 +126,26 @@ class ProfileApiController extends AppBaseController
      * @param Request $request
      * @return User|bool|\Illuminate\Database\Query\Builder|\Illuminate\Http\JsonResponse|int
      */
-//    public function update(Request $request, $id)
-//    {
-//        $inpute = $request->all();
-//        try {
-//            $user = auth('api')->user()->id;
-//            if ($request->hasFile('image')) {
-//                $file_name = $this->saveFile($request, $user);
-//                $profile = User::whereId($user);
-//                $profile->image = $file_name;
-//                $profile->save($request->all());
-//                return response()->json(['profile' => $profile]);
-//            } else {
-//                $profile = $this->profileRepository->update($inpute, $user);
-//                return response()->json(['profile' => $profile]);
-//            }
-//
-//        } catch (\Exception $exception) {
-//            return response()->json(["message" => "$exception", 'status' => false]);
-//        }
-//    }
+    public function update(Request $request, $id)
+    {
+        $inpute = $request->all();
+        try {
+            $user = auth('api')->user()->id;
+            if ($request->hasFile('image')) {
+                $file_name = $this->saveFile($request, $user);
+                $profile = User::whereId($user);
+                $profile->image = $file_name;
+                $profile->save($request->all());
+                return response()->json(['profile' => $profile]);
+            } else {
+                $profile = $this->profileRepository->update($inpute, $user);
+                return response()->json(['profile' => $profile]);
+            }
+
+        } catch (\Exception $exception) {
+            return response()->json(["message" => "$exception", 'status' => false]);
+        }
+    }
 
     /**
      * Remove the specified resource from storage.
