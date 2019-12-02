@@ -42,15 +42,14 @@ class RequestSpecialistNotification extends Notification
      */
     public function toOneSignal($notifiable)
     {
-        return OneSignalMessage::create()
-            ->setSubject("New Request from  {$notifiable->name}")
-            ->setBody("Click here to see details.");
-        //            ->webButton(
-//                OneSignalWebButton::create('link-1')
-//                    ->text('Click here')
-//                    ->icon('https://upload.wikimedia.org/wikipedia/commons/4/4f/Laravel_logo.png')
-//                    ->url('http://laravel.com')
-//            );
+        OneSignalMessage::create()
+            ->subject('New Request')
+            ->body("New Request from  {$notifiable->name}")
+            ->button(
+                OneSignalButton::create()
+                    ->text("Open")
+//                    ->icon('button icon')
+            );
     }
 
     /**
