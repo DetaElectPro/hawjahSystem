@@ -4,6 +4,7 @@ namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
 //use NotificationChannels\OneSignal\OneSignalButton;
+use NotificationChannels\OneSignal\OneSignalButton as OneSignalButtonAlias;
 use NotificationChannels\OneSignal\OneSignalChannel;
 use NotificationChannels\OneSignal\OneSignalMessage;
 //use NOneSignalWebButton;
@@ -46,7 +47,7 @@ class RequestSpecialistNotification extends Notification
             ->subject('New Request')
             ->body("New Request from  {$notifiable->name}")
             ->button(
-                OneSignalButton::create()
+                OneSignalButtonAlias::create()
                     ->text("Open")
 //                    ->icon('button icon')
             );
@@ -60,20 +61,7 @@ class RequestSpecialistNotification extends Notification
 //    {
 //        return 'ONE_SIGNAL_PLAYER_ID';
 //    }
-    /**
-     * Get the mail representation of the notification.
-     *
-     * @param mixed $notifiable
-     * @return \Illuminate\Notifications\Messages\MailMessage
-     */
-//    public function toMail($notifiable)
-//    {
-//        return (new MailMessage)
-//                    ->line('The introduction to the notification.')
-//                    ->action('Notification Action', url('/'))
-//                    ->line('Thank you for using our application!');
-//    }
-
+   
     /**
      * Get the array representation of the notification.
      *

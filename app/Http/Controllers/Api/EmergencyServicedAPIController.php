@@ -112,8 +112,6 @@ class EmergencyServicedAPIController extends AppBaseController
         $input = $request->all();
 
         $emergencyServiced = $this->emergencyServicedRepository->create($input);
-        \Notification::send('',new EmergncyServicedNotification($request));
-
         return $this->sendResponse($emergencyServiced->toArray(), 'Emergency Serviced saved successfully');
     }
 
