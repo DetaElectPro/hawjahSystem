@@ -46,9 +46,9 @@ class  RequestSpecialistApiController extends AppBaseController
         $requestSpecialist = $this->requestSpecialistRepository->create($input + ['user_id' => $user_id]);
 //        Notification::send($user, new MyFirstNotification($details));
 //        Notification::send($user_id, new RequestSpecialistNotification($request));
-        $requestSpecialist->notify(new RequestSpecialistNotification($request));
+        $notf = $requestSpecialist->notify(new RequestSpecialistNotification($request));
 
-        return $this->sendResponse($requestSpecialist->toArray(), 'Request Specialist saved successfully');
+        return $this->sendResponse($requestSpecialist->toArray(), 'Request Specialist saved successfully.'. $notf);
 
     }
 
