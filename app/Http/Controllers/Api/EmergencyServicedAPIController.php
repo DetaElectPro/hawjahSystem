@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Requests\API\CreateEmergencyServicedAPIRequest;
 use App\Http\Requests\API\UpdateEmergencyServicedAPIRequest;
 use App\Models\EmergencyServiced;
+use App\Notifications\EmergncyServicedNotification;
 use App\Repositories\EmergencyServicedRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
@@ -111,6 +112,7 @@ class EmergencyServicedAPIController extends AppBaseController
         $input = $request->all();
 
         $emergencyServiced = $this->emergencyServicedRepository->create($input);
+        \Notification::send('',new EmergncyServicedNotification($request));
 
         return $this->sendResponse($emergencyServiced->toArray(), 'Emergency Serviced saved successfully');
     }
