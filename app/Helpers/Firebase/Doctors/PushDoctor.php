@@ -1,5 +1,5 @@
 <?php
-class Push {
+class PushDoctor {
 
     private $title;
     private $message;

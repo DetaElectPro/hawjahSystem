@@ -2,7 +2,7 @@
 
 use GuzzleHttp\Client;
 
-class Firebase
+class FirebaseDoctor
 {
 
     /**
@@ -78,7 +78,7 @@ class Firebase
                 $fields
             ,
             'headers' => [
-                'Authorization' => 'key=' . env('FCM_LEGACY_KEY'),
+                'Authorization' => 'key=' . env('FCM_LEGACY_KEY_DOCTORS'),
                 'Content-Type' => 'application/json',
             ],
         ]);
