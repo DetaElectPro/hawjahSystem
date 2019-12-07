@@ -14,8 +14,8 @@ class NotificationController extends AppBaseController
 
         $data = json_decode(\request()->getContent());
 
-//        $sender = $data->sender_user;
-//        $receiver = $data->receiver_user;
+        $sender = $data->sender_user;
+        $receiver = $data->receiver_user;
         $notification_payload = $data->payload;
         $notification_title = $data->title;
         $notification_message = $data->message;
@@ -57,6 +57,9 @@ class NotificationController extends AppBaseController
                 return response()->json([
                     'response' => $response
                 ]);
+            }else if($push_type === 'global'){
+                $json = $push->getPush();
+               return $response = $firebase->sendToTopic('global', $json);
             }
 
 

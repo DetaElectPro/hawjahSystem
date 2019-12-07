@@ -78,8 +78,9 @@ class FirebaseDoctor
                 $fields
             ,
             'headers' => [
-                'Authorization' => 'key=' . env('FCM_LEGACY_KEY_DOCTORS'),
                 'Content-Type' => 'application/json',
+                'Authorization' => 'key=' . env('FCM_LEGACY_KEY_DOCTORS'),
+
             ],
         ]);
 
