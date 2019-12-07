@@ -5,7 +5,6 @@ Route::prefix('auth')->group(function () {
     Route::post('check', 'AuthControllerApi@checkAuth');
     Route::post('register', 'AuthControllerApi@register');
 
-//    Route::get('/profile', 'AuthControllerApi@profile')->middleware('auth');
     Route::post('logout', 'AuthControllerApi@logout');
     Route::resource('profile', 'ProfileApiController');
 
