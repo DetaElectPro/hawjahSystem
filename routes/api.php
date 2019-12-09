@@ -7,7 +7,7 @@ Route::prefix('auth')->group(function () {
 
     Route::post('logout', 'AuthControllerApi@logout');
     Route::resource('profile', 'ProfileApiController');
-    Route::put('/fcm', 'ProfileApiController@update')->name('user.update');
+    Route::put('/fcm', 'ProfileApiController@updateFCM')->name('user.update');
 
 
 });

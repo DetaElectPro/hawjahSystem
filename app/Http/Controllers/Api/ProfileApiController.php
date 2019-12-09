@@ -157,10 +157,10 @@ class ProfileApiController extends AppBaseController
      */
     public function updateFCM(Request $request)
     {
-        $user = auth('api')->user();
-        $user->fill($request->only(['fcm_registration_id']));
+        $userID = auth('api')->user()->id;
+        $user = User::findOrFail($userID);
+        $user->fcm_registration_id = $request->fcm_registration_id;
         $user->save();
-
         return response()->json($user);
     }
 
