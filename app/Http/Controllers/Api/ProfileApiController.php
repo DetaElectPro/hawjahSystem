@@ -5,8 +5,11 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\AppBaseController;
 use App\Repositories\ProfileRepository;
 use App\User;
+use Exception;
+use File;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Str;
@@ -61,22 +64,21 @@ class ProfileApiController extends AppBaseController
                 $profile->fill($request->all());
                 $profile->image = $file_name;
                 $profile->save();
-                return response()->json(['profile' => $profile, 'type'=>'request']);
+                return response()->json(['profile' => $profile, 'type' => 'request']);
             }
-            if ($request->image){
+            if ($request->image) {
                 $file_name = $this->saveBase64($request, $user);
                 $profile = User::findOrFail($user);
                 $profile->fill($request->all());
                 $profile->image = $file_name;
                 $profile->save();
-                return response()->json(['profile' => $profile, 'type'=>'base64']);
-            }
-            else {
+                return response()->json(['profile' => $profile, 'type' => 'base64']);
+            } else {
                 $profile = $this->profileRepository->update($inpute, $user);
-                return response()->json(['profile' => $profile, 'type'=>'no image']);
+                return response()->json(['profile' => $profile, 'type' => 'no image']);
             }
 
-        } catch (\Exception $exception) {
+        } catch (Exception $exception) {
             return response()->json(["message" => $exception->getMessage(), 'status' => false]);
         }
     }
@@ -124,7 +126,7 @@ class ProfileApiController extends AppBaseController
 
     /**
      * @param Request $request
-     * @return User|bool|\Illuminate\Database\Query\Builder|\Illuminate\Http\JsonResponse|int
+     * @return User|bool|\Illuminate\Database\Query\Builder|JsonResponse|int
      */
     public function update(Request $request, $id)
     {
@@ -142,9 +144,24 @@ class ProfileApiController extends AppBaseController
                 return response()->json(['profile' => $profile]);
             }
 
-        } catch (\Exception $exception) {
+        } catch (Exception $exception) {
             return response()->json(["message" => "$exception", 'status' => false]);
         }
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param Request $request
+     * @return Response
+     */
+    public function updateFCM(Request $request)
+    {
+        $user = auth('api')->user();
+        $user->fill($request->only(['fcm_registration_id']));
+        $user->save();
+
+        return response()->json($user);
     }
 
     /**
@@ -152,7 +169,7 @@ class ProfileApiController extends AppBaseController
      *
      * @param int $id
      * @return Response
-     * @throws \Exception
+     * @throws Exception
      *
      * public function destroy($id)
      * {
@@ -189,9 +206,9 @@ class ProfileApiController extends AppBaseController
         $image = $request->image;  // your base64 encoded
         $image = str_replace('data:image/png;base64,', '', $image);
         $image = str_replace(' ', '+', $image);
-        $imageName = str::random(10).'.'.'jpg';
+        $imageName = str::random(10) . '.' . 'jpg';
 
-        \File::put(public_path().'/profiles/u_id-'.$userId.$imageName, base64_decode($image));
+        File::put(public_path() . '/profiles/u_id-' . $userId . $imageName, base64_decode($image));
         $imageName = url("profiles/u_id-$userId$imageName");
         return $imageName;
     }
