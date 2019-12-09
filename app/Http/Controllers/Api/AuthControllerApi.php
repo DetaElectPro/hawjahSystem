@@ -36,7 +36,9 @@ class AuthControllerApi extends Controller
                 'message' => 'Invalid Phone or Password',
             ], 401);
         }
-
+        if (!empty($request->fcm_registration_id)) {
+            User::find(JWTAuth::user()->id)->update(['fcm_registration_id' => $request->fcm_registration_id]);
+        }
         return response()->json([
             'success' => true,
             'token_type' => 'bearer',
@@ -96,6 +98,7 @@ class AuthControllerApi extends Controller
             'role_id' => $request->role_id,
             'status' => $status,
             'password' => $request->password,
+            'fcm_registration_id' => $request->fcm_registration_id,
             'image' => $image
         ]);
         // attach role
