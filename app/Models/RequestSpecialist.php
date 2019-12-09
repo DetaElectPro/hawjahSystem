@@ -9,6 +9,8 @@ use Eloquent;
 use Exception;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\DatabaseNotification;
+use Illuminate\Notifications\DatabaseNotificationCollection;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Carbon;
 
@@ -46,10 +48,10 @@ use Illuminate\Support\Carbon;
  * @property-read AcceptRequest $acceptRequest
  * @property float|null $latitude
  * @property float|null $longitude
- * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
+ * @property-read DatabaseNotificationCollection|DatabaseNotification[] $notifications
  * @property-read int|null $notifications_count
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\RequestSpecialist whereLatitude($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\RequestSpecialist whereLongitude($value)
+ * @method static Builder|RequestSpecialist whereLatitude($value)
+ * @method static Builder|RequestSpecialist whereLongitude($value)
  */
 class RequestSpecialist extends Model
 {
@@ -94,6 +96,7 @@ class RequestSpecialist extends Model
 
     public function acceptRequestByUser($requestId, $userID)
     {
+        $requestSpecialistData = RequestSpecialist::whereId($requestId)->whereStatus(1)->with('user')->first();
         $requestSpecialist = RequestSpecialist::whereId($requestId)->whereStatus(1)->update(['status' => 2]);
         if ($requestSpecialist == 1) {
             $acceptRequest = new AcceptRequest();
@@ -101,8 +104,8 @@ class RequestSpecialist extends Model
             $acceptRequest->notes = '__';
             $acceptRequest->request_id = $requestId;
             $acceptRequest = $acceptRequest->save();
-            PushNotificationHelper::send($requestSpecialist->user()->fcm_registration_id,
-                'Request update', 'You have received new message from ', ["name" => $requestSpecialist->user()->name]);
+            PushNotificationHelper::send($requestSpecialistData->user->fcm_registration_id,
+                'Request update', 'You have received new message from ', ["name" => $requestSpecialistData->user->name]);
             return ['accept' => true, 'request' => true, 'acceptRequest' => $acceptRequest];
         } else {
             return ['accept' => false, 'request' => false, 'message' => $requestSpecialist];
@@ -111,10 +114,11 @@ class RequestSpecialist extends Model
 
     public function acceptRequestByAdmin($requestId)
     {
+        $resultData = RequestSpecialist::whereId($requestId)->whereStatus(2)->with('user')->first();
         $result = RequestSpecialist::whereId($requestId)->whereStatus(2)->update(['status' => 3]);
         if ($result == 1) {
-            PushNotificationHelper::send($result->user()->fcm_registration_id,
-                'Request update', 'You have received new message from ', ["name" => $result->user()->name]);
+            PushNotificationHelper::send($resultData->user->fcm_registration_id,
+                'Request update', 'You have received new message from ', ["name" => $resultData->user->name]);
             return ['accept' => true, 'request' => true];
         } else {
             return ['accept' => false, 'request' => false, 'message' => $result];
@@ -134,6 +138,8 @@ class RequestSpecialist extends Model
         $acceptRequest = $acceptRequest->delete();
         if ($acceptRequest) {
             $requestSpecialist = RequestSpecialist::whereId($requestId)->update(['status' => 4]);
+//            PushNotificationHelper::send($resultData->user->fcm_registration_id,
+//                'Request update', 'You have received new message from ', ["name" => $resultData->user->name]);
             return ['accept' => true, 'request' => true];
 
         } else {
