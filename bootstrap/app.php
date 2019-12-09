@@ -41,6 +41,8 @@ $app->singleton(
     App\Exceptions\Handler::class
 );
 
+$app->register(LaravelFCM\FCMServiceProvider::class);
+
 /*
 |--------------------------------------------------------------------------
 | Return The Application

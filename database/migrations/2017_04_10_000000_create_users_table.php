@@ -18,6 +18,7 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('phone')->unique();
             $table->string('email')->unique()->nullable();
+            $table->string('fcm_registration_id')->nullable();
             $table->text('image')->nullable();
             $table->string('password');
             $table->tinyInteger('active')->default(1)->unsigned();
