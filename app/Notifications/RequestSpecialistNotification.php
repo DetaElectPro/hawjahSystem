@@ -34,15 +34,6 @@ class RequestSpecialistNotification extends Notification
 
 
     /**
-     * return a single player-id
-     * @return string
-     */
-//    public function routeNotificationForOneSignal()
-//    {
-//        return 'ONE_SIGNAL_PLAYER_ID';
-//    }
-   
-    /**
      * Get the array representation of the notification.
      *
      * @param mixed $notifiable

@@ -38,6 +38,7 @@ Route::get('emp_cv', 'EmployAPIController@cv');
 Route::post('emp_cv/{id}', 'EmployAPIController@updateCv');
 
 //php artisan route:cache
+//composer dump-autoloa
 
 Route::resource('acceptEmergency', 'AcceptEmergencyServicedAPIController');
 

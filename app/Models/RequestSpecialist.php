@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Helpers\PushNotificationHelper;
 use App\Http\Controllers\Api\AcceptRequestApiController;
 use App\User;
 use Eloquent;
@@ -100,6 +101,8 @@ class RequestSpecialist extends Model
             $acceptRequest->notes = '__';
             $acceptRequest->request_id = $requestId;
             $acceptRequest = $acceptRequest->save();
+            PushNotificationHelper::send($requestSpecialist->user()->fcm_registration_id,
+                'Request update', 'You have received new message from ', ["name" => $requestSpecialist->user()->name]);
             return ['accept' => true, 'request' => true, 'acceptRequest' => $acceptRequest];
         } else {
             return ['accept' => false, 'request' => false];
@@ -110,6 +113,8 @@ class RequestSpecialist extends Model
     {
         $result = RequestSpecialist::whereId($requestId)->whereStatus(2)->update(['status' => 3]);
         if ($result == 1) {
+            PushNotificationHelper::send($result->user()->fcm_registration_id,
+                'Request update', 'You have received new message from ', ["name" => $result->user()->name]);
             return ['accept' => true, 'request' => true];
         } else {
             return ['accept' => false, 'request' => false];

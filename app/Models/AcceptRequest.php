@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Helpers\PushNotificationHelper;
 use App\User;
 use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
@@ -63,10 +64,12 @@ class AcceptRequest extends Model
     {
 //        $requestSpecialist = DB::select('select * from request_specialists where( id ==? AND  status=?)', [$request_id, 1]);
         $accept = new AcceptRequest($request->all());
-        $accept->user_id = $user;
+        $accept->user_id = $user->id;
         $accept = $accept->save();
         $requestUpdate = RequestSpecialist::whereId($request->request_id)->update(['status' => 3]);
         $data = [$accept, $requestUpdate];
+        PushNotificationHelper::send($user->fcm_registration_id,
+            'Request update', 'You have received new message from ', ["name" => $user->name]);
         return $data;
 
 

@@ -33,7 +33,7 @@ class AcceptRequestApiController extends Controller
      */
     public function store(Request $request)
     {
-        $user = auth('api')->user()->id;
+        $user = auth('api')->user();
         $acceptRequest = new AcceptRequest();
         $acceptRequest = $acceptRequest->acceptRequest($request, $user);
         return $acceptRequest;
@@ -84,7 +84,7 @@ class AcceptRequestApiController extends Controller
         $details = '';
         $user = auth('api')->user()->id;
         $acceptRequest = new RequestSpecialist();
-//        Notification::send($user, new RequestSpecialistNotification($details));
+
         switch ($request->status) {
             case (2):
                 return $acceptRequest->acceptRequestByUser($request->id, $user);
@@ -99,10 +99,10 @@ class AcceptRequestApiController extends Controller
                 return $acceptRequest->cancelRequestByUser($request->id);
                 break;
             case (6):
-               return $acceptRequest->acceptRequestAndDone($request->id, $request);
+                return $acceptRequest->acceptRequestAndDone($request->id, $request);
                 break;
             default:
-                return response()->json(['error'=> true, 'message'=> 'the: '.$request->status.' is note accept']);
+                return response()->json(['error' => true, 'message' => 'the: ' . $request->status . ' is note accept']);
         }
     }
 }
