@@ -113,3 +113,5 @@ Route::resource('pharmacies', 'PharmacyController');
 
 
 Route::resource('acceptEmergencyServiceds', 'AcceptEmergencyServicedController');
+
+Route::resource('ambulances', 'AmbulanceController');

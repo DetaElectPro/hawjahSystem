@@ -43,3 +43,6 @@ Route::post('emp_cv/{id}', 'EmployAPIController@updateCv');
 Route::resource('acceptEmergency', 'AcceptEmergencyServicedAPIController');
 
 Route::post('notify', 'NotificationController@notify');
+
+
+Route::resource('ambulances', 'AmbulanceAPIController');
