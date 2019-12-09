@@ -52,6 +52,18 @@
       0 => 'BeyondCode\\DumpServer\\DumpServerServiceProvider',
     ),
   ),
+  'brozot/laravel-fcm' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'LaravelFCM\\FCMServiceProvider',
+    ),
+    'aliases' => 
+    array (
+      'FCM' => 'LaravelFCM\\Facades\\FCM',
+      'FCMGroup' => 'LaravelFCM\\Facades\\FCMGroup',
+    ),
+  ),
   'creativeorange/gravatar' => 
   array (
     'providers' => 

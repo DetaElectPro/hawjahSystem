@@ -258,7 +258,6 @@ return [
         /*
         * Third Party Aliases
         */
-        'Breadcrumbs' => DaveJamesMiller\Breadcrumbs\Facade::class,
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
         'Gravatar' => Creativeorange\Gravatar\Facades\Gravatar::class,
@@ -268,6 +267,8 @@ return [
         'JWTAuth' => Tymon\JWTAuth\Facades\JWTAuth::class,
         'JWTFactory' => Tymon\JWTAuth\Facades\JWTFactory::class,
         'Flash' => Laracasts\Flash\Flash::class,
+        'FCM' => LaravelFCM\Facades\FCM::class,
+        'FCMGroup' => LaravelFCM\Facades\FCMGroup::class, // Optional
         // 'Debugbar' => Barryvdh\Debugbar\Facade::class,
 
 

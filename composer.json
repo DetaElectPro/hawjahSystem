@@ -39,6 +39,7 @@
     "appointer/swaggervel": "dev-master",
     "arcanedev/log-viewer": "~4.5",
     "barryvdh/laravel-cors": "^0.11.3",
+    "brozot/laravel-fcm": "^1.2",
     "creativeorange/gravatar": "^1.0",
     "davejamesmiller/laravel-breadcrumbs": "^5.2",
     "fideloper/proxy": "^4.0",
