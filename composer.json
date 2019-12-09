@@ -73,9 +73,7 @@
       "App\\": "app/"
     },
     "files": [
-      "app/helpers.php",
-      "app/Helpers/Firebase/Doctors/FirebaseDoctor.php",
-      "app/Helpers/Firebase/Doctors/PushDoctor.php"
+      "app/helpers.php"
     ]
   },
   "autoload-dev": {
