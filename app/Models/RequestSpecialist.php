@@ -105,7 +105,7 @@ class RequestSpecialist extends Model
                 'Request update', 'You have received new message from ', ["name" => $requestSpecialist->user()->name]);
             return ['accept' => true, 'request' => true, 'acceptRequest' => $acceptRequest];
         } else {
-            return ['accept' => false, 'request' => false];
+            return ['accept' => false, 'request' => false, 'message' => $requestSpecialist];
         }
     }
 
@@ -117,7 +117,7 @@ class RequestSpecialist extends Model
                 'Request update', 'You have received new message from ', ["name" => $result->user()->name]);
             return ['accept' => true, 'request' => true];
         } else {
-            return ['accept' => false, 'request' => false];
+            return ['accept' => false, 'request' => false, 'message' => $result];
         }
 
     }
