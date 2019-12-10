@@ -105,6 +105,13 @@ class AuthControllerApi extends Controller
             'fcm_registration_id' => $request->fcm_registration_id,
             'image' => $image
         ]);
+
+        if (!empty($request->fcm_registration_id)) {
+            $user = JWTAuth::user();
+            DB::table('users')
+                ->where('id', $user->id)
+                ->update(['fcm_registration_id' => $request->fcm_registration_id]);
+        }
         // attach role
         $role = Role::where('name', $request->role)->first();
         $user->roles()->attach($role);
