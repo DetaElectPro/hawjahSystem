@@ -8,9 +8,6 @@ Route::prefix('auth')->group(function () {
     Route::post('logout', 'AuthControllerApi@logout');
     Route::resource('profile', 'ProfileApiController');
     Route::put('/fcm', 'ProfileApiController@updateFCM')->name('user.update');
-    Route::get('/users', 'ProfileApiController@getUser')->name('user.update');
-
-
 });
 
 Route::prefix('cat')->group(function () {
@@ -19,12 +16,11 @@ Route::prefix('cat')->group(function () {
 
 Route::resource('medicalBoards', 'MedicalBoardApiController');
 Route::resource('employs', 'EmployAPIController');
-//}
+
 Route::resource('requestSpecialists', 'RequestSpecialistApiController');
 
 Route::resource('acceptRequestSpecialists', 'AcceptRequestApiController');
 
-//Route::get('userAcceptRequestSpecialists', 'AcceptRequestApiController@index');
 Route::post('userAcceptRequestSpecialists', 'AcceptRequestApiController@userAccept');
 
 Route::resource('medicalFields', 'MedicalFieldAPIController');
