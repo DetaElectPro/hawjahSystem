@@ -64,8 +64,7 @@ class AuthControllerApi extends Controller
      * @param Request $request
      * @return JsonResponse
      */
-    public
-    function logout(Request $request)
+    public function logout(Request $request)
     {
 
 //        try {

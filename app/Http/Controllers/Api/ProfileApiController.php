@@ -169,20 +169,6 @@ class ProfileApiController extends AppBaseController
 
     }
 
-    public function getUser($roleId = 4, $data = null)
-    {
-        $users = User::find(26);
-        $user = $users->roles->where('id', $roleId)->first();
-        if (!empty($user) && $user->name === 'medical_director') {
-            return 'true';
-        }
-        if (!empty($user) && $user->name === 'doctors') {
-            return 'true';
-        }
-        return 'false';
-
-    }
-
 
     public function saveFile($request, $userId)
     {
