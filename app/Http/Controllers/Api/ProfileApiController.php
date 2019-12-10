@@ -158,33 +158,11 @@ class ProfileApiController extends AppBaseController
     public function updateFCM(Request $request)
     {
         $userID = auth('api')->user()->id;
-        $user = User::findOrFail($userID);
+        $user = User::find($userID);
         $user->fcm_registration_id = $request->fcm_registration_id;
         $user->save();
         return response()->json($user);
     }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param int $id
-     * @return Response
-     * @throws Exception
-     *
-     * public function destroy($id)
-     * {
-     * /** @var User $user
-     * $user = $this->profileRepository->find($id);
-     *
-     * if (empty($user)) {
-     * return $this->sendError('User not found');
-     * }
-     *
-     * $user->delete();
-     *
-     * return $this->sendResponse($id, 'User Profile deleted successfully');
-     * }
-     */
 
 
     public function saveFile($request, $userId)
