@@ -58,8 +58,7 @@ class Ambulance extends Model
      */
     public static $rules = [
         'title' => 'required',
-        'longitude' => 'required',
-        'latitude' => 'required'
+        'address' => 'required',
     ];
 
     /**

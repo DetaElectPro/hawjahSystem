@@ -15,7 +15,7 @@
                 <div class="col-md-6 col-sm-6 col-xs-12">
                     <input value="{{$ambulance->title}}" id="title" type="text"
                            class="form-control col-md-7 col-xs-12 @if($errors->has('title')) parsley-error @endif"
-                           name="name" required>
+                           name="title" required>
                     @if($errors->has('title'))
                         <ul class="parsley-errors-list filled">
                             @foreach($errors->get('title') as $error)
@@ -32,7 +32,7 @@
                     <span class="required">*</span>
                 </label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                    <input value="{{$ambulance->Address}}" id="address" type="text"
+                    <input value="{{$ambulance->address}}" id="address" type="text"
                            class="form-control col-md-7 col-xs-12 @if($errors->has('address')) parsley-error @endif"
                            name="address" required>
                     @if($errors->has('address'))
@@ -53,7 +53,7 @@
                 <div class="col-md-6 col-sm-6 col-xs-12">
                     <select id="user" name="user_id" class="select2" style="width: 100%" autocomplete="off">
                         @foreach($users as $user)
-                            <option @if($ambulance->user->find($user->id)) selected="selected"
+                            <option @if($ambulance->user->find($user->id)) selected="selected" class="autocomplete-selected"
                                     @endif value="{{ $user->id }}">{{ $user->name }}</option>
                         @endforeach
                     </select>
