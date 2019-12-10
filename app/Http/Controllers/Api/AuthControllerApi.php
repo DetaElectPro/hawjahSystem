@@ -99,7 +99,6 @@ class AuthControllerApi extends Controller
         $user = User::create([
             'phone' => $request->phone,
             'name' => $request->name,
-            'role_id' => $request->role_id,
             'status' => $status,
             'password' => $request->password,
             'fcm_registration_id' => $request->fcm_registration_id,
@@ -113,10 +112,10 @@ class AuthControllerApi extends Controller
                 ->update(['fcm_registration_id' => $request->fcm_registration_id]);
         }
         // attach role
-        $role = Role::where('name', $request->role_id)->first();
+        $role = Role::where('name', $request->role)->first();
         $user->roles()->attach($role);
 
-        event(new Registered($user, $request->role_id));
+        event(new Registered($user, $request->role));
 
 
         if ($this->loginAfterSignUp) {
