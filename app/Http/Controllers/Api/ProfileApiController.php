@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\AppBaseController;
 use App\Repositories\ProfileRepository;
 use App\User;
+use DB;
 use Exception;
 use File;
 use Illuminate\Database\Eloquent\Builder;
@@ -157,13 +158,12 @@ class ProfileApiController extends AppBaseController
      */
     public function updateFCM(Request $request)
     {
-        $userID = auth('api')->user()->id;
-        return ["mm" => $userID, "message" => 'fuckUp'];
-//        $user = User::find($userID);
-//        $user->fcm_registration_id = $request->fcm_registration_id;
-//        $user->player_id = $request->player_id;
-//        $user->save();
-//        return response()->json($user);
+        $users = auth('api')->user();
+        DB::table('users')
+            ->where('id', $users->id)
+            ->update(['fcm_registration_id' => $request->fcm_registration_id]);
+        $users2 = User::find($users->id);
+        return response()->json(['lastFcm' => $users->fcm_registration_id, 'new' => $users2]);
     }
 
 
