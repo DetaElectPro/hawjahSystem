@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Models\Auth\Role\Role;
+use DB;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
@@ -37,7 +38,10 @@ class AuthControllerApi extends Controller
             ], 401);
         }
         if (!empty($request->fcm_registration_id)) {
-            User::find(JWTAuth::user()->id)->update(['fcm_registration_id' => $request->fcm_registration_id]);
+            $user = JWTAuth::user();
+            DB::table('users')
+                ->where('id', $user->id)
+                ->update(['fcm_registration_id' => $request->fcm_registration_id]);
         }
         return response()->json([
             'success' => true,
