@@ -25,7 +25,7 @@
                     <td>{{ $user->email }}</td>
                     <td>{{ $user->name }}</td>
                     <td>{{ $user->roles->pluck('name')->implode(',') }}</td>
-                    td>{{ $user->fcm_registration_id}}</td>
+                    <td>{{ $user->fcm_registration_id}}</td>
                     <td>
                         @if($user->active)
                             <span class="label label-primary">{{ __('views.admin.users.index.active') }}</span>
