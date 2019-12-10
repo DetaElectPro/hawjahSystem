@@ -106,17 +106,20 @@ class AuthControllerApi extends Controller
         ]);
 
         if (!empty($request->fcm_registration_id)) {
-            $user = JWTAuth::user();
             DB::table('users')
                 ->where('id', $user->id)
                 ->update(['fcm_registration_id' => $request->fcm_registration_id]);
         }
-        // attach role
-        $role = Role::where('name', $request->role)->first();
-        $user->roles()->attach($role);
+        if ($request->has('role')) {
+            $user->roles()->detach();
 
-        event(new Registered($user, $request->role));
-
+            if ($request->get('role')) {
+                $user->roles()->attach($request->get('role'));
+            }
+            if (config('auth.users.default_role')) {
+                $user->roles()->attach(Role::firstOrCreate(['name' => config('auth.users.default_role')], ['name' => $request->role]));
+            }
+        }
 
         if ($this->loginAfterSignUp) {
             return $this->login($request);
