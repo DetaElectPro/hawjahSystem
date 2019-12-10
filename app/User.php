@@ -4,6 +4,7 @@ namespace App;
 
 use App\Models\AcceptEmergencyServiced;
 use App\Models\AcceptRequest;
+use App\Models\Ambulance;
 use App\Models\Auth\Role\Role;
 use App\Models\Auth\User\Traits\Ables\Protectable;
 use App\Models\Auth\User\Traits\Attributes\UserAttributes;
@@ -202,6 +203,10 @@ class User extends Authenticatable implements JWTSubject
     public function emergencyServices()
     {
         return $this->hasMany(EmergencyServiced::class);
+    }
+    public function ambulance()
+    {
+        return $this->hasMany(Ambulance::class);
     }
 
     /**

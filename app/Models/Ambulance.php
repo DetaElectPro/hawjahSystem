@@ -2,7 +2,9 @@
 
 namespace App\Models;
 
+use App\User;
 use Eloquent as Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Kyslik\ColumnSortable\Sortable;
 
@@ -11,7 +13,7 @@ use Kyslik\ColumnSortable\Sortable;
  * @package App\Models
  * @version December 9, 2019, 9:14 pm UTC
  *
- * @property \App\Models\users user
+ * @property users user
  * @property string title
  * @property string address
  * @property string longitude
@@ -23,10 +25,9 @@ class Ambulance extends Model
     use SoftDeletes, Sortable;
 
     public $table = 'ambulances';
-    
+
 
     protected $dates = ['deleted_at'];
-
 
 
     public $fillable = [
@@ -62,10 +63,10 @@ class Ambulance extends Model
     ];
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return BelongsTo
      **/
     public function user()
     {
-        return $this->belongsTo(\App\Models\users::class, 'user_id', 'id');
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
 }

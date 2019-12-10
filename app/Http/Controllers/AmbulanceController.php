@@ -95,6 +95,7 @@ class AmbulanceController extends AppBaseController
     public function edit($id)
     {
         $ambulance = $this->ambulanceRepository->find($id);
+        $users = User::all();
 
         if (empty($ambulance)) {
             Flash::error('Ambulance not found');
@@ -102,7 +103,7 @@ class AmbulanceController extends AppBaseController
             return redirect(route('ambulances.index'));
         }
 
-        return view('admin.web.ambulances.edit')->with('ambulance', $ambulance);
+        return view('admin.web.ambulances.edit', compact(['ambulance','users']));
     }
 
     /**
