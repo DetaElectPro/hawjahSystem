@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Kyslik\ColumnSortable\Sortable;
 
 /**
  * Class Ambulance
@@ -19,7 +20,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class Ambulance extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes, Sortable;
 
     public $table = 'ambulances';
     

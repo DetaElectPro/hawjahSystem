@@ -6,6 +6,7 @@ use App\Http\Requests\CreateAmbulanceRequest;
 use App\Http\Requests\UpdateAmbulanceRequest;
 use App\Repositories\AmbulanceRepository;
 use App\Http\Controllers\AppBaseController;
+use App\User;
 use Illuminate\Http\Request;
 use Flash;
 use Response;
@@ -29,9 +30,9 @@ class AmbulanceController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $ambulances = $this->ambulanceRepository->all();
+        $ambulances = $this->ambulanceRepository->paginateSortable('',12);
 
-        return view('ambulances.index')
+        return view('admin.web.ambulances.index')
             ->with('ambulances', $ambulances);
     }
 
@@ -42,7 +43,8 @@ class AmbulanceController extends AppBaseController
      */
     public function create()
     {
-        return view('ambulances.create');
+        $users = User::all();
+        return view('admin.web.ambulances.create', compact('users'));
     }
 
     /**
@@ -80,7 +82,7 @@ class AmbulanceController extends AppBaseController
             return redirect(route('ambulances.index'));
         }
 
-        return view('ambulances.show')->with('ambulance', $ambulance);
+        return view('admin.web.ambulances.show')->with('ambulance', $ambulance);
     }
 
     /**
@@ -100,7 +102,7 @@ class AmbulanceController extends AppBaseController
             return redirect(route('ambulances.index'));
         }
 
-        return view('ambulances.edit')->with('ambulance', $ambulance);
+        return view('admin.web.ambulances.edit')->with('ambulance', $ambulance);
     }
 
     /**
