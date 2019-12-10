@@ -160,6 +160,7 @@ class ProfileApiController extends AppBaseController
         $userID = auth('api')->user()->id;
         $user = User::find($userID);
         $user->fcm_registration_id = $request->fcm_registration_id;
+        $user->player_id = $request->player_id;
         $user->save();
         return response()->json($user);
     }
