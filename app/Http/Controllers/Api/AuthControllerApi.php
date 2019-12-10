@@ -43,20 +43,29 @@ class AuthControllerApi extends Controller
                 ->where('id', $user->id)
                 ->update(['fcm_registration_id' => $request->fcm_registration_id]);
         }
+        //medical_director or doctors
+        $authRole = $this->getRoles($request->role, $user->id);
+        if ($authRole === 'true') {
+            return response()->json([
+                'success' => true,
+                'token_type' => 'bearer',
+                'token' => $token,
+                'expires_in' => auth('api')->factory()->getTTL(),
+                'user' => JWTAuth::user(),
+            ]);
+        }
         return response()->json([
-            'success' => true,
-            'token_type' => 'bearer',
-            'token' => $token,
-            'expires_in' => auth('api')->factory()->getTTL(),
-            'user' => JWTAuth::user(),
-        ]);
+            'success' => false,
+            'message' => "Invalid auth you can't access",
+        ], 401);
     }
 
     /**
      * @param Request $request
      * @return JsonResponse
      */
-    public function logout(Request $request)
+    public
+    function logout(Request $request)
     {
 
 //        try {
@@ -83,7 +92,8 @@ class AuthControllerApi extends Controller
      * @param Request $request
      * @return JsonResponse
      */
-    public function register(Request $request)
+    public
+    function register(Request $request)
     {
         $status = 1;
         $validator = Validator::make($request->all(), [
@@ -134,7 +144,8 @@ class AuthControllerApi extends Controller
     /**
      * @return JsonResponse
      */
-    public function checkAuth()
+    public
+    function checkAuth()
     {
         try {
             $token = JWTAuth::parseToken()->authenticate();
@@ -154,7 +165,30 @@ class AuthControllerApi extends Controller
     }
 
 
-    public function saveImage($request)
+    /**
+     * @param int $roleId
+     * @param $userID
+     * @return string
+     */
+    public
+    function getRoles($roleId, $userID)
+    {
+        $users = User::find($userID);
+        $user = $users->roles->where('id', $roleId)->first();
+
+        if (!empty($user) && $user->name === 'medical_director') {
+            return 'true';
+        }
+        if (!empty($user) && $user->name === 'doctors') {
+            return 'true';
+        }
+        return 'false';
+
+    }
+
+
+    public
+    function saveImage($request)
     {
         $random = Str::random(10);
         if ($request->hasfile('image')) {

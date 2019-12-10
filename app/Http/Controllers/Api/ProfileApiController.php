@@ -163,9 +163,23 @@ class ProfileApiController extends AppBaseController
             DB::table('users')
                 ->where('id', $users->id)
                 ->update(['fcm_registration_id' => $request->fcm_registration_id]);
-            return response()->json(['update'=> $users, 'status'=> 'updated']);
+            return response()->json(['update' => $users, 'status' => 'updated']);
         }
         return response()->json(['fcm_registration_id' => 'null request']);
+
+    }
+
+    public function getUser($roleId = 4, $data = null)
+    {
+        $users = User::find(26);
+        $user = $users->roles->where('id', $roleId)->first();
+        if (!empty($user) && $user->name === 'medical_director') {
+            return 'true';
+        }
+        if (!empty($user) && $user->name === 'doctors') {
+            return 'true';
+        }
+        return 'false';
 
     }
 
