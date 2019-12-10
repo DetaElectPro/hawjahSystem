@@ -158,12 +158,13 @@ class ProfileApiController extends AppBaseController
      */
     public function updateFCM(Request $request)
     {
-        $users = auth('api')->user();
-        DB::table('users')
-            ->where('id', $users->id)
-            ->update(['fcm_registration_id' => $request->fcm_registration_id]);
-        $users2 = User::find($users->id);
-        return response()->json(['lastFcm' => $users->fcm_registration_id, 'new' => $users2]);
+        return $request->fcm_registration_id;
+//        $users = auth('api')->user();
+//        DB::table('users')
+//            ->where('id', $users->id)
+//            ->update(['fcm_registration_id' => $request->fcm_registration_id]);
+//        $users2 = User::find($users->id);
+//        return response()->json(['lastFcm' => $users->fcm_registration_id, 'new' => $users2]);
     }
 
 
