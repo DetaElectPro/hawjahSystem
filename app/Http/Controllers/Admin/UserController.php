@@ -121,6 +121,7 @@ class UserController extends Controller
             'email' => 'required|email|max:255',
             'active' => 'sometimes|boolean',
             'status' => 'sometimes',
+            'phone' => 'required',
             'confirmed' => 'sometimes|boolean',
         ]);
 
@@ -136,6 +137,7 @@ class UserController extends Controller
 
         $user->name = $request->get('name');
         $user->email = $request->get('email');
+        $user->phone = $request->get('phone');
 
         if ($request->has('password')) {
             $user->password = bcrypt($request->get('password'));

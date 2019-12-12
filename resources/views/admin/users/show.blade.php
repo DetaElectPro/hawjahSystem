@@ -25,9 +25,15 @@
                 </td>
             </tr>
             <tr>
-                <th>Status: </th>
+                <th>Phone:</th>
                 <td>
-                        {{ $user->status }}
+                    {{ $user->phone }}
+                </td>
+            </tr>
+            <tr>
+                <th>Status:</th>
+                <td>
+                    {{ $user->status }}
                 </td>
             </tr>
             <tr>
