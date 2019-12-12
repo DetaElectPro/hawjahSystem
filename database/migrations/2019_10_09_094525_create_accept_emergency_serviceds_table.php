@@ -24,8 +24,8 @@ class CreateAcceptEmergencyServicedsTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->timestamps();
             $table->softDeletes();
-            $table->foreign('emergency_id')->references('id')->on('emergency_serviceds');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('emergency_id')->references('id')->on('emergency_serviceds')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
