@@ -25,6 +25,12 @@
                 </td>
             </tr>
             <tr>
+                <th>Status: </th>
+                <td>
+                        {{ $user->status }}
+                </td>
+            </tr>
+            <tr>
                 <th>{{ __('views.admin.users.show.table_header_3') }}</th>
                 <td>
                     {{ $user->roles->pluck('name')->implode(',') }}
