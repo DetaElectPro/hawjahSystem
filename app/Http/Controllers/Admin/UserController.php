@@ -10,7 +10,7 @@ use App\Repositories\Access\User\EloquentUserRepository;
 use Validator;
 
 class UserController extends Controller
-{   
+{
     /**
      * Repository
      *
@@ -20,7 +20,7 @@ class UserController extends Controller
 
     /**
      * Construct
-     * 
+     *
      */
     public function __construct()
     {
@@ -57,8 +57,7 @@ class UserController extends Controller
     {
         $status = $this->repository->restore($id);
 
-        if($status)
-        {
+        if ($status) {
             return redirect()->route('admin.users')->withFlashSuccess('User Restored Successfully!');
         }
 
@@ -78,7 +77,7 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -111,7 +110,7 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param \Illuminate\Http\Request $request
      * @param User $user
      * @return mixed
      */
@@ -121,6 +120,7 @@ class UserController extends Controller
             'name' => 'required|max:255',
             'email' => 'required|email|max:255',
             'active' => 'sometimes|boolean',
+            'status' => 'sometimes',
             'confirmed' => 'sometimes|boolean',
         ]);
 
@@ -142,6 +142,7 @@ class UserController extends Controller
         }
 
         $user->active = $request->get('active', 0);
+        $user->status = $request->get('status');
         $user->confirmed = $request->get('confirmed', 0);
 
         $user->save();
@@ -161,15 +162,14 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
         $status = $this->repository->destroy($id);
 
-        if($status)
-        {
+        if ($status) {
             return redirect()->route('admin.users')->withFlashSuccess('User Deleted Successfully!');
         }
 
