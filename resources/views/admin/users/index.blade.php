@@ -26,7 +26,7 @@
                     <td>{{ $user->email }}</td>
                     <td>{{ $user->name }}</td>
                     <td>{{ $user->roles->pluck('name')->implode(',') }}</td>
-                    <td>{!! Str::limit($user->fcm_registration_id, 10) !!}</td>
+                    <td>{!! \Str::limit($user->fcm_registration_id, 10) !!}</td>
                     <td>{{ $user->phone}}</td>
                     <td>
                         @if($user->active)
