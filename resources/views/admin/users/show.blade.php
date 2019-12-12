@@ -19,9 +19,13 @@
             <tr>
                 <th>{{ __('views.admin.users.show.table_header_2') }}</th>
                 <td>
-                    <a href="mailto:{{ $user->email }}">
-                        {{ $user->email }}
-                    </a>
+                   @if (!empty($user->email))
+                        <a href="mailto:{{ $user->email }}">
+                            {{ $user->email }}
+                        </a>
+                       @else
+                       no email yet!!
+                   @endif
                 </td>
             </tr>
             <tr>
