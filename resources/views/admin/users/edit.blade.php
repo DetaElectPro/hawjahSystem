@@ -42,6 +42,23 @@
                         @endif
                     </div>
                 </div>
+            <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="status">
+                        Status:
+                        <span class="required">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input id="status" type="number" class="form-control col-md-7 col-xs-12 @if($errors->has('status')) parsley-error @endif"
+                               name="status" value="{{ $user->status }}" required>
+                        @if($errors->has('status'))
+                            <ul class="parsley-errors-list filled">
+                                @foreach($errors->get('status') as $error)
+                                    <li class="parsley-required">{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        @endif
+                    </div>
+                </div>
 
                 @if(!$user->hasRole('administrator'))
                     <div class="form-group">
