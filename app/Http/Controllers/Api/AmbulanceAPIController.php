@@ -55,7 +55,7 @@ class AmbulanceAPIController extends AppBaseController
     {
         $input = $request->all();
 
-        $ambulance = $this->ambulanceRepository->create($input);
+        $ambulance = $this->ambulanceRepository->createApi($input);
 
         return $this->sendResponse($ambulance->toArray(), 'Ambulance saved successfully');
     }

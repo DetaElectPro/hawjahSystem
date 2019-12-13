@@ -110,7 +110,7 @@ class MedicalSpecialtyAPIController extends AppBaseController
     {
         $input = $request->all();
 
-        $medicalSpecialty = $this->medicalSpecialtyRepository->create($input);
+        $medicalSpecialty = $this->medicalSpecialtyRepository->createApi($input);
 
         return $this->sendResponse($medicalSpecialty->toArray(), 'Medical Specialty saved successfully');
     }

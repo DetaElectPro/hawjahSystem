@@ -158,11 +158,27 @@ abstract class BaseRepository
      *
      * @return Model
      */
-    public function create($input)
+    public function createApi($input)
     {
         $user = auth('api')->user()->id;
         $model = $this->model->newInstance($input);
         $model->user_id = $user;
+        $model->save();
+
+        return $model;
+    }
+
+
+    /**
+     * Create model record
+     *
+     * @param array $input
+     *
+     * @return Model
+     */
+    public function create($input)
+    {
+        $model = $this->model->newInstance($input);
         $model->save();
 
         return $model;

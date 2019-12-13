@@ -55,7 +55,7 @@ class PharmacyAPIController extends AppBaseController
     {
         $input = $request->all();
 
-        $pharmacy = $this->pharmacyRepository->create($input);
+        $pharmacy = $this->pharmacyRepository->createApi($input);
 
         return $this->sendResponse($pharmacy->toArray(), 'Pharmacy saved successfully');
     }

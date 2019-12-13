@@ -106,7 +106,7 @@ class MedicalFieldAPIController extends AppBaseController
     {
         $input = $request->all();
 
-        $medicalField = $this->medicalFieldRepository->create($input);
+        $medicalField = $this->medicalFieldRepository->createApi($input);
 
         return $this->sendResponse($medicalField->toArray(), 'Medical Field saved successfully');
     }
