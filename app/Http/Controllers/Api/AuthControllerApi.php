@@ -35,7 +35,7 @@ class AuthControllerApi extends Controller
             return response()->json([
                 'success' => false,
                 'message' => 'Invalid Phone or Password',
-            ], 401);
+            ], 200);
         }
         if (!empty($request->fcm_registration_id)) {
             $user = JWTAuth::user();
@@ -57,7 +57,7 @@ class AuthControllerApi extends Controller
         return response()->json([
             'success' => false,
             'message' => "Invalid auth you can't access",
-        ], 401);
+        ], 200);
     }
 
     /**
