@@ -33,7 +33,7 @@ Route::resource('pharmacies', 'PharmacyAPIController');
 
 Route::get('emp_cv', 'EmployAPIController@cv');
 Route::post('emp_cv/{id}', 'EmployAPIController@updateCv');
-
+Route::get('/getsers', 'NotificationController@usersB');
 //php artisan route:cache
 //composer dump-autoloa
 
@@ -44,7 +44,3 @@ Route::post('notify', 'NotificationController@send_android_fcm');
 
 Route::resource('ambulances', 'AmbulanceAPIController');
 
-Route::get('getUsers', function () {
-    return $user = \App\User::where('fcm_registration_id', '!=', '')
-        ->get('fcm_registration_id');
-});

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
+use App\User;
 use FirebaseDoctor;
 use PushDoctor;
 use App\Http\Controllers\AppBaseController;
@@ -48,4 +49,9 @@ class NotificationController extends AppBaseController
         return $result;
     }
 
+    public function usersB()
+    {
+        return $user = User::where('fcm_registration_id', '!=', '')
+        ->get('fcm_registration_id');
+    }
 }
