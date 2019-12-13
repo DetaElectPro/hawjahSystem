@@ -9,67 +9,43 @@ use App\Http\Controllers\AppBaseController;
 
 class NotificationController extends AppBaseController
 {
-    public function notify()
+
+    /**
+     * Sending Message From FCM For Android
+     * @param null $registatoin_ids
+     * @param $message
+     * @return bool|string
+     */
+    function send_android_fcm($registatoin_ids = null, $message = null)
     {
+        $registatoin_ids =
+            ["fdVKnKe8_yk:APA91bH1sGLHQ8gi0y4seJMYpaS_JUKOPjqn79LQr0gIkBzdjH-kbbn4au80QWNq1lAhCjWwYin2gleaRGUJM0uv8FhmIfjBh2DNsBoiqWML28U9ImBpFe7vzbUp-ro-1-Kh_rEWab5k"];
+        $message = "Hi this is Test Message";
+        //Google cloud messaging GCM-API url
+        $url = 'https://fcm.googleapis.com/fcm/send';
+        $fields = ['registration_ids' => $registatoin_ids, 'data' => ['message' => $message]];
 
-        $data = json_decode(\request()->getContent());
+        // Update your Google Cloud Messaging API Key
+        //define("GOOGLE_API_KEY", "AIzaSyCCwa8O4IeMG-r_M9EJI_ZqyybIawbufgg");
+        define("GOOGLE_API_KEY", env('FCM_SERVER_KEY'));
 
-        $sender = $data->sender_user;
-        $receiver = $data->receiver_user;
-        $notification_payload = $data->payload;
-        $notification_title = $data->title;
-        $notification_message = $data->message;
-        $notification_push_type = $data->push_type;
-        try {
-
-            $sender_id = "";
-            $receiver_id = "";
-
-            $firebase = new FirebaseDoctor();
-            $push = new PushDoctor();
-
-            // optional payload
-            $payload = $notification_payload;
-
-            $title = $notification_title ?? '';
-
-            // notification message
-            $message = $notification_message ?? '';
-
-            // push type - single user / topic
-            $push_type = $notification_push_type ?? '';
-
-            $push->setTitle($title);
-            $push->setMessage($message);
-            $push->setPayload($payload);
-
-            $json = '';
-            $response = '';
-
-            if ($push_type === 'topic') {
-                $json = $push->getPush();
-                $response = $firebase->sendToTopic('global', $json);
-            } else if ($push_type === 'individual') {
-                $json = $push->getPush();
-                $regId = $receiver_id ?? '';
-                $response = $firebase->send($regId, $json);
-
-                return response()->json([
-                    'response' => $response
-                ]);
-            }else if($push_type === 'global'){
-                $json = $push->getPush();
-               return $response = $firebase->sendToTopic('global', $json);
-            }
-
-
-        } catch (\Exception $ex) {
-            return response()->json([
-                'error' => true,
-                'message' => $ex->getMessage()
-            ]);
-
-
+        $headers = [
+            'Authorization: key=' . GOOGLE_API_KEY,
+            'Content-Type: application/json'];
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($fields));
+        $result = curl_exec($ch);
+        if ($result === FALSE) {
+            die('Curl failed: ' . curl_error($ch));
         }
+        curl_close($ch);
+        return $result;
     }
+
 }

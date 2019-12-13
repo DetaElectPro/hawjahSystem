@@ -46,6 +46,6 @@ npm-debug.log
 /public/hot
 /public/storage
 bootstrap/cache/*
-bootstrap/cache/
+/bootstrap/cache/
 /storage/*.key
 yarn-error.log
