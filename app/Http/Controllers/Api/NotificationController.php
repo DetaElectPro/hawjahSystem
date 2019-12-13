@@ -20,7 +20,9 @@ class NotificationController extends AppBaseController
     function send_android_fcm($registatoin_ids = null, $message = null)
     {
         $registatoin_ids =
-            ["fdVKnKe8_yk:APA91bH1sGLHQ8gi0y4seJMYpaS_JUKOPjqn79LQr0gIkBzdjH-kbbn4au80QWNq1lAhCjWwYin2gleaRGUJM0uv8FhmIfjBh2DNsBoiqWML28U9ImBpFe7vzbUp-ro-1-Kh_rEWab5k"];
+            [
+                "fdVKnKe8_yk:APA91bH1sGLHQ8gi0y4seJMYpaS_JUKOPjqn79LQr0gIkBzdjH-kbbn4au80QWNq1lAhCjWwYin2gleaRGUJM0uv8FhmIfjBh2DNsBoiqWML28U9ImBpFe7vzbUp-ro-1-Kh_rEWab5k"
+            ,"e5XNcHsi488:APA91bEejpZds3Utd4vEKGdCXpwjprB4Gn7_YqSMq0TWzbh9W1NVh_KXIzVnL2x8SgKD873LvEE9bkHhat1ixOuYpzzC1g7781J-qjheF9dH_chJQruS3SrmNS8QaUEgBlcdyLrHsXxZ"];
         $message = "Hi this is Test Message";
         //Google cloud messaging GCM-API url
         $url = 'https://fcm.googleapis.com/fcm/send';
