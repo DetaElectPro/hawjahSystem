@@ -43,9 +43,8 @@ Route::post('notify', 'NotificationController@send_android_fcm');
 
 
 Route::resource('ambulances', 'AmbulanceAPIController');
+
 Route::get('getUsers', function () {
-    return \Illuminate\Support\Facades\DB::table('users')
-        ->select('id, fcm_registration_id as token')
-        ->where('fcm_registration_id', '!=', '')
-        ->get();
+    return $user = \App\User::where('fcm_registration_id', '!=', '')
+        ->get('fcm_registration_id');
 });
