@@ -7,13 +7,11 @@ use DB;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
-use Illuminate\Validation\ValidationException;
 use JWTAuth;
 use App\User;
 use Illuminate\Http\Request;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use App\Http\Controllers\Controller;
-use App\Events\Registered;
 use Tymon\JWTAuth\Exceptions\TokenExpiredException;
 use Tymon\JWTAuth\Exceptions\TokenInvalidException;
 
@@ -34,6 +32,7 @@ class AuthControllerApi extends Controller
         if (!$token = JWTAuth::attempt($input)) {
             return response()->json([
                 'success' => false,
+                'error' => true,
                 'message' => 'Invalid Phone or Password',
             ], 200);
         }
@@ -48,6 +47,7 @@ class AuthControllerApi extends Controller
         if ($authRole === 'true') {
             return response()->json([
                 'success' => true,
+                'error' => false,
                 'token_type' => 'bearer',
                 'token' => $token,
                 'expires_in' => auth('api')->factory()->getTTL(),
@@ -56,6 +56,7 @@ class AuthControllerApi extends Controller
         }
         return response()->json([
             'success' => false,
+            'error' => true,
             'message' => "Invalid auth you can't access",
         ], 200);
     }
@@ -136,6 +137,7 @@ class AuthControllerApi extends Controller
 
         return response()->json([
             'success' => true,
+            'error' => true,
             'data' => $user
         ], 200);
     }

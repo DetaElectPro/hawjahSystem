@@ -3,9 +3,8 @@
 namespace App\Http\Controllers\API;
 
 use App\User;
-use FirebaseDoctor;
-use PushDoctor;
 use App\Http\Controllers\AppBaseController;
+use Illuminate\Http\Request;
 
 
 class NotificationController extends AppBaseController
@@ -13,17 +12,17 @@ class NotificationController extends AppBaseController
 
     /**
      * Sending Message From FCM For Android
-     * @param null $registatoin_ids
+     * @param array $registatoin_ids
      * @param $message
      * @return bool|string
      */
-    function send_android_fcm($registatoin_ids = null, $message = null)
+    function send_android_fcm(Request $request)
     {
-        $registatoin_ids =
-            [
-                "fdVKnKe8_yk:APA91bH1sGLHQ8gi0y4seJMYpaS_JUKOPjqn79LQr0gIkBzdjH-kbbn4au80QWNq1lAhCjWwYin2gleaRGUJM0uv8FhmIfjBh2DNsBoiqWML28U9ImBpFe7vzbUp-ro-1-Kh_rEWab5k"
-            ,"e5XNcHsi488:APA91bEejpZds3Utd4vEKGdCXpwjprB4Gn7_YqSMq0TWzbh9W1NVh_KXIzVnL2x8SgKD873LvEE9bkHhat1ixOuYpzzC1g7781J-qjheF9dH_chJQruS3SrmNS8QaUEgBlcdyLrHsXxZ"];
-        $message = "Hi this is Test Message";
+        $registatoin_ids = $request->fcm_registration_id;
+        $registatoin_ids += [$registatoin_ids];
+        $registatoin_ids +=
+            ["ex9YPApCHSw:APA91bHR7ojUuXkr3rNg0EpsxqxidnBd5gjzuW8VFhaCfK0Tji4M2gocH1xhCsIyipt2WdVYhL2n2oaPkfPzjOno-CGsqJwVHU7MyB-GTvHN6wiMVtlUCWNRs7LqEWlcu7fT5rzxoi1L"];
+        $message = ['title' => "Hi this is Test Message", 'body' => 'Message body'];
         //Google cloud messaging GCM-API url
         $url = 'https://fcm.googleapis.com/fcm/send';
         $fields = ['registration_ids' => $registatoin_ids, 'data' => ['message' => $message]];
@@ -54,6 +53,6 @@ class NotificationController extends AppBaseController
     public function usersB()
     {
         return $user = User::where('fcm_registration_id', '!=', '')
-        ->get('fcm_registration_id');
+            ->get('fcm_registration_id');
     }
 }
