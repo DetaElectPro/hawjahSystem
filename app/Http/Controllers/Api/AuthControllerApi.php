@@ -137,7 +137,7 @@ class AuthControllerApi extends Controller
 
         return response()->json([
             'success' => true,
-            'error' => true,
+            'error' => false,
             'data' => $user
         ], 200);
     }
@@ -188,8 +188,7 @@ class AuthControllerApi extends Controller
     }
 
 
-    public
-    function saveImage($request)
+    public function saveImage($request)
     {
         $random = Str::random(10);
         if ($request->hasfile('image')) {
