@@ -17,8 +17,7 @@ class NotificationController extends AppBaseController
      */
     function send_android_fcm(Request $request)
     {
-        $registatoin_ids =
-            [$request->fcm_registration_id];
+        $registatoin_ids = [$request->fcm_registration_id];
         $message = ['title' => "Hi this is Test Message", 'body' => 'Message body'];
         //Google cloud messaging GCM-API url
         $url = 'https://fcm.googleapis.com/fcm/send';
