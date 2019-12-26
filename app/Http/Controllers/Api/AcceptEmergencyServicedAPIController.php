@@ -52,8 +52,10 @@ class AcceptEmergencyServicedAPIController extends AppBaseController
     {
         $user = auth('api')->user()->id;
 
-        $available = $request->available - $request->needing;
-        $requestEmergency = EmergencyServiced::whereId($request->emergency_id)->update(['available' => $available]);
+//         $available = $request->available - $request->needing;
+        $status = 2;
+        $requestEmergency = EmergencyServiced::whereId($request->emergency_id)
+            ->update(['available' => $requestEmergency->availbale - $request->needing, 'status'=> $status, ]);
         if ($request->hasFile('image')) {
             $file_name = $this->saveFile($request, $user);
             $input = $request->all();
