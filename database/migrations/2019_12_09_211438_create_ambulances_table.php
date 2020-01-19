@@ -15,7 +15,7 @@ class CreateAmbulancesTable extends Migration
     {
         Schema::create('ambulances', function (Blueprint $table) {
             $table->bigincrements('id');
-            $table->string('title');
+            $table->string('about')->nullable();
             $table->string('address');
             $table->string('longitude');
             $table->string('latitude');
