@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\FcmHelper;
 use App\Helpers\PushNotificationHelper;
 use App\Http\Controllers\Api\AcceptRequestApiController;
 use App\User;
@@ -96,6 +97,7 @@ class RequestSpecialist extends Model
 
     public function acceptRequestByUser($requestId, $userID)
     {
+
         $requestSpecialistData = RequestSpecialist::whereId($requestId)->whereStatus(1)->with('user')->first();
         $requestSpecialist = RequestSpecialist::whereId($requestId)->whereStatus(1)->update(['status' => 2]);
         if ($requestSpecialist == 1) {
@@ -104,8 +106,12 @@ class RequestSpecialist extends Model
             $acceptRequest->notes = '__';
             $acceptRequest->request_id = $requestId;
             $acceptRequest = $acceptRequest->save();
-            PushNotificationHelper::send($requestSpecialistData->user->fcm_registration_id,
-                'Request update', 'You have received new message from ', ["name" => $requestSpecialistData->user->name]);
+            $data = [
+                'fcm_registration_id' => $requestSpecialistData->user->fcm_registration_id,
+                'title' => "accept request",
+                "message" => "You have received new message from: " . $requestSpecialistData->user->name
+            ];
+            $this->fcm_send($data);
             return ['accept' => true, 'request' => true, 'acceptRequest' => $acceptRequest];
         } else {
             return ['accept' => false, 'request' => false, 'message' => $requestSpecialist];
@@ -185,5 +191,10 @@ class RequestSpecialist extends Model
 
     }
 
+    private function fcm_send($data)
+    {
+        $result = new FcmHelper();
+        return $result->send_android_fcm($data);
+    }
 
 }
