@@ -123,8 +123,12 @@ class RequestSpecialist extends Model
         $resultData = RequestSpecialist::whereId($requestId)->whereStatus(2)->with('user')->first();
         $result = RequestSpecialist::whereId($requestId)->whereStatus(2)->update(['status' => 3]);
         if ($result == 1) {
-            PushNotificationHelper::send($resultData->user->fcm_registration_id,
-                'Request update', 'You have received new message from ', ["name" => $resultData->user->name]);
+            $data = [
+                'fcm_registration_id' => $resultData->user->fcm_registration_id,
+                'title' => "Request update",
+                "message" => "You have received new message from: " . $resultData->user->name
+            ];
+            $this->fcm_send($data);
             return ['accept' => true, 'request' => true];
         } else {
             return ['accept' => false, 'request' => false, 'message' => $result];
@@ -144,6 +148,12 @@ class RequestSpecialist extends Model
         $acceptRequest = $acceptRequest->delete();
         if ($acceptRequest) {
             $requestSpecialist = RequestSpecialist::whereId($requestId)->update(['status' => 4]);
+//            $data = [
+//                'fcm_registration_id' => $acceptRequest->user->fcm_registration_id,
+//                'title' => "Request update",
+//                "message" => "You have received new message from: " . $resultData->user->name
+//            ];
+//            $this->fcm_send($data);
 //            PushNotificationHelper::send($resultData->user->fcm_registration_id,
 //                'Request update', 'You have received new message from ', ["name" => $resultData->user->name]);
             return ['accept' => true, 'request' => true];
