@@ -101,7 +101,7 @@ class User extends Authenticatable implements JWTSubject
         UserAttributes,
         UserScopes,
         UserRelations,
-        Notifiable,
+//        Notifiable,
         SoftDeletes,
         Sortable,
         Protectable;
