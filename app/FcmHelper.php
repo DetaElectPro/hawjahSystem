@@ -14,7 +14,7 @@ class FcmHelper extends Model
     function send_android_fcm($data)
     {
         $registatoin_ids = [$data->fcm_registration_id];
-        $message = ['title' => "Hi this is Test Message", 'body' => 'Message body'];
+        $message = ['title' => $data->title, 'body' => $data->message];
         //Google cloud messaging GCM-API url
         $url = 'https://fcm.googleapis.com/fcm/send';
         $fields = ['registration_ids' => $registatoin_ids, 'data' => ['message' => $message]];
