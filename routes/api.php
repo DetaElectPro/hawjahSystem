@@ -10,6 +10,7 @@ Route::prefix('auth')->group(function () {
     Route::put('/fcm', 'ProfileApiController@updateFCM')->name('user.update');
 });
 
+
 Route::prefix('cat')->group(function () {
     Route::get('medicalFC/{id}', 'MedicalSpecialtyAPIController@medicalFields');
 });
@@ -31,16 +32,19 @@ Route::resource('emergencyServiceds', 'EmergencyServicedAPIController');
 
 Route::resource('pharmacies', 'PharmacyAPIController');
 
+Route::resource('acceptEmergency', 'AcceptEmergencyServicedAPIController');
+
+Route::resource('ambulances', 'AmbulanceAPIController');
+
+
 Route::get('emp_cv', 'EmployAPIController@cv');
 Route::post('emp_cv/{id}', 'EmployAPIController@updateCv');
 Route::get('/getsers', 'NotificationController@usersB');
 //php artisan route:cache
 //composer dump-autoloa
 
-Route::resource('acceptEmergency', 'AcceptEmergencyServicedAPIController');
 
 Route::post('notify', 'NotificationController@send_android_fcm');
 
 
-Route::resource('ambulances', 'AmbulanceAPIController');
 
