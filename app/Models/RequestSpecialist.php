@@ -111,8 +111,8 @@ class RequestSpecialist extends Model
                 'title' => "accept request",
                 "message" => "You have received new message from: " . $requestSpecialistData->user->name
             ];
-            $this->fcm_send($data);
-            return ['accept' => true, 'request' => true, 'acceptRequest' => $acceptRequest];
+
+            return ['accept' => true, 'request' => true, 'acceptRequest' => $acceptRequest, 'fcm' => $this->fcm_send($data)];
         } else {
             return ['accept' => false, 'request' => false, 'message' => $requestSpecialist];
         }
@@ -129,7 +129,7 @@ class RequestSpecialist extends Model
                 "message" => "You have received new message from: " . $resultData->user->name
             ];
             $this->fcm_send($data);
-            return ['accept' => true, 'request' => true];
+            return ['accept' => true, 'request' => true, 'fcm' => $this->fcm_send($data)];
         } else {
             return ['accept' => false, 'request' => false, 'message' => $result];
         }

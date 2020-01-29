@@ -39,10 +39,12 @@ class AuthControllerApi extends Controller
         if (!empty($request->fcm_registration_id)) {
             $user = JWTAuth::user();
             DB::table('users')
-                ->where('id', $user->id)
+                ->where( 'id', $user->id)
                 ->update(['fcm_registration_id' => $request->fcm_registration_id]);
         }
         //medical_director or doctors
+        $user = JWTAuth::user();
+
         $authRole = $this->getRoles($request->role, $user->id);
         if ($authRole === 'true') {
             return response()->json([
