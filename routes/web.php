@@ -53,3 +53,7 @@ Route::get('medical_specialists/{id}/edit', 'Web\MedicalSpecialtyWEBController@e
 Route::put('medical_specialists/{id}/update', 'Web\MedicalSpecialtyWEBController@update');
 Route::get('medical_specialists/{id}/delete', 'Web\MedicalSpecialtyWEBController@destroy');
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
