@@ -13,8 +13,8 @@ before_script:
   - mysql -e 'create database medical;'
   - mysql -u root -h 127.0.0.1 -e "SHOW DATABASES"
   - mysql -u root -e "SET PASSWORD FOR 'root'@'localhost' = PASSWORD('secret')"
-  - composer install
-  #composer install --prefer-dist --no-interaction
+  - composer i --no-dev --optimize-autoloader --classmap-authoritative
+  - composer update  #composer install --prefer-dist --no-interaction
   - php artisan key:generate
   - cat .env
   - nvm install $NODEJS_VERSION
