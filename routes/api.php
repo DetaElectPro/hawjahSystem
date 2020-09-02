@@ -70,7 +70,16 @@ Route::resource('emergency_request', 'AmbulanceAPIController');
 Route::resource('blog', 'BlogAPIController');
 
 //DoctorProfile
-Route::resource('blog', 'DoctorProfileAPIController');
+Route::resource('doctor_profile', 'DoctorProfileAPIController');
 
-//Blog
-Route::resource('blog', 'BlogAPIController');
+//DoctorAwardsRecognitions
+Route::resource('doctor_awards_recognitions', 'DoctorAwardsRecognitionsAPIController');
+
+//DoctorDegreesCertificationAPIController
+Route::resource('doctor_degrees_certification', 'DoctorDegreesCertificationAPIController');
+
+//DoctorTopicAPIController
+Route::resource('doctor_topic', 'DoctorTopicAPIController');
+
+//TopicAPIController
+//Route::resource('topic', 'TopicAPIController');
