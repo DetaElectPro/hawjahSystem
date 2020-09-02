@@ -27,7 +27,7 @@ class DoctorTopicAPIController extends Controller
      */
     public function index()
     {
-        $doctorTopic = $this->doctorTopicRepository->withPaginate(10, 'user');
+        $doctorTopic = $this->doctorTopicRepository->withPaginate(10, 'doctor');
         return $this->sendResponse($doctorTopic->toArray(), 'Doctor Topic retrieved successfully');
 
     }

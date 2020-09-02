@@ -4,18 +4,10 @@ namespace App;
 
 use App\Models\{AcceptRequestSpecialists, Wallet, EmergencyServiced, Employ};
 use Eloquent;
-use Illuminate\Auth\Authenticatable;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\Auth;
-use Laravel\Lumen\Auth\Authorizable;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
-use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
-
-
+use Illuminate\Notifications\Notifiable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
+
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
 /**
  * App\User
@@ -63,11 +55,9 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
  * @method static Builder|User whereUpdatedAt($value)
  * @mixin Eloquent
  */
-class User extends Model implements AuthenticatableContract, AuthorizableContract, JWTSubject
+class User extends Authenticatable implements JWTSubject
 {
-    use Authenticatable, Authorizable;
-
-
+    use Notifiable;
     /**
      * The attributes that are mass assignable.
      *
@@ -154,5 +144,17 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     public function acceptRequest()
     {
         return $this->hasOne(AcceptRequestSpecialists::class);
+    }
+
+    /**
+     * Determine if the entity has a given ability.
+     *
+     * @param string $ability
+     * @param array|mixed $arguments
+     * @return bool
+     */
+    public function can($ability, $arguments = [])
+    {
+        // TODO: Implement can() method.
     }
 }

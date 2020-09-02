@@ -25,7 +25,6 @@
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
 
 
-
 </head>
 
 <body id="page-top">
@@ -438,9 +437,12 @@
 <script src="https://elteyab.github.io/vendor/chart.js/Chart.min.js"></script>
 
 <!-- Page level custom scripts -->
-<script src="https://elteyab.github.io/js/demo/chart-area-demo.js"></script>
+{{--<script src="https://elteyab.github.io/js/demo/chart-area-demo.js"></script>--}}
+<script src="{{asset('')}}js/chart-area.js"></script>
+<script src="{{asset('')}}js/chart-bar.js"></script>
+<script src="{{asset('')}}js/chart-pie.js"></script>
 {{--<script src="{{ url('/asset/js/array-chart.js') }}"></script>--}}
-<script src="https://elteyab.github.io/js/demo/chart-pie-demo.js"></script>
+{{--<script src="https://elteyab.github.io/js/demo/chart-pie-demo.js"></script>--}}
 
 
 <!-- Page level plugins -->

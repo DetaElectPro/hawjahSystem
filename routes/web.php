@@ -45,15 +45,21 @@ Route::get('medical_fields/{id}/edit', 'Web\MedicalFieldWEBController@edit');
 Route::put('medical_fields/{id}/update', 'Web\MedicalFieldWEBController@update');
 Route::get('medical_fields/{id}/delete', 'Web\MedicalFieldWEBController@destroy');
 //medical_specialists
-Route::get('medical_specialists', 'Web\MedicalSpecialtyWEBController@index');
-Route::post('medical_specialists', 'Web\MedicalSpecialtyWEBController@store');
-Route::get('medical_specialists/create', 'Web\MedicalSpecialtyWEBController@create');
-Route::get('medical_specialists/{id}/view', 'Web\MedicalSpecialtyWEBController@show');
-Route::get('medical_specialists/{id}/edit', 'Web\MedicalSpecialtyWEBController@edit');
-Route::put('medical_specialists/{id}/update', 'Web\MedicalSpecialtyWEBController@update');
-Route::get('medical_specialists/{id}/delete', 'Web\MedicalSpecialtyWEBController@destroy');
+Route::resource('medical_specialists', 'Web\MedicalSpecialtyWEBController');
+//Route::post('medical_specialists', 'Web\MedicalSpecialtyWEBController@store');
+//Route::get('medical_specialists/create', 'Web\MedicalSpecialtyWEBController@create');
+//Route::get('medical_specialists/{id}/view', 'Web\MedicalSpecialtyWEBController@show');
+//Route::get('medical_specialists/{id}/edit', 'Web\MedicalSpecialtyWEBController@edit');
+//Route::put('medical_specialists/{id}/update', 'Web\MedicalSpecialtyWEBController@update');
+//Route::get('medical_specialists/{id}/delete', 'Web\MedicalSpecialtyWEBController@destroy');
 
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::group(['prefix' => 'chart'], function () {
+    Route::get('user', 'Web\DashboardWEBController@users');
+    Route::get('requests', 'Web\DashboardWEBController@requests');
+
+});

@@ -12,6 +12,13 @@ class DoctorTopic extends Model
 
     protected $fillable = ['doctor_id', 'topic_id'];
 
+    public function setDoctorIdAttribute($doctor_id)
+    {
+        if (!empty($doctor_id)) {
+            $this->attributes['doctor_id'] = auth('api')->user()->id;
+        }
+    }
+
     public function doctor()
     {
         return $this->belongsTo(User::class, 'doctor_id');

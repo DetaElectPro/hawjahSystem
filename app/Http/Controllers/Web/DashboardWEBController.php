@@ -6,7 +6,7 @@ use App\Http\Controllers\AppBaseController;
 use App\Models\EmergencyServiced;
 use App\Models\RequestSpecialists;
 use App\User;
-use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Class DashboardWEBController
@@ -56,13 +56,14 @@ class DashboardWEBController extends AppBaseController
             'requests']));
     }
 
-    private function users()
+    public function users()
     {
         $users = User::all()->count();
         $doctor = User::whereRole(4)->count();
         $pharmacists = User::whereRole(5)->count();
         $nurse = User::whereRole(6)->count();
         $other = User::whereRole(7)->count();
+
         return [
             'user' => $users,
             'doctor' => $doctor,
@@ -71,6 +72,22 @@ class DashboardWEBController extends AppBaseController
             'other' => $other
         ];
     }
+
+
+    public function requests()
+    {
+        $year = date("Y");
+        $request = DB::select("SELECT  count(id) AS request
+                                FROM request_specialists
+                                WHERE year(created_at) = ''+$year AND (status = 1 OR status = 2)
+                                group by month(created_at)
+                                ORDER BY month(created_at) ASC");
+        foreach ($request as $item) {
+            $data[] = $item->request;
+        }
+        return $data;
+    }
+
 
     private function medicalRequests()
     {
