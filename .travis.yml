@@ -16,13 +16,13 @@ before_script:
   - composer i --no-dev --optimize-autoloader --classmap-authoritative
   - composer update  #composer install --prefer-dist --no-interaction
   - php artisan key:generate
-  - php artisan migrate --seed --no-interaction
+  - php artisan migrate
 
   - cat .env
   - nvm install $NODEJS_VERSION
   - npm install
   - npm run dev
-  - php artisan migrate --seed --no-interaction
+  - php artisan migrate --seed
   - ls -la
 
 script:
