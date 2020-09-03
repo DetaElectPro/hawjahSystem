@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API;
 
+use App\Http\Controllers\AppBaseController;
 use App\Models\MedicalSpecialty;
 use App\Repositories\MedicalSpecialtyRepository;
 use Illuminate\Http\Request;
@@ -11,7 +12,7 @@ use Illuminate\Support\Facades\Response;
  * Class MedicalSpecialtyController
  * @package App\Http\Controllers\API
  */
-class MedicalSpecialtyAPIController extends Controller
+class MedicalSpecialtyAPIController extends AppBaseController
 {
     /** @var  MedicalSpecialtyRepository */
     private $medicalSpecialtyRepository;

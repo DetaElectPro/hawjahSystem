@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\AppBaseController;
 use App\Models\DoctorTopic;
 use App\Repositories\DoctorTopicRepository;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
-class DoctorTopicAPIController extends Controller
+class DoctorTopicAPIController extends AppBaseController
 {
     /** @var  DoctorTopicRepository */
     private $doctorTopicRepository;

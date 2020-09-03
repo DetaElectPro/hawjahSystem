@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API;
 
+use App\Http\Controllers\AppBaseController;
 use App\Models\AcceptRequestSpecialists;
 use App\Repositories\AcceptRequestSpecialistsRepository;
 use Illuminate\Http\Request;

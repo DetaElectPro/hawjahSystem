@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API;
 
+use App\Http\Controllers\AppBaseController;
 use App\Models\RequestSpecialists;
 use App\Models\Wallet;
 use App\Repositories\RequestSpecialistsRepository;

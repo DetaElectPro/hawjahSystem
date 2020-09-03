@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API;
 
+use App\Http\Controllers\AppBaseController;
 use DB;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Auth;
@@ -10,10 +11,10 @@ use Illuminate\Support\Str;
 use App\User;
 use Illuminate\Http\Request;
 use Tymon\JWTAuth\Exceptions\JWTException;
-use Tymon\JWTAuth\JWTAuth;
+use JWTAuth;
 
 
-class AuthControllerApi extends Controller
+class AuthControllerApi extends AppBaseController
 {
     /**
      * @var bool

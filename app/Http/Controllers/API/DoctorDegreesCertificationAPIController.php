@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 
-class DoctorDegreesCertificationAPIController extends Controller
+class DoctorDegreesCertificationAPIController extends AppBaseController
 {
     /**
      * Display a listing of the resource.
