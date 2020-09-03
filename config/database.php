@@ -24,6 +24,17 @@ return [
 
     'default' => env('DB_CONNECTION', 'your_heroku_mysql_connection'),
 
+    'your_heroku_mysql_connection' => array(
+        'driver' => 'mysql',
+        'host' => $host,
+        'database' => $database,
+        'username' => $username,
+        'password' => $password,
+        'charset' => 'utf8',
+        'collation' => 'utf8_unicode_ci',
+        'prefix' => '',
+    ),
+
     /*
     |--------------------------------------------------------------------------
     | Database Connections
@@ -42,6 +53,7 @@ return [
 
     'connections' => [
 
+
         'your_heroku_mysql_connection' => array(
             'driver' => 'mysql',
             'host' => $host,
@@ -52,7 +64,6 @@ return [
             'collation' => 'utf8_unicode_ci',
             'prefix' => '',
         ),
-
         'sqlite' => [
             'driver' => 'sqlite',
             'url' => env('DATABASE_URL'),
