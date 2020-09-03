@@ -10,7 +10,7 @@
                     <form class="user" method="post" enctype='multipart/form-data'
                           action="{{url('/')}}/admin/medical_fields/{{$medicalField->id}}/update">
                         <input type="hidden" name="_method" value="PUT">
-                        {{--                        <input type="hidden" name="_token" value="{{ csrf_token() }}">--}}
+                        @csrf
                         <div class="form-group row">
                             <div class="col-sm-6 mb-3 mb-sm-0">
                                 <label for="name">Medical Field Name:</label>

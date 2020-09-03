@@ -9,6 +9,8 @@
                 <div class="p-5 container">
                     <form class="user" method="post" enctype='multipart/form-data'
                           action="/admin/medical_specialists/{{$medicalSpecialty->id}}/update">
+                        @csrf
+
                         <input type="hidden" name="_method" value="PUT">
                         <div class="form-group row">
                             <div class="col-sm-6 mb-3 mb-sm-0">
