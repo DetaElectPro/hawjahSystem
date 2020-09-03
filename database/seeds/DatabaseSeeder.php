@@ -11,24 +11,23 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+//
+//        DB::insert('INSERT INTO users (id, name, phone, email, fcm_registration_id, image, password, active, confirmation_code, confirmed, email_verified_at, status, role, created_at, updated_at, remember_token, deleted_at)'
+//            , [2, 'Elteyab Hassan', '114847667', 'admin@demo.com', NULL, NULL, '$2y$10$SGCQJsvWwUYXEaav05PZXOTFDag44rpeht4ASZ2atEojg96c4//UK', 1, NULL, 1, NULL, 1, 4, '2020-09-02 17:33:46', '2020-09-02 17:33:46', NULL, NULL]);
+//  DB::insert('INSERT INTO users (id, name, phone, email, fcm_registration_id, image, password, active, confirmation_code, confirmed, email_verified_at, status, role, created_at, updated_at, remember_token, deleted_at)'
+//            , [3, 'Omer', '123123', 'admin@gmail.com', NULL, NULL, '$2y$10$kz6Ma02crRDAacvZ3HyfPeJ3/J4Gaqb8HebJARQstfC6SUZ9CJ9Ha', 1, NULL, 1, NULL, 1, 4, '2020-09-02 19:07:11', '2020-09-02 19:07:11', NULL, NULL]);
 
-        DB::insert('INSERT INTO users (id, name, phone, email, fcm_registration_id, image, password, active, confirmation_code, confirmed, email_verified_at, status, role, created_at, updated_at, remember_token, deleted_at)'
-            , [2, 'Elteyab Hassan', '114847667', 'admin@demo.com', NULL, NULL, '$2y$10$SGCQJsvWwUYXEaav05PZXOTFDag44rpeht4ASZ2atEojg96c4//UK', 1, NULL, 1, NULL, 1, 4, '2020-09-02 17:33:46', '2020-09-02 17:33:46', NULL, NULL]);
-  DB::insert('INSERT INTO users (id, name, phone, email, fcm_registration_id, image, password, active, confirmation_code, confirmed, email_verified_at, status, role, created_at, updated_at, remember_token, deleted_at)'
-            , [3, 'Omer', '123123', 'admin@gmail.com', NULL, NULL, '$2y$10$kz6Ma02crRDAacvZ3HyfPeJ3/J4Gaqb8HebJARQstfC6SUZ9CJ9Ha', 1, NULL, 1, NULL, 1, 4, '2020-09-02 19:07:11', '2020-09-02 19:07:11', NULL, NULL]);
 
-  DB::select("
-      INSERT INTO `medical_fields` (`id`, `name`, `created_at`, `updated_at`, `deleted_at`) VALUES
+        DB::select("INSERT INTO `medical_fields` (`id`, `name`, `created_at`, `updated_at`, `deleted_at`) VALUES
     (1, 'fasfsdf', '2020-09-23 22:59:12', '2020-09-14 22:59:12', NULL),
 (2, 'aefef', '2020-09-24 22:59:12', '2020-09-16 22:59:12', NULL),
 (3, 'fasfsdf', '2020-09-23 22:59:12', '2020-09-14 22:59:12', NULL),
 (4, 'aefef', '2020-09-24 22:59:12', '2020-09-16 22:59:12', NULL),
 (5, 'fasfsdf', '2020-09-23 22:59:12', '2020-09-14 22:59:12', NULL),
 (6, 'aefef', '2020-09-24 22:59:12', '2020-09-16 22:59:12', NULL);"
-);
+        );
 
-  DB::select("
-INSERT INTO `medical_specialties` (`id`, `name`, `medical_id`, `created_at`, `updated_at`, `deleted_at`) VALUES
+        DB::select("INSERT INTO `medical_specialties` (`id`, `name`, `medical_id`, `created_at`, `updated_at`, `deleted_at`) VALUES
 (1, 'aefafe', 1, NULL, NULL, NULL),
 (2, 'EFASEF', 4, NULL, NULL, NULL),
 (3, 'aefafe', 1, NULL, NULL, NULL),
@@ -37,7 +36,7 @@ INSERT INTO `medical_specialties` (`id`, `name`, `medical_id`, `created_at`, `up
 (6, 'EFASEF', 5, NULL, NULL, NULL);
 
 ");
-  DB::select("
+        DB::select("
 
 INSERT INTO `request_specialists` (`id`, `name`, `address`, `start_time`, `end_time`, `number_of_hour`, `price`, `status`, `longitude`, `latitude`, `medical_id`, `user_id`, `doctor_id`, `created_at`, `updated_at`, `deleted_at`) VALUES
 (3, 'iwjflafm', 'asfQEFOMQEFl', '2020-09-09', '2020-09-04', 22, 13.00, 1, 123, 123, 2, 2, 3, '2020-09-02 22:57:53', NULL, NULL),
