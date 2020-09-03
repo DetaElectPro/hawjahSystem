@@ -15,9 +15,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        if ($this->app->environment() !== 'production') {
-            $this->app->register(IdeHelperServiceProvider::class);
-        }
+//        if ($this->app->environment() !== 'production') {
+//            $this->app->register(IdeHelperServiceProvider::class);
+//        }
     }
 
     /**
