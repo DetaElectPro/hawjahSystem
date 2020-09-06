@@ -343,9 +343,9 @@
                     <li class="nav-item dropdown no-arrow">
                         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="mr-2 d-none d-lg-inline text-gray-600 small">Dr. Husaam</span>
+                            <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{Auth::user()->name}}</span>
                             <img class="img-profile rounded-circle"
-                                 src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Flag-map_of_Sudan.svg/1200px-Flag-map_of_Sudan.svg.png">
+                                 src="{{Auth::user()->image? Auth::user()->image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Flag-map_of_Sudan.svg/1200px-Flag-map_of_Sudan.svg.png'}}">
                         </a>
                         <!-- Dropdown - User Information -->
                         <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -363,10 +363,17 @@
                                 Activity Log
                             </a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                            <a class="dropdown-item" href="{{ route('logout') }}" data-toggle="modal"
+                               data-target="#logoutModal"
+                               onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
                                 <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                 Logout
                             </a>
+
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
                         </div>
                     </li>
 
@@ -383,7 +390,7 @@
 <footer class="sticky-footer bg-white">
     <div class="container my-auto">
         <div class="copyright text-center my-auto">
-            <span>Copyright &copy; DetaTech <?echo \Carbon\Carbon::now()->format('Y')?></span>
+            <span>Copyright &copy; <a href="https://thesmarter-sd.xyz">TheSmarter</a> {{\Carbon\Carbon::now()->format('Y')}}</span>
         </div>
     </div>
 </footer>
@@ -414,7 +421,7 @@
             <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <a class="btn btn-primary" href="login.html">Logout</a>
+                <a class="btn btn-primary" href="/login">Logout</a>
             </div>
         </div>
     </div>

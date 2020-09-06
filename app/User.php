@@ -114,12 +114,13 @@ class User extends Authenticatable implements JWTSubject
         return [];
     }
 
-    public function setPasswordAttribute($password)
-    {
-        if (!empty($password)) {
-            $this->attributes['password'] = app('hash')->make($password);
-        }
-    }
+//    public function setPasswordAttribute($password)
+//    {
+//        if (!empty($password)) {
+////            $this->attributes['password'] = app('hash')->make($password);
+//            $this->attributes['password'] = app('hash')->make($password);
+//        }
+//    }
 
     public function createWallet()
     {

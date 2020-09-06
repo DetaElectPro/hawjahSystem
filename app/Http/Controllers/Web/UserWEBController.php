@@ -6,6 +6,7 @@ use App\Http\Controllers\AppBaseController;
 use App\Repositories\UserRepository;
 use App\User;
 use Exception;
+use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
@@ -45,18 +46,32 @@ class UserWEBController extends AppBaseController
      * @param Request $request
      *
      * @return Response
+     * @throws BindingResolutionException
      */
     public function store(Request $request)
     {
+
         $input = $request->all();
+
         if ($request->image->extension()) {
-            $image = $this->saveImage($request);
-            $user = new User();
-            $user->fill($input);
-            $user->image = $image;
-            $user->password = app('hash')->make($input->password);
-            $user->save();
-            return redirect('admin/users');
+            if ($request->email) {
+                $image = $this->saveImage($request);
+                $user = new User();
+                $user->fill($input);
+                $user->image = $image;
+                $user->password = bcrypt($input['password']);
+                $user->save();
+                return redirect('admin/users');
+            } else {
+                $image = $this->saveImage($request);
+                $user = new User();
+                $user->fill($input);
+                $user->image = $image;
+                $user->email = substr($input['name'], 1, 4) . '@virtal-helth.com';
+                $user->password = bcrypt($input['password']);
+                $user->save();
+                return redirect('admin/users');
+            }
         }
         $user = new User();
         $user->fill($input);
@@ -171,9 +186,9 @@ class UserWEBController extends AppBaseController
         $random = Str::random(10);
         if ($request->hasfile('image')) {
             $image = $request->file('image');
-            $name = $random . '_users' . $request->image->extension();
+            $name = $random . '_users.' . $request->image->extension();
             $image->move(base_path() . '/public/users/', $name);
-            $name = url("profile/$name");
+            $name = url("/public/users/$name");
             return $name;
         }
         return false;
