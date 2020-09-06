@@ -27,7 +27,7 @@ class UserWEBController extends AppBaseController
     }
 
     /**
-     * Display a listing of the Blog.
+     * Display a listing of the User.
      * GET|HEAD /users
      *
      * @return Response
@@ -40,7 +40,7 @@ class UserWEBController extends AppBaseController
     }
 
     /**
-     * Store a newly created Blog in storage.
+     * Store a newly created User in storage.
      * POST /users
      *
      * @param Request $request
@@ -83,7 +83,7 @@ class UserWEBController extends AppBaseController
 
 
     /**
-     * Display the specified Blog.
+     * Display the specified User.
      * GET|HEAD /users/{id}/show
      *
      * @param int $id
@@ -99,11 +99,11 @@ class UserWEBController extends AppBaseController
         if (empty($user)) {
             return redirect('404');
         }
-        return view('usersview', $user);
+        return view('users.show', $user);
     }
 
     /**
-     * Display the specified Blog.
+     * Display the specified User.
      * GET|HEAD /users/{id}/create
      *
      * @return Response
@@ -114,7 +114,7 @@ class UserWEBController extends AppBaseController
     }
 
     /**
-     * Display the specified Blog.
+     * Display the specified User.
      * GET|HEAD /users/{id}/edit
      *
      * @param int $id
@@ -130,11 +130,11 @@ class UserWEBController extends AppBaseController
         if (empty($user)) {
             return redirect('404');
         }
-        return view('users.edit', $user);
+        return view('users.edit', compact('user'));
     }
 
     /**
-     * Update the specified Blog in storage.
+     * Update the specified User in storage.
      * PUT/PATCH /users/{id}/update
      *
      * @param int $id
@@ -159,7 +159,7 @@ class UserWEBController extends AppBaseController
     }
 
     /**
-     * Remove the specified Blog from storage.
+     * Remove the specified User from storage.
      * DELETE /users/{id}
      *
      * @param int $id
@@ -174,7 +174,7 @@ class UserWEBController extends AppBaseController
         $user = $this->userRepository->find($id);
 
         if (empty($user)) {
-            return $this->sendError('Blog not found');
+            return $this->sendError('User not found');
         }
 
         $user->delete();

@@ -22,9 +22,9 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('dashboard', 'Web\DashboardWEBController@index');
+Route::get('dashboard', 'Web\DashboardWEBController@index')->middleware('auth');
 
-Route::group(['prefix' => 'admin'], function () {
+Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
 
 //blog
     Route::resource('blog', 'Web\BlogWEBController');
