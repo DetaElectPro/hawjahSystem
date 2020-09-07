@@ -45,3 +45,7 @@ Route::group(['prefix' => 'chart'], function () {
     Route::get('requests', 'Web\DashboardWEBController@requests');
 
 });
+
+Route::get('new-login', function () {
+    return view('auth.loginN');
+});
