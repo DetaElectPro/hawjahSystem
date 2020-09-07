@@ -13,7 +13,7 @@
                     {{--                            <h1 class="h4 text-gray-900 mb-4">write new blog!</h1>--}}
                     {{--                        </div>--}}
                     <form class="user" method="post" enctype='multipart/form-data'
-                          action="{{ url('admin/users')  }}">
+                          action="{{route('users.store')}}">
                         @csrf
 
                         <div class="form-group row">

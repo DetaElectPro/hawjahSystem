@@ -13,7 +13,7 @@
             <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold text-primary">All Users</h6>
                 <br>
-                <a href="users/create" class="btn-lg btn-primary">
+                <a href="{{route('users.create')}}" class="btn-lg btn-primary">
                     Add <i class="fas fa-pen-square"></i>
                 </a>
             </div>
@@ -64,10 +64,10 @@
                                 <td><img src="{{$user->image}}" height="40" width="40"></td>
                                 <td>{{$user->created_at}}</td>
                                 <td>
-                                    <a href="users/{{$user->id}}/view" class="btn btn-primary btn-circle">
+                                    <a href="{{route('users.show', $user->id)}}" class="btn btn-primary btn-circle">
                                         <i class="fas fa-eye"></i>
                                     </a>
-                                    <a href="users/{{$user->id}}/edit" class="btn btn-info btn-circle">
+                                    <a href="{{route('users.edit',$user->id)}}" class="btn btn-info btn-circle">
                                         <i class="fas fa-edit"></i>
                                     </a>
 

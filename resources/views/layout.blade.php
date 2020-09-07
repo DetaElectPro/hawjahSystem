@@ -32,6 +32,7 @@
 <div id="wrapper">
 {{--@extends('app.top')--}}
 
+@if (Auth::user())
 
 <!-- Sidebar -->
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
@@ -167,6 +168,7 @@
         <!-- Main Content -->
         <!-- Main Content -->
         <div id="content">
+{{--        @if (Auth::user())--}}
 
             <!-- Topbar -->
             <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
@@ -340,10 +342,15 @@
                     <div class="topbar-divider d-none d-sm-block"></div>
 
                     <!-- Nav Item - User Information -->
+
                     <li class="nav-item dropdown no-arrow">
                         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{Auth::user()->name}}</span>
+                            <span class="mr-2 d-none d-lg-inline text-gray-600 small">@if (Auth::user())
+                                    {{Auth::user()->name}}
+                                @else
+                                    "G Man"
+                                @endif</span>
                             <img class="img-profile rounded-circle"
                                  src="{{Auth::user()->image? Auth::user()->image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Flag-map_of_Sudan.svg/1200px-Flag-map_of_Sudan.svg.png'}}">
                         </a>
@@ -376,6 +383,8 @@
                             </form>
                         </div>
                     </li>
+                    @endif
+
 
                 </ul>
 

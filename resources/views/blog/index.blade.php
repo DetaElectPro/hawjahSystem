@@ -13,7 +13,7 @@
             <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold text-primary">All Blog</h6>
                 <br>
-                <a href="blog/create" class="btn-lg btn-primary">
+                <a href="{{route('blog.create')}}" class="btn-lg btn-primary">
                     Add <i class="fas fa-pen-square"></i>
                 </a>
             </div>

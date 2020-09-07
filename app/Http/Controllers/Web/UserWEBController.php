@@ -99,7 +99,7 @@ class UserWEBController extends AppBaseController
         if (empty($user)) {
             return redirect('404');
         }
-        return view('users.show', $user);
+        return view('users.show', compact('user'));
     }
 
     /**
