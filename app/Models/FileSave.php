@@ -78,6 +78,22 @@ class FileSave extends Model
         'url' => 'string',
     ];
 
+    public function saveFile($request, $userId, $modelId, $modelIdName, $modelName)
+    {
+//        return  $userId. $modelIdName. $modelId. $modelName;
+        $image = $request->file($modelName);
+        $name = $userId . "_$modelName." . $request->$modelName->extension();
+        $image->move(public_path() . "/public/$modelName/", $name);
+        $name = public_path("$modelName/$name");
+        $save = new FileSave();
+        $save->name = $request->$modelName->getClientOriginalName();
+        $save->extension = $request->$modelName->extension();
+        $save->$modelIdName = $modelId;
+        $save->url = $name;
+           return $save->save();
+//        return $name;
+    }
+
     /**
      * @return BelongsTo
      **/

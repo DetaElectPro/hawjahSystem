@@ -2,6 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 
+Route::post('postFile', function (\Illuminate\Http\Request $request) {
+    $file = new \App\Models\FileSave();
+    return  $file->saveFile($request, 2, 1,'employ_id', 'cv');
+});
+
 
 Route::group(['prefix' => 'auth'], function () {
     Route::post('login', 'AuthControllerApi@login');
