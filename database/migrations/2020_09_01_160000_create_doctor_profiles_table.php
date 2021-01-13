@@ -17,9 +17,9 @@ class CreateDoctorProfilesTable extends Migration
             $table->id();
             $table->string('about_me')->nullable();
             $table->string('language')->nullable();
-            $table->string('username')->nullable();;
-            $table->enum('available', [1, 2])->nullable();;
-            $table->integer('percentage')->nullable();;
+            $table->string('username')->nullable();
+            $table->enum('available', [1, 2])->nullable();
+            $table->integer('percentage')->nullable();
             $table->foreignId('doctor_id')->constrained('users');
             $table->timestamps();
             $table->softDeletes();

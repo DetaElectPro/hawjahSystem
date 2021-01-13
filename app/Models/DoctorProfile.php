@@ -10,12 +10,13 @@ class DoctorProfile extends Model
 {
     use SoftDeletes;
 
-    protected $fillable = ['user_id', 'about_me', 'username', 'language', 'available', 'percentage'];
+    protected $fillable = ["doctor_id", "about_me", "username", "language", "available", "percentage"];
+    protected $table = 'doctor_profiles';
 
 
     public function doctor()
     {
-        return $this->belongsTo(User::class, 'doctor_id');
+        return $this->belongsTo(User::class, "doctor_id");
     }
 
 }

@@ -5,6 +5,7 @@ namespace App;
 use App\Models\{AcceptRequestSpecialists, Wallet, EmergencyServiced, Employ};
 use Eloquent;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Auth;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;

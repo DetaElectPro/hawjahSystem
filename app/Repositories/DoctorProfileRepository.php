@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\DoctorProfile;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * Class DoctorProfileRepository
@@ -15,8 +16,7 @@ class DoctorProfileRepository extends BaseRepository
      * @var array
      */
     protected $fieldSearchable = [
-        'about_me',
-        'username', 'language', 'available', 'percentage'
+        'about_me', 'username', 'language', 'available', 'percentage'
     ];
 
     /**
@@ -35,5 +35,13 @@ class DoctorProfileRepository extends BaseRepository
     public function model()
     {
         return DoctorProfile::class;
+    }
+
+    public function createApi($input)
+    {
+        $model = $this->model->newInstance($input);
+        $model->save();
+
+        return $model;
     }
 }

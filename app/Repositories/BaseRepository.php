@@ -8,7 +8,6 @@ use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Auth;
 
 
 abstract class BaseRepository
@@ -51,9 +50,9 @@ abstract class BaseRepository
     /**
      * Make Model instance
      *
+     * @return Model
      * @throws Exception
      *
-     * @return Model
      */
     public function makeModel()
     {
@@ -77,64 +76,22 @@ abstract class BaseRepository
     {
         $query = $this->allQuery();
 
-        return $query->orderBy('created_at', 'desc')->paginate($perPage, $columns);
-    }
-
-    public function paginateSortable($sortable, $perPage, $columns = ['*'])
-    {
-        return $this->model->sortable([$sortable => 'asc'])->paginate($perPage, $columns);
-    }
-
-    public function withpaginateSortable($with, $sortable, $perPage, $columns = ['*'])
-    {
-        return $this->model->with($with)->sortable([$sortable => 'asc'])->paginate($perPage, $columns);
+        return $query->paginate($perPage, $columns);
     }
 
     /**
-     * @param array $with
-     * @param $perPage
+     * withPaginate  records for scaffold.
+     *
+     * @param int $perPage
+     * @param array relModels
      * @param array $columns
      * @return LengthAwarePaginator
      */
-    public function withPaginate($perPage, $with = [], $columns = ['*'])
+    public function withPaginate($perPage, $relModels, $columns = ['*'])
     {
-        return $this->model
-            ->with($with)
-            ->orderBy('created_at', 'desc')
-            ->paginate($perPage, $columns);
-    }
+        $query = $this->allQuery()->with($relModels);
 
-    /**
-     * @param $where
-     * @param $condition
-     * @param $perPage
-     * @param array $with
-     * @param array $columns
-     * @return LengthAwarePaginator
-     */
-    public function WhereWithPaginate($where, $condition, $perPage, $with = [], $columns = ['*'])
-    {
-        return $this->model
-            ->where($where, $condition)
-            ->with($with)
-            ->orderBy('created_at', 'desc')
-            ->paginate($perPage, $columns);
-    }
-
-    /**
-     * @param $where
-     * @param $condition
-     * @param $perPage
-     * @param array $with
-     * @param array $columns
-     * @return LengthAwarePaginator
-     */
-    public function wherePaginate($where, $condition, $perPage, $columns = ['*'])
-    {
-        return $this->model
-            ->where($where, $condition)
-            ->orderBy('created_at', 'desc')
-            ->paginate($perPage, $columns);
+        return $query->paginate($perPage, $columns);
     }
 
     /**
@@ -185,44 +142,6 @@ abstract class BaseRepository
         return $query->get($columns);
     }
 
-
-    // Eager load database relationships
-    public function with($relations)
-    {
-        return $this->model->with($relations)->orderBy('created_at', 'desc')->get();
-    }
-
-    public function authWith($relations)
-    {
-        $user = Auth::user()->id;
-        return $this->model->where('user_id', $user)->with($relations)->orderBy('created_at', 'desc')->get();
-    }
-    public function whereWith($where, $condition, $relations)
-    {
-        return $this->model->where($where, $condition)->with($relations)->orderBy('created_at', 'desc')->get();
-    }
-
-    /**
-     * Create model record
-     *
-     * @param array $input
-     *
-     * @return Model
-     */
-    public function createApi($input)
-    {
-        $user = Auth::user();
-        if ($user) {
-            $model = $this->model->newInstance($input);
-            $model->user_id = $user->id;
-            $model->save();
-
-            return $model;
-        }
-        return $user;
-    }
-
-
     /**
      * Create model record
      *
@@ -232,7 +151,9 @@ abstract class BaseRepository
      */
     public function create($input)
     {
+//        return $input;
         $model = $this->model->newInstance($input);
+
         $model->save();
 
         return $model;
@@ -251,22 +172,6 @@ abstract class BaseRepository
         $query = $this->model->newQuery();
 
         return $query->find($id, $columns);
-    }
-
-    /**
-     * Find model record for given id with relationships
-     *
-     * @param int $id
-     * @param $relationship
-     * @param array $columns
-     *
-     * @return Builder|Builder[]|Collection|Model|null
-     */
-    public function findWith($id, $relationship = [''], $columns = ['*'])
-    {
-        $query = $this->model->newQuery();
-
-        return $query->with($relationship)->find($id, $columns);
     }
 
     /**
@@ -293,9 +198,9 @@ abstract class BaseRepository
     /**
      * @param int $id
      *
+     * @return bool|mixed|null
      * @throws Exception
      *
-     * @return bool|mixed|null
      */
     public function delete($id)
     {
@@ -305,24 +210,4 @@ abstract class BaseRepository
 
         return $model->delete();
     }
-
-//    public function userCheck()
-//    {
-//
-//        try {
-//            $user = JWTAuth::parseToken()->authenticate();
-//            return $user;
-//        } catch (\Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
-//
-//            return response()->json(["message" => "token is expired", 'status' => false]);
-//
-//        } catch (\Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
-//            return response()->json(["message" => "token is invalid", 'status' => false]);
-//            // do whatever you want to do if a token is invalid
-//
-//        } catch (\Tymon\JWTAuth\Exceptions\JWTException $e) {
-//            return response()->json(["message" => "token is not present", 'status' => false]);
-//            // do whatever you want to do if a token is not present
-//        }
-//    }
 }
